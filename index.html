@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261026082252">
+<meta name="app-build" content="20261026153709">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -88,6 +88,7 @@ main{max-width:720px;margin:0 auto;padding:14px 16px}
 .f>label .ic{width:16px;height:16px}
 .req::after{content:"*";color:var(--danger);margin-right:-2px}
 input,select,textarea{width:100%;min-width:0;background:var(--field);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;outline:none;transition:border-color .15s,background .15s,box-shadow .15s;-webkit-appearance:none;appearance:none}
+select.rank:invalid,select.rank option[value=""]{color:var(--muted)}
 select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:14px 50%,19px 50%;background-size:5px 5px;background-repeat:no-repeat;padding-left:30px}
 input:focus,select:focus,textarea:focus{border-color:var(--green-2);background:var(--card);box-shadow:0 0 0 4px color-mix(in srgb,var(--green-2) 15%,transparent)}
 input[type=date],input[type=time]{min-height:48px;text-align:right}
@@ -398,12 +399,11 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
 <section class="card" id="t2">
   <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>القائم بالجولة الميدانية</h2><p>تنحفظ على جهازك وترجع تلقائياً</p></div></div>
   <div class="card-b">
-    <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>مسؤول الفئة <span class="req"></span></div>
+    <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>المسؤول <span class="req"></span></div>
       <input id="trOffName" data-tr="offName" placeholder="الاسم">
-      <div class="grid2"><input data-tr="offNo" placeholder="الرقم" inputmode="numeric"><input data-tr="offRank" placeholder="الرتبة" list="ranks"></div></div>
-    <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>سائق مسؤول الفئة</div>
-      <input data-tr="drvName" placeholder="الاسم">
-      <div class="grid2"><input data-tr="drvNo" placeholder="الرقم" inputmode="numeric"><input data-tr="drvRank" placeholder="الرتبة" list="ranks"></div></div>
+      <div class="grid2"><input data-tr="offNo" placeholder="الرقم" inputmode="numeric"><select data-tr="offRank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div>
+    <div id="trComp" style="display:grid;gap:10px"></div>
+    <button type="button" class="btn sec" id="trAddComp">➕ إضافة مرافق</button>
   </div>
 </section>
 <section class="card" id="t3">
@@ -435,9 +435,9 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-b"><div id="trPhotos" class="phgrid"></div></div>
 </section>
 <section class="card" id="t7">
-  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><h2>التوقيع</h2><p>توقيع مسؤول الفئة</p></div></div>
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><h2>التوقيع</h2><p>توقيع المسؤول</p></div></div>
   <div class="card-b">
-    <div class="f"><div class="sig-tools"><span class="lbl req">توقيع مسؤول الفئة</span><button type="button" class="ghost" id="trSigClear">مسح</button></div>
+    <div class="f"><div class="sig-tools"><span class="lbl req">توقيع المسؤول</span><button type="button" class="ghost" id="trSigClear">مسح</button></div>
       <div class="sig-wrap" id="trSigWrap"><canvas id="trSig" style="display:block;width:100%;height:160px;border-radius:14px"></canvas><div class="sig-ph" id="trSigPh">وقّع هنا بإصبعك</div></div></div>
     <div class="alert" id="trAlert"></div>
   </div>
@@ -480,10 +480,13 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-b"><textarea id="xvDetails" data-xv="details" style="min-height:200px" placeholder="تفاصيل الحدث والإجراءات المتخذة…"></textarea></div>
 </section>
 <section class="card" id="x4">
-  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>الدوريات والأفراد</h2><p>الدوريات المنتقلة والفرد المرتب في الموقع</p></div></div>
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>الدوريات والأفراد</h2><p>الدوريات المنتقلة والفرد المرتب والضباط الحاضرون</p></div></div>
   <div class="card-b">
     <div class="f"><label for="xvPatrols">الدوريات المنتقلة</label><input id="xvPatrols" data-xv="patrols" placeholder="مثال: ميم 2، ميم 3"></div>
     <div class="f"><label for="xvStationed">الفرد المرتب في موقع الحدث</label><input id="xvStationed" data-xv="stationed"></div>
+    <div class="f"><label>الضباط الحاضرون لموقع الحدث <span class="hint" style="font-weight:400">(اختياري)</span></label>
+      <div id="xvOffs" style="display:grid;gap:10px"></div>
+      <button type="button" class="btn sec" id="xvAddOff">➕ إضافة ضابط</button></div>
   </div>
 </section>
 <section class="card" id="x5">
@@ -499,10 +502,10 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-b">
     <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>مسؤول الفئة <span class="req"></span></div>
       <input id="xvOffName" data-xv="offName" placeholder="الاسم">
-      <div class="grid2"><input data-xv="offNo" placeholder="الرقم" inputmode="numeric"><input data-xv="offRank" placeholder="الرتبة" list="ranks"></div></div>
+      <div class="grid2"><input data-xv="offNo" placeholder="الرقم" inputmode="numeric"><select data-xv="offRank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div>
     <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>مدوّن التقرير – الكاتب</div>
       <input data-xv="wrName" placeholder="الاسم">
-      <div class="grid2"><input data-xv="wrNo" placeholder="الرقم" inputmode="numeric"><input data-xv="wrRank" placeholder="الرتبة" list="ranks"></div></div>
+      <div class="grid2"><input data-xv="wrNo" placeholder="الرقم" inputmode="numeric"><select data-xv="wrRank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div>
     <div class="f"><div class="sig-tools"><span class="lbl req">توقيع مسؤول الفئة</span><button type="button" class="ghost" id="xvSigClear">مسح</button></div>
       <div class="sig-wrap" id="xvSigWrap"><canvas id="xvSig" style="display:block;width:100%;height:160px;border-radius:14px"></canvas><div class="sig-ph" id="xvSigPh">وقّع هنا بإصبعك</div></div></div>
     <div class="alert" id="xvAlert"></div>
@@ -728,12 +731,12 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
     <div class="f"><label for="evNote">ملاحظات المقيّم</label><textarea id="evNote" data-e="evNote" style="min-height:70px"></textarea></div>
     <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>القائم بالتقييم <span class="req"></span></div>
       <input id="evName" data-e="evName" placeholder="الاسم">
-      <div class="grid2"><input data-e="evNo" placeholder="الرقم" inputmode="numeric"><input data-e="evRank" placeholder="الرتبة" list="ranks"></div>
+      <div class="grid2"><input data-e="evNo" placeholder="الرقم" inputmode="numeric"><select data-e="evRank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div>
       <select data-e="evRole"><option value="">الصفة…</option><option>مسؤول الفئة</option><option>رئيس القسم</option><option>نائب رئيس القسم</option><option>أخرى</option></select>
       <span class="hint">بيانات المقيّم تنحفظ على جهازك وترجع تلقائياً في التقييم الجاي.</span>
     </div>
     <details class="head" id="ev2Box"><summary>إضافة مقيّم ثاني (اختياري)</summary>
-      <div class="in"><input data-e="ev2Name" placeholder="الاسم"><div class="grid2"><input data-e="ev2No" placeholder="الرقم" inputmode="numeric"><input data-e="ev2Rank" placeholder="الرتبة" list="ranks"></div></div></details>
+      <div class="in"><input data-e="ev2Name" placeholder="الاسم"><div class="grid2"><input data-e="ev2No" placeholder="الرقم" inputmode="numeric"><select data-e="ev2Rank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div></details>
     <div class="f"><div class="sig-tools"><span class="lbl req">توقيع المقيّم</span><button type="button" class="ghost" id="evSigClear">مسح</button></div>
       <div class="sig-wrap" id="evSigWrap"><canvas id="evSig" style="display:block;width:100%;height:160px;border-radius:14px"></canvas><div class="sig-ph" id="evSigPh">وقّع هنا بإصبعك</div></div></div>
     <div class="alert" id="evAlert"></div>
@@ -777,7 +780,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
 <div class="toast" id="toast"></div>
 <div class="upd" id="upd" role="status"><span class="t"><b>🔄 يتوفر تحديث جديد للاستمارة</b>بياناتك محفوظة ولن تتأثر بالتحديث</span><button type="button" id="updBtn">تحديث</button><button type="button" class="x" id="updX" aria-label="لاحقاً">✕</button></div>
 
-<datalist id="ranks"><option>شرطي</option><option>عريف</option><option>رقيب</option><option>رقيب أول</option><option>مساعد</option><option>مساعد أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option><option>عميد</option></datalist>
+<datalist id="ranks"><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></datalist>
 <datalist id="roles"><option>صاحب المنشأة</option><option>مدير المحل</option><option>موظف</option><option>مسؤول الأمن</option><option>حارس أمن</option></datalist>
 <datalist id="facList"></datalist>
 <datalist id="issuers"><option>الإمارات العربية المتحدة</option></datalist>
@@ -823,10 +826,13 @@ const todayISO=()=>{const n=new Date();return `${n.getFullYear()}-${pad(n.getMon
 
 $('#crew').innerHTML=CREW.map(([k,r],i)=>`<div class="crew-row"><div class="role">${i<2?'<span class="ic ic-crew"></span>':''}${r}${k==='leader'?' <span class="req"></span>':''}</div>
 <input data-k="${k}Name" placeholder="الاسم" ${k==='leader'?'id="leaderName"':''}>
-<div class="grid2"><input data-k="${k}No" placeholder="الرقم" inputmode="numeric"><input data-k="${k}Rank" placeholder="الرتبة" list="ranks"></div></div>`).join('');
+<div class="grid2"><input data-k="${k}No" placeholder="الرقم" inputmode="numeric"><select data-k="${k}Rank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div>`).join('');
 $('#causes').innerHTML=CAUSES.map(c=>`<button type="button" class="chip" data-v="${c}">${c}</button>`).join('');
 
 let S={}, P={id:'',idBack:'',license:''};
+const RANKS=['شرطي','شرطي أول','عريف','عريف أول','رقيب','رقيب أول','وكيل','وكيل أول','ملازم','ملازم أول','نقيب','رائد','مقدم','عقيد'];
+const rankOpts=v=>'<option value="">الرتبة</option>'+(v&&!RANKS.includes(v)?`<option>${esc(v)}</option>`:'')+RANKS.map(r=>`<option${r===v?' selected':''}>${r}</option>`).join('');
+function setVal(e,v){if(e.tagName==='SELECT'&&v&&![...e.options].some(o=>o.value===v))e.add(new Option(v,v));e.value=v}
 const fields=()=>$$('[data-k]').filter(e=>e.matches('input,select,textarea'));
 function collect(){
   fields().forEach(e=>S[e.dataset.k]=e.type==='checkbox'?e.checked:e.value);
@@ -834,7 +840,7 @@ function collect(){
   const c=$('#causes .on');S.cause=c?c.dataset.v:'';
 }
 function apply(){
-  fields().forEach(e=>{const v=S[e.dataset.k];if(v==null)return;if(e.type==='checkbox')e.checked=!!v;else e.value=v});
+  fields().forEach(e=>{const v=S[e.dataset.k];if(v==null)return;if(e.type==='checkbox')e.checked=!!v;else setVal(e,v)});
   $$('.seg[data-k]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===S[g.dataset.k])));
   $$('#causes .chip').forEach(b=>b.classList.toggle('on',b.dataset.v===S.cause));
   setGps(S.gps);
@@ -1282,7 +1288,7 @@ $('#evP').innerHTML=EV_P.map((it,i)=>itemHTML(i,i+1,it)).join('');
 $('#evQ').innerHTML=EV_Q.map((it,i)=>itemHTML(NP+i,i+1,it)).join('');
 $('#evCrew').innerHTML=EV_CREW.map(([k,r])=>`<div class="crew-row"><div class="role"><span class="ic ic-crew"></span>${r}${k==='leader'?' <span class="req"></span>':''}</div>
 <input data-e="${k}Name" placeholder="الاسم">
-<div class="grid2"><input data-e="${k}No" placeholder="الرقم" inputmode="numeric"><input data-e="${k}Rank" placeholder="الرتبة" list="ranks"></div></div>`).join('');
+<div class="grid2"><input data-e="${k}No" placeholder="الرقم" inputmode="numeric"><select data-e="${k}Rank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div>`).join('');
 
 /* generic signature pad (safe while its view is hidden) */
 function sigPad(cv,ph){const cx=cv.getContext('2d');let drawing=false,has=false,last=null,pending=null;
@@ -1303,7 +1309,7 @@ $('#evSigClear').addEventListener('click',()=>{evSig.clear();saveE()});
 
 const efields=()=>$$('[data-e]').filter(e=>e.matches('input,select,textarea'));
 function ecollect(){efields().forEach(e=>E[e.dataset.e]=e.value);$$('.seg[data-e]').forEach(g=>{const on=g.querySelector('.on');E[g.dataset.e]=on?on.dataset.v:''})}
-function eapply(){efields().forEach(e=>{const v=E[e.dataset.e];e.value=v==null?'':v});$$('.seg[data-e]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===E[g.dataset.e])));setEvGps(E.gps)}
+function eapply(){efields().forEach(e=>{const v=E[e.dataset.e];setVal(e,v==null?'':v)});$$('.seg[data-e]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===E[g.dataset.e])));setEvGps(E.gps)}
 let saveET;
 function saveE(){ecollect();ederive();idb.set(EDRAFT,{E,sig:evSig.data()})}
 function saveESoon(){clearTimeout(saveET);saveET=setTimeout(saveE,300)}
@@ -1521,7 +1527,7 @@ function setMode(m,noHist){
   if(home){document.title='نبض – النظام المتكامل للعمليات الميدانية';badges();return}
   if(!noHist&&from==='home')try{history.pushState({nb:m},'')}catch(e){}
   const t=MTXT[m];$('#kickTxt').textContent=t[0];$('#heroTitle').textContent=t[1];$('#sendTxt').textContent=t[2];document.title=t[0]+' – نبض';
-  if(m==='ev'){evSig.size();ederive()}else if(m==='rep'){sizeCanvas();collect();derive()}else if(m==='tour'){trSig.size();tderive()}else{xvSig.size();xderive()}
+  if(m==='ev'){evSig.size();ederive()}else if(m==='rep'){sizeCanvas();collect();derive()}else if(m==='tour'){trSig.size();tderive();heroSubFor()}else{xvSig.size();xderive();heroSubFor()}
 }
 $('#homeView').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;setMode(b.dataset.go);window.scrollTo({top:0})});
 $('#backBtn').addEventListener('click',()=>{if(history.state&&history.state.nb)history.back();else{setMode('home');window.scrollTo({top:0})}});
@@ -1605,13 +1611,13 @@ const FCATS=['ص1','ص2','ص3','ف1','ف2','ف3'];
 const TOUR_POINTS=[{a:'ديرة',n:'منطقة 15 خلف توين تاور',p:'ميم 1'},{a:'ديرة',n:'سوق الذهب',p:'ميم 2'},{a:'ديرة',n:'الدورية الراجلة في سوق الذهب',p:'راجلة'},{a:'بر دبي',n:'منطقة السوق الكبير',p:'ميم 3'},{a:'بر دبي',n:'منطقة الكرامة خلف لولو',p:'ميم 4'}];
 const EVENT_TYPES=['سرقة','محاولة سرقة','سطو أو كسر محل','مشاجرة','اشتباه بشخص أو مركبة','جسم مشبوه','حريق','حادث مروري','حالة صحية / إسعاف','عطل في أنظمة الأمن والإنذار','تجمهر أو إزعاج','أخرى'];
 const TDRAFT='draftTour',XDRAFT='draftEvent',TCREW_KEY='alarmForm.tourCrew.v1',XCREW_KEY='alarmForm.eventCrew.v1';
-const TCREW=['offName','offNo','offRank','drvName','drvNo','drvRank'],XCREW=['offName','offNo','offRank','wrName','wrNo','wrRank'];
+const TCREW=['offName','offNo','offRank'],XCREW=['offName','offNo','offRank','wrName','wrNo','wrRank'];
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const nowHM=()=>{const n=new Date();return pad(n.getHours())+':'+pad(n.getMinutes())};
 const dayOf=d=>d?DAYS[new Date(d+'T12:00:00').getDay()]:'';
 const catCode=c=>(c||'NA').replace('ص','S').replace('ف','F');
-const blankT=()=>({date:todayISO(),points:TOUR_POINTS.map(p=>({id:uid(),a:p.a,n:p.n,p:p.p,on:false,time:''})),notes:[],photos:[],status:''});
-const blankX=()=>({date:todayISO(),time:nowHM(),notes:[],photos:[]});
+const blankT=()=>({date:todayISO(),points:TOUR_POINTS.map(p=>({id:uid(),a:p.a,n:p.n,p:p.p,on:false,time:''})),notes:[],photos:[],status:'',comp:[]});
+const blankX=()=>({date:todayISO(),time:nowHM(),notes:[],photos:[],offs:[]});
 let T=blankT(),X=blankX();
 const trSig=sigPad($('#trSig'),$('#trSigPh')),xvSig=sigPad($('#xvSig'),$('#xvSigPh'));
 $('#xvType').innerHTML='<option value="">---</option>'+EVENT_TYPES.map(t=>`<option>${t}</option>`).join('');
@@ -1619,7 +1625,7 @@ $('#xvType').innerHTML='<option value="">---</option>'+EVENT_TYPES.map(t=>`<opti
 /* --- generic field binding (data-tr → T, data-xv → X) --- */
 const F2={tr:{get o(){return T},set o(v){T=v}},xv:{get o(){return X},set o(v){X=v}}};
 function fcollect(a){const o=F2[a].o;$$(`[data-${a}]`).forEach(e=>{if(e.matches('input,select,textarea'))o[e.dataset[a]]=e.value});$$(`.seg[data-${a}]`).forEach(g=>{const on=g.querySelector('.on');o[g.dataset[a]]=on?on.dataset.v:''})}
-function fapply(a){const o=F2[a].o;$$(`[data-${a}]`).forEach(e=>{if(e.matches('input,select,textarea')){const v=o[e.dataset[a]];e.value=v==null?'':v}});$$(`.seg[data-${a}]`).forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===o[g.dataset[a]])))}
+function fapply(a){const o=F2[a].o;$$(`[data-${a}]`).forEach(e=>{if(e.matches('input,select,textarea')){const v=o[e.dataset[a]];setVal(e,v==null?'':v)}});$$(`.seg[data-${a}]`).forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===o[g.dataset[a]])))}
 let tSaveT,xSaveT;
 function tsave(){fcollect('tr');tderive();return idb.set(TDRAFT,{T,sig:trSig.data()})}
 function xsave(){fcollect('xv');xderive();return idb.set(XDRAFT,{X,sig:xvSig.data()})}
@@ -1681,6 +1687,25 @@ function photosUI(box,get,saveFn,soonFn,max){
 }
 const tPhotos=photosUI($('#trPhotos'),()=>T.photos,tsave,tsaveSoon,8),xPhotos=photosUI($('#xvPhotos'),()=>X.photos,xsave,xsaveSoon,6);
 
+
+/* --- people lists: tour companions (max 2) & officers present at the event --- */
+function peopleUI(box,addBtn,get,saveFn,soonFn,max,role,withTime){
+  const render=()=>{const a=get();box.innerHTML=a.map((p,i)=>`<div class="crew-row" data-i="${i}"><div class="role" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:6px"><span class="ic ic-crew"></span>${role}${max>1&&a.length>1?' '+(i+1):''}</span><button type="button" class="ghost" data-pdel style="padding:4px 10px">حذف</button></div>
+    <input data-pf="name" placeholder="الاسم" value="${esc(p.name)}">
+    <div class="grid2"><input data-pf="no" placeholder="الرقم" inputmode="numeric" value="${esc(p.no)}"><select data-pf="rank" class="rank">${rankOpts(p.rank)}</select></div>
+    ${withTime?`<div class="with-btn"><span class="hint" style="flex:none;align-self:center">وقت الحضور</span><input type="time" data-pf="time" value="${esc(p.time)}" style="flex:1;min-height:44px;padding:8px 10px"><button type="button" class="mini" data-pnow style="min-height:44px">الآن</button></div>`:''}</div>`).join('');
+    addBtn.hidden=a.length>=max};
+  box.addEventListener('click',e=>{const el=e.target.closest('.crew-row');if(!el)return;const a=get(),i=+el.dataset.i;
+    if(e.target.closest('[data-pdel]')){if((a[i].name||'').trim()&&!confirm('حذف '+(a[i].name||'')+'؟'))return;a.splice(i,1);render();saveFn()}
+    else if(e.target.closest('[data-pnow]')){a[i].time=nowHM();render();saveFn()}});
+  box.addEventListener('input',e=>{const f=e.target.closest('[data-pf]');if(!f)return;e.stopPropagation();const p=get()[+f.closest('.crew-row').dataset.i];if(p){p[f.dataset.pf]=f.value;soonFn()}});
+  addBtn.addEventListener('click',()=>{const a=get();if(a.length>=max)return;a.push({name:'',no:'',rank:'',time:''});render();saveFn();const l=box.querySelector('.crew-row:last-child input');l&&l.focus()});
+  return {render}}
+const tComp=peopleUI($('#trComp'),$('#trAddComp'),()=>T.comp||(T.comp=[]),tsave,tsaveSoon,2,'المرافق',false);
+const xOffs=peopleUI($('#xvOffs'),$('#xvAddOff'),()=>X.offs||(X.offs=[]),xsave,xsaveSoon,10,'ضابط حاضر',true);
+const pplOut=a=>(a||[]).filter(p=>(p.name||'').trim()).map(p=>{const o={name:p.name.trim()};['no','rank','time'].forEach(k=>{if((p[k]||'').trim())o[k]=p[k].trim()});return o});
+function heroSubFor(){if(MODE==='tour')$('#heroSub').textContent='قسم '+DEPT+(T.cat?' · الفئة '+T.cat:'');else if(MODE==='event')$('#heroSub').textContent='قسم '+DEPT+(X.eventNo?' · حدث رقم '+X.eventNo:'')}
+
 /* --- tour: derive, narrative, progress --- */
 function tAutoNarr(){
   const vis=T.points.filter(p=>p.on),areas=[...new Set(vis.map(p=>p.a))];
@@ -1694,13 +1719,13 @@ function tAutoNarr(){
   return s.replace(/\s+،/g,'،').replace(/\s{2,}/g,' ');
 }
 function tderive(){
-  T.day=dayOf(T.date);$('#trDay').value=T.day;
+  T.day=dayOf(T.date);$('#trDay').value=T.day;if(MODE==='tour')heroSubFor();
   if(!T.narrManual){T.narr=tAutoNarr();$('#trNarr').value=T.narr}
   tprogress();
 }
 $('#trReNarr').addEventListener('click',()=>{T.narrManual=false;tsave();toast('✓ تمت التعبئة التلقائية')});
-function treq(){const r=[['date','التاريخ'],['shift','فترة الدوام'],['cat','الفئة المناوبة'],['tFrom','الساعة من'],['tTo','الساعة إلى'],['offName','اسم مسؤول الفئة'],['points','النقاط التي تم المرور عليها'],['status','الحالة الأمنية'],['narr','موجز الجولة']];
-  if(T.status==='توجد ملاحظات')r.push(['notes','الملاحظات (ملاحظة واحدة على الأقل)']);r.push(['sig','توقيع مسؤول الفئة']);return r}
+function treq(){const r=[['date','التاريخ'],['shift','فترة الدوام'],['cat','الفئة المناوبة'],['tFrom','الساعة من'],['tTo','الساعة إلى'],['offName','اسم المسؤول'],['points','النقاط التي تم المرور عليها'],['status','الحالة الأمنية'],['narr','موجز الجولة']];
+  if(T.status==='توجد ملاحظات')r.push(['notes','الملاحظات (ملاحظة واحدة على الأقل)']);r.push(['sig','توقيع المسؤول']);return r}
 function tfilled(k){if(k==='points')return T.points.some(p=>p.on);if(k==='notes')return T.notes.length>0;if(k==='sig')return trSig.has;return !!String(T[k]||'').trim()}
 function tprogress(){if(MODE==='tour'){const r=treq();setMeter(Math.round(r.filter(x=>tfilled(x[0])).length/r.length*100))}}
 function notesValid(arr,box){let ok=true;arr.forEach(n=>{const el=box.querySelector(`[data-nid="${n.id}"]`);if(!el)return;
@@ -1715,7 +1740,7 @@ function tvalidate(){fcollect('tr');tderive();const miss=[];
   return failWith('#trAlert',miss)}
 
 /* --- event: derive, progress --- */
-function xderive(){X.day=dayOf(X.date);$('#xvDay').value=X.day;$('#xvTypeOtherBox').style.display=X.etype==='أخرى'?'':'none';xprogress()}
+function xderive(){X.day=dayOf(X.date);if(MODE==='event')heroSubFor();$('#xvDay').value=X.day;$('#xvTypeOtherBox').style.display=X.etype==='أخرى'?'':'none';xprogress()}
 function xreq(){const r=[['cat','الفئة المناوبة'],['date','التاريخ'],['time','الساعة'],['subject','الموضوع'],['etype','نوع الحدث']];if(X.etype==='أخرى')r.push(['etypeOther','نوع الحدث']);
   r.push(['details','تفاصيل الحدث والإجراءات المتخذة'],['offName','اسم مسؤول الفئة'],['sig','توقيع مسؤول الفئة']);return r}
 function xfilled(k){if(k==='sig')return xvSig.has;return !!String(X[k]||'').trim()}
@@ -1733,10 +1758,10 @@ const noteOut=n=>({id:n.id,text:(n.text||'').trim(),where:(n.where||'').trim(),t
 function stamp(){const n=new Date();return `${todayISO()} ${pad(n.getHours())}:${pad(n.getMinutes())}`}
 function tpayload(){const o={v:1,kind:'tour',sent:stamp(),dept:DEPT};
   ['date','day','shift','tFrom','tTo','cat','status','narr'].concat(TCREW).forEach(k=>{const v=typeof T[k]==='string'?T[k].trim():T[k];if(v)o[k]=v});
-  o.points=T.points.filter(p=>p.on).map(p=>({a:p.a,n:p.n,p:p.p,time:p.time}));o.notes=T.notes.map(noteOut);o.photos=T.photos.length;return o}
+  o.comp=pplOut(T.comp);o.points=T.points.filter(p=>p.on).map(p=>({a:p.a,n:p.n,p:p.p,time:p.time}));o.notes=T.notes.map(noteOut);o.photos=T.photos.length;return o}
 function xpayload(){const o={v:1,kind:'event',sent:stamp(),dept:DEPT};
   ['date','day','time','cat','subject','etype','etypeOther','eventNo','refNo','area','location','gps','details','patrols','stationed'].concat(XCREW).forEach(k=>{if(k==='etypeOther'&&X.etype!=='أخرى')return;const v=typeof X[k]==='string'?X[k].trim():X[k];if(v)o[k]=v});
-  o.notes=X.notes.map(noteOut);o.photos=X.photos.length;return o}
+  o.offs=pplOut(X.offs);o.notes=X.notes.map(noteOut);o.photos=X.photos.length;return o}
 const codeOf=o=>'ACIS1:'+b64(new TextEncoder().encode(JSON.stringify(o)));
 
 /* --- A4 report builder (same look as the alarm report) --- */
@@ -1814,14 +1839,14 @@ async function renderTour(){
   else D.banner(stable?'الحالة الأمنية: مستقرة  ✓':'الحالة الأمنية: توجد ملاحظات  ⚠',`${n} ${n===1?'ملاحظة':'ملاحظات'}${esc_?' · '+esc_+' مرفوعة للمسؤول الأعلى':''}`,stable?'#e3f4ea':'#fff6e0',stable?'#1e8e4e':'#d48a1a',stable?'#157a40':'#9a5a00');
   D.tiles([['فترة الدوام',T.shift],['الساعة من',T.tFrom],['إلى',T.tTo],['الفئة المناوبة',T.cat]]);
   D.sec('القائم بالجولة الميدانية');
-  D.table([['الصفة',.26],['الاسم',.40],['الرقم',.16],['الرتبة',.18]],[['مسؤول الفئة',T.offName,T.offNo,T.offRank]].concat(T.drvName?[['سائق مسؤول الفئة',T.drvName,T.drvNo,T.drvRank]]:[]));
+  D.table([['الصفة',.26],['الاسم',.40],['الرقم',.16],['الرتبة',.18]],[['المسؤول',T.offName,T.offNo,T.offRank]].concat(pplOut(T.comp).map((p,i,a)=>['المرافق'+(a.length>1?' '+(i+1):''),p.name,p.no,p.rank])));
   D.sec('النقاط التي تم المرور عليها');
   const vis=T.points.filter(p=>p.on).slice().sort((a,b)=>(a.a===b.a?0:a.a==='ديرة'?-1:b.a==='ديرة'?1:a.a.localeCompare(b.a))||(a.time||'').localeCompare(b.time||''));
   for(let k=0;k<vis.length;k+=12)D.table([['المنطقة',.18],['النقطة',.48],['الدورية',.17],['وقت المرور',.17]],vis.slice(k,k+12).map(p=>[p.a,p.n,p.p,p.time]));
   D.sec('موجز الجولة');D.para(T.narr);
   if(n){D.sec('الملاحظات والإجراءات المتخذة');D.notes(T.notes)}
   if(T.photos.length)D.note(`📎 صور من الجولة الميدانية: ${T.photos.length} ${T.photos.length<=2?'صورة':'صور'} في الصفحات التالية`);
-  await D.sigs([['توقيع مسؤول الفئة',person(T.offRank,T.offName),trSig.data()]]);
+  await D.sigs([['توقيع المسؤول',person(T.offRank,T.offName),trSig.data()]]);
   const rep=D.finish();const pages=paginate(rep);
   if(T.photos.length)pages.push(...await photoPages(T.photos,'صور من الجولة الميدانية',[T.day,T.date,'الفئة '+(T.cat||'')].filter(Boolean).join('  ·  '),rep.logos));
   stampFooters(pages,`تقرير النزول الميداني والحالة الأمنية  ·  ${T.date||''}  ·  الفئة ${T.cat||''}  ·  `);return pages;
@@ -1836,6 +1861,7 @@ async function renderEventRep(){
   D.kv([['رقم الحدث – الصادر عن العمليات',X.eventNo],['رقم المرجع – المسجّل في المركز المختص',X.refNo],['المنطقة',X.area],['اليوم',X.day],['موقع الحدث',(X.location||'')+(X.gps?'   📍 '+X.gps.replace('https://maps.google.com/?q=','GPS '):''),true]]);
   D.sec('تفاصيل الحدث والإجراءات المتخذة');D.para(X.details);
   D.sec('الدوريات والأفراد');D.kv([['الدوريات المنتقلة',X.patrols,true],['الفرد المرتب في موقع الحدث',X.stationed,true]]);
+  {const of=pplOut(X.offs);if(of.length){D.sec('الضباط الحاضرون لموقع الحدث');D.table([['الرتبة',.2],['الاسم',.42],['الرقم',.18],['وقت الحضور',.2]],of.map(p=>[p.rank,p.name,p.no,p.time]))}}
   if(X.notes.length){D.sec('ملاحظات تحتاج متابعة');D.notes(X.notes)}
   if(X.photos.length)D.note(`📎 صور الحدث: ${X.photos.length} ${X.photos.length<=2?'صورة':'صور'} في الصفحات التالية`);
   await D.sigs([['مسؤول الفئة',person(X.offRank,X.offName),xvSig.data()],['مدوّن التقرير – الكاتب',person(X.wrRank,X.wrName),'']]);
@@ -1857,13 +1883,13 @@ async function tinit(fresh){let d=!fresh&&await idb.get(TDRAFT);
   if(d&&d.T&&d.T.sentAt){await idb.del(TDRAFT);d=null;if(MODE==='tour')setTimeout(()=>toast('تم مسح التقرير المرسل سابقاً من الهاتف'),600)}
   trSig.clear();$('#trAlert').classList.remove('show');
   if(d&&d.T){T=Object.assign(blankT(),d.T);if(d.sig)trSig.load(d.sig)}else{T=Object.assign(blankT(),ls.get(TCREW_KEY)||{})}
-  fapply('tr');renderPoints();tNotes.render();tPhotos.render();tderive()}
+  fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()}
 async function xinit(fresh){let d=!fresh&&await idb.get(XDRAFT);
   if(d&&d.X&&d.X.sentAt){await idb.del(XDRAFT);d=null;if(MODE==='event')setTimeout(()=>toast('تم مسح التقرير المرسل سابقاً من الهاتف'),600)}
   xvSig.clear();$('#xvAlert').classList.remove('show');
   if(d&&d.X){X=Object.assign(blankX(),d.X);if(d.sig)xvSig.load(d.sig)}else{X=Object.assign(blankX(),ls.get(XCREW_KEY)||{})}
-  fapply('xv');setXGps(X.gps);xNotes.render();xPhotos.render();xderive()}
-function rememberCrew(keys,o,key){const c={};keys.forEach(k=>c[k]=o[k]||'');ls.set(key,c)}
+  fapply('xv');setXGps(X.gps);xOffs.render();xNotes.render();xPhotos.render();xderive()}
+function rememberCrew(keys,o,key){const c={};keys.forEach(k=>c[k]=o[k]||'');if(key===TCREW_KEY)c.comp=(o.comp||[]).filter(p=>(p.name||'').trim()).map(p=>({name:p.name,no:p.no,rank:p.rank}));ls.set(key,c)}
 
 /* init */
 async function init(fresh){
@@ -1880,32 +1906,40 @@ window.__nabdhSave=async()=>{ls.set('alarmForm.resume',MODE);
   else if(MODE==='rep'){collect();derive();await idb.set(DRAFT,{S,P,sig:sigData()})}
   else if(MODE==='tour')await tsave();else if(MODE==='event')await xsave()};
 (async()=>{await init();await einit();await tinit();await xinit();const r=ls.get('alarmForm.resume');try{localStorage.removeItem('alarmForm.resume')}catch(e){}setMode(VIEWS[r]?r:'home',true)})();
-window.__test={get T(){return T},get X(){return X},renderTour,renderEventRep,tpayload,xpayload,setT(o){Object.assign(T,o);fapply('tr');renderPoints();tNotes.render();tPhotos.render();tderive()},setX(o){Object.assign(X,o);fapply('xv');xNotes.render();xPhotos.render();xderive()},trSig,xvSig,get files(){return files},openScanner,loadFile,get SC(){return SC},renderReport,renderEval,payload,epayload,dataCode,evDataCode,timeScore,setMode,areaOf,rememberFacility,get S(){return S},get E(){return E},setPhoto(k,d){P[k]=d;showPhoto(k);save()}};
+window.__test={get T(){return T},get X(){return X},renderTour,renderEventRep,tpayload,xpayload,setT(o){Object.assign(T,o);fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()},setX(o){Object.assign(X,o);fapply('xv');xOffs.render();xNotes.render();xPhotos.render();xderive()},trSig,xvSig,get files(){return files},openScanner,loadFile,get SC(){return SC},renderReport,renderEval,payload,epayload,dataCode,evDataCode,timeScore,setMode,areaOf,rememberFacility,get S(){return S},get E(){return E},setPhoto(k,d){P[k]=d;showPhoto(k);save()}};
 })();
 </script>
 <script>
-/* ---------- update notice: compares this page's build with the one on the server ---------- */
+/* ---------- auto-update: compares this page's build with the one on the server ----------
+   new build found when the app opens or comes back to the screen -> save the open form and reload by itself;
+   found while the user is in the middle of a form (network came back) -> show the banner instead */
 (()=>{
   const cur=(document.querySelector('meta[name="app-build"]')||{}).content||'';
+  if(location.search.includes('v=')){try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}}
+  const ss={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+  if(ss.get('nabdhUpdated')){ss.del('nabdhUpdated');setTimeout(()=>{const t=document.getElementById('toast');if(t){t.textContent='✓ تم تحديث التطبيق تلقائياً – بياناتك محفوظة';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}},900)}
   if(!cur||location.protocol==='file:')return;
-  let last=0,busy=false,dismissed='',found='';
-  async function check(){
-    if(busy||!navigator.onLine||Date.now()-last<60*1000)return;busy=true;last=Date.now();
+  let last=0,busy=false,dismissed='',found='',going=false;
+  async function apply(){if(going)return;going=true;
+    try{if(window.__nabdhSave)await window.__nabdhSave()}catch(e){}
+    ss.set('nabdhTried',found);ss.set('nabdhUpdated','1');
+    location.replace(location.pathname+'?v='+encodeURIComponent(found))}
+  async function check(auto){
+    if(busy||going||!navigator.onLine||Date.now()-last<20*1000)return;busy=true;last=Date.now();
     try{
       const r=await fetch('./index.html?v='+Date.now(),{cache:'no-store',headers:{Range:'bytes=0-4095'}});
       if(r.ok||r.status===206){const m=/name="app-build" content="([^"]+)"/.exec((await r.text()).slice(0,8000));
-        if(m&&m[1]!==cur&&m[1]!==dismissed){found=m[1];document.getElementById('upd').classList.add('show')}}
+        if(m&&m[1]!==cur&&m[1]!==dismissed){found=m[1];
+          const sheetOpen=(document.getElementById('sheet')||{classList:{contains:()=>false}}).classList.contains('show');
+          if(auto&&!sheetOpen&&ss.get('nabdhTried')!==found)apply();else document.getElementById('upd').classList.add('show')}}
     }catch(e){}finally{busy=false}
   }
-  document.getElementById('updBtn').addEventListener('click',async()=>{
-    const b=document.getElementById('updBtn');b.disabled=true;b.textContent='جاري الحفظ…';
-    try{if(window.__nabdhSave)await window.__nabdhSave()}catch(e){}
-    location.reload();
-  });
+  document.getElementById('updBtn').addEventListener('click',()=>{const b=document.getElementById('updBtn');b.disabled=true;b.textContent='جاري الحفظ…';apply()});
   document.getElementById('updX').addEventListener('click',()=>{document.getElementById('upd').classList.remove('show');dismissed=found;last=Date.now()});
-  window.addEventListener('load',()=>setTimeout(check,2500));
-  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check()});
-  window.addEventListener('online',check);
+  window.addEventListener('load',()=>setTimeout(()=>check(true),1200));
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check(true)});
+  window.addEventListener('online',()=>check(!!document.querySelector('.hero.home')));
+  setInterval(()=>{if(document.visibilityState==='visible')check(!!document.querySelector('.hero.home'))},5*60*1000);
 })();
 </script>
 </body>
