@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261028181713">
+<meta name="app-build" content="20261029225909">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -167,6 +167,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
 .sig-ph{position:absolute;inset:0;display:grid;place-items:center;color:#9aa6a0;font-size:13px;pointer-events:none}
 .sig-tools{display:flex;justify-content:space-between;align-items:center}
 .es-it{display:grid;gap:10px}.es-it .seg.sm button{font-size:12.5px;padding:9px 2px}.es-pct{max-width:220px}
+.ho-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ho-cats button{border:1.5px solid var(--line);background:var(--field);border-radius:12px;padding:12px 4px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer}.ho-cats button.on{background:var(--green);border-color:var(--green);color:#fff}.ho-cats button.on::before{content:"✓ "}.ho-cats.invalid{outline:2px solid var(--danger);border-radius:12px}
 .es-total{display:flex;justify-content:space-between;align-items:center;background:var(--green-soft);border-radius:14px;padding:12px 16px;font-weight:700}.es-total b{font-size:22px;color:var(--green-2)}
 
 .gps-link{font-size:12.5px;color:var(--green-2);word-break:break-all;text-decoration:none}
@@ -380,6 +381,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <button type="button" class="hcard" data-go="tour"><span class="hi" style="background:#e3edf7"><svg viewBox="0 0 24 24" style="stroke:#1f5f99"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="ht"><b>النزول الميداني والحالة الأمنية</b><span class="d">توثيق الجولات الميدانية والحالة الأمنية في مناطق الاختصاص</span></span><span class="badge" data-badge="tour" hidden>مسودة</span><span class="chev">‹</span></button>
   <button type="button" class="hcard" data-go="event"><span class="hi" style="background:#fdecea"><svg viewBox="0 0 24 24" style="stroke:#c0392b"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4"/><path d="M12 17.5v.5"/></svg></span><span class="ht"><b>تقرير حدث ميداني</b><span class="d">توثيق الأحداث والإجراءات المتخذة في الميدان</span></span><span class="badge" data-badge="event" hidden>مسودة</span><span class="chev">‹</span></button>
   <button type="button" class="hcard" data-go="escort"><span class="hi" style="background:#efe9f8"><svg viewBox="0 0 24 24" style="stroke:#5b3a99"><path d="M3 7h12v10H3z"/><path d="M15 10h4l2 3v4h-6"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/><path d="M7 10.5h4M9 8.5v4"/></svg></span><span class="ht"><b>مهام المرافقات الأمنية</b><span class="d">قسم تأمين المتفجرات والألعاب النارية</span></span><span class="badge" data-badge="escort" hidden>مسودة</span><span class="chev">‹</span></button>
+  <button type="button" class="hcard" data-go="handover"><span class="hi" style="background:#fdf1e4"><svg viewBox="0 0 24 24" style="stroke:#a35a12"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span><span class="ht"><b>محضر استلام وتسليم</b><span class="d">قسم تأمين المتفجرات والألعاب النارية</span></span><span class="badge" data-badge="handover" hidden>مسودة</span><span class="chev">‹</span></button>
   <p class="hint" style="text-align:center;margin:6px 0 0">تُحفظ كل استمارة على حدة في هذا الهاتف، ويمكن التنقل بين الاستمارات دون فقدان البيانات.</p>
 </div>
 
@@ -560,6 +562,67 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   </div>
 </section>
 </div><!-- /escortView -->
+
+<!-- ================= Receipt & handover record (explosives & fireworks section) ================= -->
+<div id="handoverView" hidden>
+<section class="card" id="h1">
+  <div class="card-h"><span class="n"><span class="ic lg ic-date"></span></span><div><h2>بيانات المحضر</h2><p>التاريخ ونوع المواد ونوع العملية</p></div></div>
+  <div class="card-b">
+    <div class="grid2">
+      <div class="f"><label class="req" for="hoDate"><span class="ic ic-date"></span>التاريخ</label><input type="date" id="hoDate" data-ho="date"></div>
+      <div class="f"><label for="hoDay"><span class="ic ic-day"></span>اليوم <span class="auto">تلقائي</span></label><input id="hoDay" readonly tabindex="-1"></div>
+    </div>
+    <div class="f"><span class="lbl req">نوع المواد <span class="hint" style="font-weight:400">(يمكن اختيار أكثر من نوع)</span></span>
+      <div class="ho-cats" id="hoCats"><button type="button" data-cat="ألعاب نارية">ألعاب نارية</button><button type="button" data-cat="الإشارات الضوئية">الإشارات الضوئية</button><button type="button" data-cat="المتفجرات العابرة">المتفجرات العابرة</button></div></div>
+    <div class="f"><span class="lbl req">نوع العملية</span><div class="seg" data-ho="op" id="hoOp"><button type="button" data-v="تسليم">تسليم</button><button type="button" data-v="استلام">استلام</button></div></div>
+    <div class="f"><label class="req" for="hoTo">الأصناف المبينة أدناه إلى</label><input id="hoTo" data-ho="toWhom" placeholder="الجهة أو الشخص"></div>
+  </div>
+</section>
+<section class="card" id="h2">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><div><h2>بيانات التصريح والشركة</h2><p>التصريح والجهة الصادر عنها والشركة الممنوح لها</p></div></div>
+  <div class="card-b">
+    <div class="grid2">
+      <div class="f"><label class="req" for="hoPermit">بموجب التصريح رقم</label><input id="hoPermit" data-ho="permitNo"></div>
+      <div class="f"><label for="hoPermitDate">بتاريخ</label><input type="date" id="hoPermitDate" data-ho="permitDate"></div>
+    </div>
+    <div class="f"><label for="hoIssuer">الصادر عن شرطة</label><input id="hoIssuer" data-ho="issuer" placeholder="مثال: مركز شرطة …"></div>
+    <div class="grid2">
+      <div class="f"><label class="req" for="hoCompany">الممنوح لشركة</label><input id="hoCompany" data-ho="company"></div>
+      <div class="f"><label for="hoHQ">ومقرها</label><input id="hoHQ" data-ho="hq"></div>
+    </div>
+  </div>
+</section>
+<section class="card" id="h3">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg></span><div><h2>البيانات</h2><p>الصنف وعدد الكمية والتفاصيل (حتى 10 أصناف)</p></div></div>
+  <div class="card-b">
+    <div id="hoItems" style="display:grid;gap:10px"></div>
+    <button type="button" class="btn sec" id="hoAddItem">➕ إضافة صنف</button>
+  </div>
+</section>
+<section class="card" id="h4">
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>الشخص القائم بالتسليم</h2><p>البيانات والتوقيع</p></div></div>
+  <div class="card-b">
+    <input data-ho="gName" placeholder="الاسم *">
+    <div class="grid2"><input data-ho="gNo" placeholder="الرقم" inputmode="numeric"><input data-ho="gRank" placeholder="الرتبة / الوظيفة" list="ranks"></div>
+    <div class="f"><label>الوقت</label><div class="with-btn"><input type="time" data-ho="gTime"><button class="mini" type="button" data-honow="gTime">الآن</button></div></div>
+    <div class="f"><label>التاريخ</label><input type="date" data-ho="gDate"></div>
+    <div class="f"><div class="sig-tools"><span class="lbl req">توقيع القائم بالتسليم</span><button type="button" class="ghost" id="hoGSigClear">مسح</button></div>
+      <div class="sig-wrap" id="hoGSigWrap"><canvas id="hoGSig" style="display:block;width:100%;height:150px;border-radius:14px"></canvas><div class="sig-ph" id="hoGSigPh">وقّع هنا بإصبعك</div></div></div>
+  </div>
+</section>
+<section class="card" id="h5">
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>الشخص القائم بالاستلام</h2><p>البيانات والتوقيع</p></div></div>
+  <div class="card-b">
+    <input data-ho="rName" placeholder="الاسم *">
+    <div class="grid2"><input data-ho="rNo" placeholder="الرقم" inputmode="numeric"><input data-ho="rRank" placeholder="الرتبة / الوظيفة" list="ranks"></div>
+    <div class="f"><label>الوقت</label><div class="with-btn"><input type="time" data-ho="rTime"><button class="mini" type="button" data-honow="rTime">الآن</button></div></div>
+    <div class="f"><label>التاريخ</label><input type="date" data-ho="rDate"></div>
+    <div class="f"><div class="sig-tools"><span class="lbl req">توقيع القائم بالاستلام</span><button type="button" class="ghost" id="hoRSigClear">مسح</button></div>
+      <div class="sig-wrap" id="hoRSigWrap"><canvas id="hoRSig" style="display:block;width:100%;height:150px;border-radius:14px"></canvas><div class="sig-ph" id="hoRSigPh">وقّع هنا بإصبعك</div></div></div>
+    <div class="alert" id="hoAlert"></div>
+  </div>
+</section>
+</div><!-- /handoverView -->
 
 <div id="eventView" hidden>
 <section class="card" id="x1">
@@ -1630,9 +1693,9 @@ async function einit(fresh){
   else{E=Object.assign(blankE(),{date:todayISO()},ls.get(EVR_KEY)||{});eapply()}
   ecollect();ederive();
 }
-const VIEWS={home:'#homeView',rep:'#repView',ev:'#evView',tour:'#tourView',event:'#eventView',escort:'#escortView'};
-const MTXT={escort:['مهام المرافقات الأمنية','استمارة مهام المرافقات الأمنية','معاينة وإرسال الاستمارة'],rep:['بلاغ جرس إنذار','استمارة الاستجابة الفورية لحالات جرس الإنذار','معاينة وإرسال التقرير'],ev:['تقييم تجربة وهمية','استمارة تقييم التجربة الوهمية','معاينة وإرسال التقييم'],tour:['النزول الميداني والحالة الأمنية','تقرير النزول الميداني والحالة الأمنية','معاينة وإرسال التقرير'],event:['تقرير حدث ميداني','تقرير حدث ميداني','معاينة وإرسال التقرير']};
-function badges(){const has={rep:!!(S.eventNo||S.facility||S.cause),ev:!!(E.eventNo||E.facility),tour:!!(T.points.some(p=>p.on)||T.notes.length||T.photos.length||T.shift),event:!!(X.subject||X.details||X.eventNo),escort:!!(Q.missionNo||Q.from||Q.to||(Q.crew||[]).length)};
+const VIEWS={home:'#homeView',rep:'#repView',ev:'#evView',tour:'#tourView',event:'#eventView',escort:'#escortView',handover:'#handoverView'};
+const MTXT={handover:['محضر استلام وتسليم','محضر استلام وتسليم','معاينة وإرسال المحضر'],escort:['مهام المرافقات الأمنية','استمارة مهام المرافقات الأمنية','معاينة وإرسال الاستمارة'],rep:['بلاغ جرس إنذار','استمارة الاستجابة الفورية لحالات جرس الإنذار','معاينة وإرسال التقرير'],ev:['تقييم تجربة وهمية','استمارة تقييم التجربة الوهمية','معاينة وإرسال التقييم'],tour:['النزول الميداني والحالة الأمنية','تقرير النزول الميداني والحالة الأمنية','معاينة وإرسال التقرير'],event:['تقرير حدث ميداني','تقرير حدث ميداني','معاينة وإرسال التقرير']};
+function badges(){const has={rep:!!(S.eventNo||S.facility||S.cause),ev:!!(E.eventNo||E.facility),tour:!!(T.points.some(p=>p.on)||T.notes.length||T.photos.length||T.shift),event:!!(X.subject||X.details||X.eventNo),escort:!!(Q.missionNo||Q.from||Q.to||(Q.crew||[]).length),handover:!!(H.permitNo||H.company||H.gName||(H.items||[]).some(i=>i.name))};
   $$('[data-badge]').forEach(b=>b.hidden=!has[b.dataset.badge])}
 function setMode(m,noHist){
   if(!VIEWS[m])m='home';const from=MODE;MODE=m;ls.set(MODE_KEY,m);const home=m==='home';
@@ -1643,7 +1706,7 @@ function setMode(m,noHist){
   if(home){document.title='نبض – النظام المتكامل للعمليات الميدانية';badges();return}
   if(!noHist&&from==='home')try{history.pushState({nb:m},'')}catch(e){}
   const t=MTXT[m];$('#kickTxt').textContent=t[0];$('#heroTitle').textContent=t[1];$('#sendTxt').textContent=t[2];document.title=t[0]+' – نبض';
-  if(m==='ev'){evSig.size();ederive()}else if(m==='rep'){sizeCanvas();collect();derive()}else if(m==='tour'){trSig.size();tderive();heroSubFor()}else if(m==='escort'){esSig.size();qderive()}else{xvSig.size();xderive();heroSubFor()}
+  if(m==='ev'){evSig.size();ederive()}else if(m==='rep'){sizeCanvas();collect();derive()}else if(m==='tour'){trSig.size();tderive();heroSubFor()}else if(m==='escort'){esSig.size();qderive()}else if(m==='handover'){hoG.size();hoR.size();hderive()}else{xvSig.size();xderive();heroSubFor()}
 }
 $('#homeView').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;setMode(b.dataset.go);window.scrollTo({top:0})});
 $('#backBtn').addEventListener('click',()=>{if(history.state&&history.state.nb)history.back();else{setMode('home');window.scrollTo({top:0})}});
@@ -1685,18 +1748,19 @@ async function sendEval(){
   }catch(e){console.error(e);toast('تعذر تجهيز التقييم')}
   $('#busy').classList.remove('show');
 }
-$('#sendBtn').addEventListener('click',()=>({rep:sendReport,ev:sendEval,tour:sendTour,event:sendEvent,escort:sendEscort}[MODE]||(()=>{}))());
+$('#sendBtn').addEventListener('click',()=>({rep:sendReport,ev:sendEval,tour:sendTour,event:sendEvent,escort:sendEscort,handover:sendHandover}[MODE]||(()=>{}))());
 $('#sheetX').addEventListener('click',()=>$('#sheet').classList.remove('show'));
 $('#sheet').addEventListener('click',e=>{if(e.target.id==='sheet')$('#sheet').classList.remove('show')});
 $('#shareBtn').addEventListener('click',async()=>{
   const ev=MODE==='ev';
-  const text=MODE==='escort'?`استمارة مهام المرافقات الأمنية${Q.missionNo?' – مهمة رقم '+Q.missionNo:''} – ${Q.from||''} إلى ${Q.to||''} – ${Q.date||''} – النتيجة ${Q.total??''}/100`
+  const text=MODE==='handover'?`محضر ${H.op||'استلام وتسليم'} – ${H.company||''} – تصريح رقم ${H.permitNo||''} – ${H.date||''}`
+           :MODE==='escort'?`استمارة مهام المرافقات الأمنية${Q.missionNo?' – مهمة رقم '+Q.missionNo:''} – ${Q.from||''} إلى ${Q.to||''} – ${Q.date||''} – النتيجة ${Q.total??''}/100`
            :MODE==='tour'?`تقرير النزول الميداني والحالة الأمنية – ${T.day||''} ${T.date||''} – الفئة ${T.cat||''} – الحالة: ${T.status||''}`
            :MODE==='event'?`تقرير حدث ميداني${X.eventNo?' – حدث رقم '+X.eventNo:''} – ${X.subject||''} – ${X.date||''}`
            :ev?`تقييم تجربة وهمية${E.eventNo?' – حدث رقم '+E.eventNo:''} – ${E.facility||''} – ${E.total}/100 ${E.grade||''}`
                :`${isMock()?'بلاغ تجربة وهمية':'بلاغ جرس إنذار'}${S.eventNo?' – حدث رقم '+S.eventNo:''} – ${S.facility||''} – ${S.result||''}`;
   try{
-    if(navigator.canShare&&navigator.canShare({files})){await navigator.share({files,title:MODE==='escort'?'استمارة مهام المرافقات الأمنية':MODE==='tour'?'تقرير الحالة الأمنية':MODE==='event'?'تقرير حدث ميداني':ev?'تقييم تجربة وهمية':'تقرير جرس الإنذار',text});markSent();return}
+    if(navigator.canShare&&navigator.canShare({files})){await navigator.share({files,title:MODE==='handover'?'محضر استلام وتسليم':MODE==='escort'?'استمارة مهام المرافقات الأمنية':MODE==='tour'?'تقرير الحالة الأمنية':MODE==='event'?'تقرير حدث ميداني':ev?'تقييم تجربة وهمية':'تقرير جرس الإنذار',text});markSent();return}
   }catch(e){if(e.name==='AbortError')return}
   download();toast('المشاركة غير مدعومة على هذا الجهاز – تم حفظ الملف');
 });
@@ -1704,6 +1768,7 @@ function download(){files.forEach((f,i)=>setTimeout(()=>{const a=document.create
 $('#dlBtn').addEventListener('click',()=>{download();markSent()});
 /* after sending: offer immediate wipe; a sent draft is wiped automatically next time the app opens */
 function markSent(){
+  if(MODE==='handover'){H.sentAt=Date.now();hsave();$('#sentT1').textContent='✓ بعد التأكد من وصول المحضر عبر ويبكس:';$('#sentT2').textContent='امسح بيانات المحضر والتوقيعات من الهاتف.';$('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال');return}
   if(MODE==='escort'){Q.sentAt=Date.now();qsave();$('#sentT1').textContent='✓ بعد التأكد من وصول الاستمارة عبر ويبكس:';$('#sentT2').textContent='امسح بيانات الاستمارة من الهاتف (تبقى بيانات موثق الاستمارة المحفوظة).';$('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال');return}
   if(MODE==='tour'||MODE==='event'){
     if(MODE==='tour'){rememberCrew(TCREW,T,TCREW_KEY);T.sentAt=Date.now();tsave()}else{rememberCrew(XCREW,X,XCREW_KEY);X.sentAt=Date.now();xsave()}
@@ -1713,11 +1778,12 @@ function markSent(){
   if(MODE==='ev'){E.sentAt=Date.now();saveE();$('#sentT1').textContent='✓ بعد التأكد من وصول التقييم عبر ويبكس:';$('#sentT2').textContent='امسح بيانات التقييم من الهاتف (تبقى بيانات المقيّم المحفوظة).'}
   else{S.sentAt=Date.now();save();$('#sentT1').textContent='✓ بعد التأكد من وصول البلاغ عبر ويبكس:';$('#sentT2').textContent='امسح بيانات البلاغ من الهاتف (تبقى بيانات الطاقم المحفوظة). وإذا حُفظت صور المستندات في معرض الصور، فيُرجى حذفها أيضاً.'}
   $('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال')}
-$('#wipeBtn').addEventListener('click',async()=>{await idb.del({rep:DRAFT,ev:EDRAFT,tour:TDRAFT,event:XDRAFT,escort:ESDRAFT}[MODE]);ls.set('alarmForm.resume',MODE);location.reload()});
-$('#codeBtn').addEventListener('click',async()=>{const t=MODE==='escort'?codeOf(qpayload()):MODE==='tour'?codeOf(tpayload()):MODE==='event'?codeOf(xpayload()):MODE==='ev'?evDataCode():dataCode();try{await navigator.clipboard.writeText(t);toast('✓ تم نسخ رمز البيانات – الصقه في ويبكس')}catch(e){prompt('انسخ الرمز:',t)}});
+$('#wipeBtn').addEventListener('click',async()=>{await idb.del({rep:DRAFT,ev:EDRAFT,tour:TDRAFT,event:XDRAFT,escort:ESDRAFT,handover:HODRAFT}[MODE]);ls.set('alarmForm.resume',MODE);location.reload()});
+$('#codeBtn').addEventListener('click',async()=>{const t=MODE==='handover'?codeOf(hpayload()):MODE==='escort'?codeOf(qpayload()):MODE==='tour'?codeOf(tpayload()):MODE==='event'?codeOf(xpayload()):MODE==='ev'?evDataCode():dataCode();try{await navigator.clipboard.writeText(t);toast('✓ تم نسخ رمز البيانات – الصقه في ويبكس')}catch(e){prompt('انسخ الرمز:',t)}});
 
 /* new form */
 $('#newForm').addEventListener('click',async()=>{
+  if(MODE==='handover'){if(!confirm('مسح بيانات المحضر الحالي؟'))return;await idb.del(HODRAFT);$$('#handoverView .invalid').forEach(e=>e.classList.remove('invalid'));await hinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
   if(MODE==='escort'){if(!confirm('مسح بيانات الاستمارة الحالية؟ (ستبقى بيانات موثق الاستمارة المحفوظة)'))return;await idb.del(ESDRAFT);$$('#escortView .invalid').forEach(e=>e.classList.remove('invalid'));await qinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
   if(MODE==='tour'){if(!confirm('مسح بيانات التقرير الحالي؟ (ستبقى البيانات الشخصية المحفوظة)'))return;await idb.del(TDRAFT);$$('#tourView .invalid').forEach(e=>e.classList.remove('invalid'));await tinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
   if(MODE==='event'){if(!confirm('مسح بيانات التقرير الحالي؟ (ستبقى البيانات الشخصية المحفوظة)'))return;await idb.del(XDRAFT);$$('#eventView .invalid').forEach(e=>e.classList.remove('invalid'));await xinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
@@ -2206,6 +2272,114 @@ async function qinit(fresh){let d=!fresh&&await idb.get(ESDRAFT);
   if(d&&d.Q){Q=Object.assign(blankQ(),d.Q);if(d.sig)esSig.load(d.sig)}else{Q=Object.assign(blankQ(),ls.get(ESCREW_KEY)||{})}
   fapply('es');qSup.render();qCrew.render();qLoad.render();renderSeals();renderCrit();qderive()}
 
+
+/* ================= Receipt & handover record – explosives & fireworks section ================= */
+const HODRAFT='draftHandover',HO_CATS=['ألعاب نارية','الإشارات الضوئية','المتفجرات العابرة'];
+const blankH=()=>({date:todayISO(),cats:[],items:[{name:'',qty:'',det:''}],gDate:todayISO(),rDate:todayISO()});
+let H=blankH();
+F2.ho={get o(){return H},set o(v){H=v}};
+const hoG=sigPad($('#hoGSig'),$('#hoGSigPh')),hoR=sigPad($('#hoRSig'),$('#hoRSigPh'));
+let hSaveT;
+function hsave(){fcollect('ho');hderive();return idb.set(HODRAFT,{H,gs:hoG.data(),rs:hoR.data()})}
+const hsaveSoon=()=>{clearTimeout(hSaveT);hSaveT=setTimeout(hsave,300)};
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset&&t.dataset.ho){t.classList.remove('invalid');hsaveSoon()}});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset&&t.dataset.ho)hsave()});
+$$('.seg[data-ho]').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));g.classList.remove('invalid');hsave()}));
+$$('[data-honow]').forEach(b=>b.addEventListener('click',()=>{H[b.dataset.honow]=nowHM();fapply('ho');hsave()}));
+hoG.onEnd=()=>{$('#hoGSigWrap').classList.remove('invalid');hsaveSoon()};hoR.onEnd=()=>{$('#hoRSigWrap').classList.remove('invalid');hsaveSoon()};
+$('#hoGSigClear').addEventListener('click',()=>{hoG.clear();hsave()});$('#hoRSigClear').addEventListener('click',()=>{hoR.clear();hsave()});
+function renderCats(){$$('#hoCats button').forEach(b=>b.classList.toggle('on',(H.cats||[]).includes(b.dataset.cat)))}
+$('#hoCats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const c=b.dataset.cat,a=H.cats||(H.cats=[]);const i=a.indexOf(c);i<0?a.push(c):a.splice(i,1);$('#hoCats').classList.remove('invalid');renderCats();hsave()});
+/* items */
+function renderItems(){const a=H.items||(H.items=[]);
+  $('#hoItems').innerHTML=a.map((it,i)=>`<div class="crew-row" data-i="${i}"><div class="role" style="justify-content:space-between"><span>الصنف ${i+1}</span>${a.length>1?'<button type="button" class="ghost" data-idel style="padding:4px 10px">حذف</button>':''}</div>
+    <input data-if="name" placeholder="الصنف" value="${esc(it.name)}">
+    <input data-if="qty" placeholder="عدد الكمية" inputmode="numeric" value="${esc(it.qty)}">
+    <textarea data-if="det" placeholder="التفاصيل" style="min-height:60px">${esc(it.det)}</textarea></div>`).join('');
+  $('#hoAddItem').hidden=a.length>=10}
+$('#hoItems').addEventListener('click',e=>{const b=e.target.closest('[data-idel]');if(!b)return;H.items.splice(+b.closest('.crew-row').dataset.i,1);renderItems();hsave()});
+$('#hoItems').addEventListener('input',e=>{const f=e.target.closest('[data-if]');if(!f)return;const it=H.items[+f.closest('.crew-row').dataset.i];if(it){it[f.dataset.if]=f.value;f.classList.remove('invalid');$('#h3').classList.remove('invalid');hsaveSoon()}});
+$('#hoAddItem').addEventListener('click',()=>{(H.items||(H.items=[])).push({name:'',qty:'',det:''});renderItems();hsave();const l=$('#hoItems .crew-row:last-child input');l&&l.focus()});
+/* derive / validate */
+const hItems=()=>(H.items||[]).filter(it=>(it.name||'').trim()||(it.qty||'').trim()||(it.det||'').trim());
+function hderive(){H.day=dayOf(H.date);$('#hoDay').value=H.day;if(MODE==='handover'){$('#heroSub').textContent='قسم تأمين المتفجرات والألعاب النارية'+(H.op?' · '+H.op:'');hprogress()}}
+function hreq(){return [['date','التاريخ'],['cats','نوع المواد'],['op','نوع العملية (تسليم / استلام)'],['toWhom','الجهة المسلَّم إليها'],['permitNo','رقم التصريح'],['company','اسم الشركة'],['items','الأصناف (صنف واحد على الأقل مع الكمية)'],['gName','اسم القائم بالتسليم'],['gs','توقيع القائم بالتسليم'],['rName','اسم القائم بالاستلام'],['rs','توقيع القائم بالاستلام']]}
+function hfilled(k){if(k==='cats')return (H.cats||[]).length>0;if(k==='items'){const a=hItems();return a.length>0&&a.every(it=>(it.name||'').trim()&&(it.qty||'').trim())}if(k==='gs')return hoG.has;if(k==='rs')return hoR.has;return !!String(H[k]||'').trim()}
+function hprogress(){const r=hreq();setMeter(Math.round(r.filter(x=>hfilled(x[0])).length/r.length*100))}
+function hvalidate(){fcollect('ho');hderive();const miss=[];
+  hreq().forEach(([k,l])=>{if(hfilled(k))return;miss.push(l);
+    const el=k==='cats'?$('#hoCats'):k==='op'?$('#hoOp'):k==='items'?$('#h3'):k==='gs'?$('#hoGSigWrap'):k==='rs'?$('#hoRSigWrap'):$(`[data-ho="${k}"]`);el&&el.classList.add('invalid')});
+  return failWith('#hoAlert',miss)}
+function hpayload(){const o={v:1,kind:'handover',sent:stamp(),dept:'تأمين المتفجرات والألعاب النارية'};
+  ['date','day','op','toWhom','permitNo','permitDate','issuer','company','hq','gName','gNo','gRank','gTime','gDate','rName','rNo','rRank','rTime','rDate'].forEach(k=>{const v=typeof H[k]==='string'?H[k].trim():H[k];if(v)o[k]=v});
+  o.cats=(H.cats||[]).slice();o.items=hItems().map(it=>({name:(it.name||'').trim(),qty:(it.qty||'').trim(),det:(it.det||'').trim()}));return o}
+async function renderHandover(){
+  const FONT='"Dubai",Tahoma,sans-serif',HF='"Bukra","Dubai",Tahoma,sans-serif';
+  try{await document.fonts.ready}catch(e){}
+  const ld=src=>new Promise(r=>{if(!src){r(null);return}const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src});
+  const [lp,ldp,lg,lt,gs,rs]=await Promise.all([ld($('#lgPolice').src),ld($('#lgDept').src),ld($('#lgGov').src),ld($('#imgTag').src),ld(hoG.data()),ld(hoR.data())]);
+  const W=1240,Hh=1754,SC=1.6,c=document.createElement('canvas');c.width=W*SC;c.height=Hh*SC;const x=c.getContext('2d');x.scale(SC,SC);x.direction='rtl';
+  const G='#0b5e3a',GS='#e9f3ed',INK='#16201b',MU='#6a7872',LN='#cfd9d3',L=50,R=W-50,CW=R-L;
+  x.fillStyle='#fff';x.fillRect(0,0,W,Hh);
+  const T=(t,px,py,o={})=>{x.font=`${o.w||400} ${o.s||18}px ${o.h?HF:FONT}`;x.fillStyle=o.c||INK;x.textAlign=o.a||'right';x.fillText(String(t??''),px,py)};
+  const fitS=(t,maxW,s,w)=>{x.font=`${w||400} ${s}px ${FONT}`;while(x.measureText(String(t??'')).width>maxW&&s>11){s--;x.font=`${w||400} ${s}px ${FONT}`}return s};
+  const wrap=(t,maxW,font)=>{x.font=font;const out=[];String(t||'').split(/\n/).forEach(p=>{let cur='';p.split(/\s+/).filter(Boolean).forEach(w=>{const tr=cur?cur+' '+w:w;if(x.measureText(tr).width>maxW&&cur){out.push(cur);cur=w}else cur=tr});if(cur)out.push(cur)});return out};
+  const fit=(im,px,py,mw,mh,right)=>{if(!im)return 0;const s=Math.min(mw/im.width,mh/im.height),w=im.width*s,h=im.height*s;x.drawImage(im,right?px-w:px,py,w,h);return w};
+  const box=(px,py,w,h,fill)=>{if(fill){x.fillStyle=fill;x.fillRect(px,py,w,h)}x.strokeStyle=LN;x.lineWidth=1;x.strokeRect(px+.5,py+.5,w,h)};
+  {const LH=58,LY=24;let rx=R;rx-=fit(lp,rx,LY,360,LH,true)+20;x.fillStyle=G;x.fillRect(rx-2,LY+6,2,LH-12);rx-=22;fit(ldp,rx,LY,560,LH,true);fit(lg,L,LY,340,LH,false)}
+  x.fillStyle=G;x.fillRect(0,100,W,5);x.fillStyle='#b8964a';x.fillRect(0,105,W,2);
+  const gr=x.createLinearGradient(W,0,0,0);gr.addColorStop(0,'#127a4c');gr.addColorStop(1,'#073d26');x.fillStyle=gr;x.fillRect(0,107,W,92);
+  T('محضر استلام وتسليم',R,150,{s:34,w:700,h:1,c:'#fff'});
+  T('قسم تأمين المتفجرات والألعاب النارية  ·  إدارة أمن الهيئات والمنشآت الحيوية',R,184,{s:17,c:'rgba(255,255,255,.88)'});
+  {const t=H.op?'محضر '+H.op:'محضر';x.font=`700 21px ${FONT}`;const pw=x.measureText(t).width+40;x.fillStyle='rgba(255,255,255,.14)';x.beginPath();x.roundRect(L,125,pw,40,20);x.fill();x.strokeStyle='rgba(255,255,255,.35)';x.stroke();T(t,L+pw-20,152,{s:21,w:700,c:'#fff'});
+   T(`${H.day||''}  ${H.date||''}`,L+pw/2,188,{s:16,c:'rgba(255,255,255,.88)',a:'center'})}
+  let y=222;
+  const sec=(t,right=R,w=CW)=>{x.fillStyle=GS;x.fillRect(right-w,y,w,32);x.fillStyle=G;x.fillRect(right-5,y,5,32);T(t,right-16,y+23,{s:18,w:700,h:1,c:G})};
+  const grid=(rows,rh=66)=>{rows.forEach(r=>{const tw=r.reduce((a,c)=>a+(c[2]||1),0);let px=R;r.forEach(([l,v,f])=>{const w=CW*(f||1)/tw;box(px-w,y,w,rh);T(l,px-12,y+24,{s:15,c:MU});const vs=fitS(v||'—',w-24,20,700);T(v||'—',px-12,y+53,{s:vs,w:700});px-=w});y+=rh})};
+  // material type checkboxes
+  sec('نوع المواد');y+=40;
+  {const n=HO_CATS.length,cw=CW/n;HO_CATS.forEach((ct,i)=>{const px=R-i*cw,on=(H.cats||[]).includes(ct);box(px-cw,y,cw,52,on?'#f3f9f5':null);
+    x.strokeStyle=on?G:MU;x.lineWidth=2;x.strokeRect(px-44,y+14,24,24);if(on){x.strokeStyle=G;x.lineWidth=3.5;x.beginPath();x.moveTo(px-39,y+26);x.lineTo(px-33,y+33);x.lineTo(px-24,y+19);x.stroke()}
+    T(ct,px-58,y+34,{s:19,w:on?700:400,c:on?G:INK})});y+=64}
+  sec('بيانات التصريح والعملية');y+=40;
+  grid([[['بموجب التصريح رقم',H.permitNo],['الصادر عن شرطة',H.issuer,1.4],['بتاريخ',H.permitDate,.8]],
+        [['الممنوح لشركة',H.company,1.4],['ومقرها',H.hq]],
+        [['تم',H.op,.6],['الأصناف المبينة أدناه إلى',H.toWhom,2]]]);
+  y+=14;
+  // items table
+  sec('البيانات');y+=40;
+  const items=hItems(),cols=[['م',.07],['الصنف',.33],['عدد الكمية',.14],['التفاصيل',.46]];
+  {let px=R;cols.forEach(([h,f])=>{const cw=CW*f;box(px-cw,y,cw,38,'#f3f7f4');T(h,px-cw/2,y+26,{s:16,w:700,c:G,a:'center'});px-=cw});y+=38;
+   const rows=Math.max(5,items.length),rh=items.length>7?38:items.length>5?46:54;
+   for(let i=0;i<rows;i++){const it=items[i]||{};px=R;const dl=wrap(it.det||'',CW*.46-24,`400 15px ${FONT}`).slice(0,2);
+     cols.forEach(([h,f],j)=>{const cw=CW*f;box(px-cw,y,cw,rh);
+       if(j===0)T(i+1,px-cw/2,y+rh/2+7,{s:17,w:700,a:'center',c:G});
+       else if(j===1&&it.name){const s=fitS(it.name,cw-20,17,700);T(it.name,px-10,y+rh/2+7,{s,w:700})}
+       else if(j===2&&it.qty)T(it.qty,px-cw/2,y+rh/2+7,{s:18,w:700,a:'center'});
+       else if(j===3&&dl.length)dl.forEach((l,k)=>T(l,px-10,y+(dl.length===1?rh/2+6:rh/2-4+k*20),{s:15}));
+       px-=cw});y+=rh}}
+  y+=12;T('وعليه حُرِّر هذا المحضر، ووُقِّع من الطرفين بعد مطابقة الأصناف والكميات المبينة أعلاه.',R,y+20,{s:16.5,c:INK});y+=40;
+  // two parties
+  {const hw=(CW-20)/2;const party=(right,title,n,no,rk,tm,dt,sg)=>{let yy=y;x.fillStyle=G;x.fillRect(right-hw,yy,hw,38);T(title,right-hw/2,yy+26,{s:18,w:700,h:1,c:'#fff',a:'center'});yy+=38;
+      [['الاسم',n],['الرقم',no],['الرتبة / الوظيفة',rk],['الوقت',tm],['التاريخ',dt]].forEach(([l,v])=>{box(right-hw,yy,hw,46);x.fillStyle='#f3f7f4';x.fillRect(right-150,yy+1,149,44);T(l,right-12,yy+29,{s:15.5,c:MU});const s=fitS(v||'',hw-180,18,700);T(v||'',right-165,yy+29,{s,w:700});yy+=46});
+      box(right-hw,yy,hw,140);x.fillStyle='#f3f7f4';x.fillRect(right-150,yy+1,149,138);T('التوقيع',right-12,yy+76,{s:15.5,c:MU});if(sg)fit(sg,right-hw+20,yy+12,hw-200,116,false);yy+=140;return yy};
+   const a=party(R,'الشخص القائم بالتسليم',H.gName,H.gNo,H.gRank,H.gTime,H.gDate,gs),b=party(L+hw,'الشخص القائم بالاستلام',H.rName,H.rNo,H.rRank,H.rTime,H.rDate,rs);y=Math.max(a,b)+16}
+  // footer
+  x.fillStyle='#e3ebe6';x.fillRect(L,Hh-44,CW,1.5);
+  if(lt){const s=Math.min(200/lt.width,1),w=lt.width*s,h=lt.height*s;x.drawImage(lt,R-w,Hh-36,w,h)}
+  T(`PSE25/010X/F2  ·  نبض – النظام المتكامل للعمليات الميدانية`,L,Hh-16,{s:13,c:MU,a:'left'});
+  return [c];
+}
+async function sendHandover(){if(!hvalidate())return;await hsave();$('#busy').classList.add('show');
+  try{const pages=await renderHandover();const pdf=await makePDF(pages,`محضر ${H.op||''} - ${H.company||''} - ${H.date||''}`,codeOf(hpayload()));
+    await showPreview(pages,pdf,`ACIS_Handover_${(H.permitNo||'NA').replace(/[^\w-]+/g,'_')}_${H.date||todayISO()}.pdf`)}catch(e){console.error(e);toast('تعذر تجهيز المحضر')}
+  $('#busy').classList.remove('show')}
+async function hinit(fresh){let d=!fresh&&await idb.get(HODRAFT);
+  if(d&&d.H&&d.H.sentAt){await idb.del(HODRAFT);d=null;if(MODE==='handover')setTimeout(()=>toast('تم مسح المحضر المرسل سابقاً من الهاتف'),600)}
+  hoG.clear();hoR.clear();$('#hoAlert').classList.remove('show');
+  if(d&&d.H){H=Object.assign(blankH(),d.H);if(d.gs)hoG.load(d.gs);if(d.rs)hoR.load(d.rs)}else H=blankH();
+  fapply('ho');renderCats();renderItems();hderive()}
+
 /* init */
 async function init(fresh){
   let d=!fresh&&await idb.get(DRAFT);
@@ -2219,7 +2393,7 @@ refreshFacList();
 window.__nabdhSave=async()=>{ls.set('alarmForm.resume',MODE);
   if(MODE==='ev'){ecollect();ederive();await idb.set(EDRAFT,{E,sig:evSig.data()})}
   else if(MODE==='rep'){collect();derive();await idb.set(DRAFT,{S,P,sig:sigData()})}
-  else if(MODE==='tour')await tsave();else if(MODE==='event')await xsave();else if(MODE==='escort')await qsave()};
+  else if(MODE==='tour')await tsave();else if(MODE==='event')await xsave();else if(MODE==='escort')await qsave();else if(MODE==='handover')await hsave()};
 /* ---------- digits: Arabic-Indic / Persian digits are converted to English as the user types (all fields) ---------- */
 const toEnDigits=v=>String(v).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-0x660).replace(/[۰-۹]/g,d=>d.charCodeAt(0)-0x6F0);
 const AR_DIGIT=/[٠-٩۰-۹]/;
@@ -2227,8 +2401,8 @@ function fixDigits(el){if(!el||typeof el.value!=='string'||!AR_DIGIT.test(el.val
   let a=null,b=null;try{a=el.selectionStart;b=el.selectionEnd}catch(e){}el.value=toEnDigits(el.value);try{if(a!=null)el.setSelectionRange(a,b)}catch(e){}return true}
 document.addEventListener('input',e=>{const t=e.target;if(t&&t.matches&&t.matches('input,textarea'))fixDigits(t)},true);
 function fixAllDigits(){$$('input,textarea').forEach(el=>{if(fixDigits(el))el.dispatchEvent(new Event('input',{bubbles:true}))})}
-(async()=>{await init();await einit();await tinit();await xinit();await qinit();fixAllDigits();const r=ls.get('alarmForm.resume');try{localStorage.removeItem('alarmForm.resume')}catch(e){}setMode(VIEWS[r]?r:'home',true)})();
-window.__test={get Q(){return Q},renderEscort,qpayload,setQ(o){Object.assign(Q,o);fapply('es');qSup.render();qCrew.render();qLoad.render();renderSeals();renderCrit();qderive()},esSig,get T(){return T},get X(){return X},renderTour,renderEventRep,tpayload,xpayload,setT(o){Object.assign(T,o);fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()},setX(o){Object.assign(X,o);fapply('xv');xOffs.render();xNotes.render();xPhotos.render();xderive()},trSig,xvSig,get files(){return files},openScanner,loadFile,get SC(){return SC},renderReport,renderEval,payload,epayload,dataCode,evDataCode,timeScore,setMode,areaOf,rememberFacility,get S(){return S},get E(){return E},setPhoto(k,d){P[k]=d;showPhoto(k);save()}};
+(async()=>{await init();await einit();await tinit();await xinit();await qinit();await hinit();fixAllDigits();const r=ls.get('alarmForm.resume');try{localStorage.removeItem('alarmForm.resume')}catch(e){}setMode(VIEWS[r]?r:'home',true)})();
+window.__test={get H(){return H},renderHandover,hpayload,hoG,hoR,get Q(){return Q},renderEscort,qpayload,setQ(o){Object.assign(Q,o);fapply('es');qSup.render();qCrew.render();qLoad.render();renderSeals();renderCrit();qderive()},esSig,get T(){return T},get X(){return X},renderTour,renderEventRep,tpayload,xpayload,setT(o){Object.assign(T,o);fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()},setX(o){Object.assign(X,o);fapply('xv');xOffs.render();xNotes.render();xPhotos.render();xderive()},trSig,xvSig,get files(){return files},openScanner,loadFile,get SC(){return SC},renderReport,renderEval,payload,epayload,dataCode,evDataCode,timeScore,setMode,areaOf,rememberFacility,get S(){return S},get E(){return E},setPhoto(k,d){P[k]=d;showPhoto(k);save()}};
 })();
 </script>
 <script>
