@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261029225909">
+<meta name="app-build" content="20261101011421">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -1363,10 +1363,10 @@ async function renderReport(){
   if(S.absent){kv([['الحالة','لم يحضر الشخص المخوّل',true]])}
   else kv([['الاسم',S.pName],['الصفة',S.pRole],['نوع الهوية',S.pIdType],['جهة الإصدار',S.pIssuer],['رقم الهوية',S.pId],['الهاتف المتحرك',S.pMobile],['هاتف المنشأة',S.pPhone]]);}
   sec('طاقم الدورية');
-  {const cols=[['الصفة',.26],['الاسم',.40],['الرقم',.16],['الرتبة',.18]];const rows=CREW.filter(([k])=>S[k+'Name']).map(([k,r])=>[r,S[k+'Name'],S[k+'No'],S[k+'Rank']]);
+  {const cols=[['الرقم',.16],['الرتبة',.18],['الاسم',.40],['الصفة',.26]];const rows=CREW.filter(([k])=>S[k+'Name']).map(([k,r])=>[S[k+'No'],S[k+'Rank'],S[k+'Name'],r]);
    rr(PAD,y,IW,54+rows.length*52,12,'#fff',LN);x.fillStyle=GS;x.beginPath();x.roundRect(PAD,y,IW,50,[12,12,0,0]);x.fill();
    let cx0=W-PAD;cols.forEach(([h,p])=>{T(h,cx0-16,y+33,{s:19,w:700,c:G});cx0-=IW*p});
-   rows.forEach((r,j)=>{let px=W-PAD;const ry=y+50+j*52;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{T(r[i]||'—',px-16,ry+36,{s:22,w:i===1?700:400});px-=IW*p})});
+   rows.forEach((r,j)=>{let px=W-PAD;const ry=y+50+j*52;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{T(r[i]||'—',px-16,ry+36,{s:22,w:h==='الاسم'?700:400});px-=IW*p})});
    y+=54+rows.length*52+18;BR.push(y)}
   if(!mk){const att=[];let pg=2;if(plic)att.push(`الرخصة التجارية (صفحة ${pg++})`);if((pid||P.idBack)&&!S.absent)att.push(`هوية الشخص المخوّل – الوجهين (صفحة ${pg++})`);
    if(att.length){rr(PAD,y,IW,64,12,GS,null);T('📎 المرفقات في نفس الملف: '+att.join('  ·  '),W-PAD-20,y+41,{s:21,w:700,c:G});y+=76;BR.push(y)}}
@@ -1667,12 +1667,12 @@ async function renderEval(){
   function grid(title,cols,rows){if(!rows.length)return;sec(title);
     rr(PAD,y,IW,54+rows.length*52,12,'#fff',LN);x.fillStyle=GS;x.beginPath();x.roundRect(PAD,y,IW,50,[12,12,0,0]);x.fill();
     let cx0=W-PAD;cols.forEach(([h,p])=>{T(h,cx0-16,y+33,{s:19,w:700,c:G});cx0-=IW*p});
-    rows.forEach((r,j)=>{let px=W-PAD;const ry=y+50+j*52;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{T(r[i]||'—',px-16,ry+36,{s:22,w:i===1?700:400});px-=IW*p})});
+    rows.forEach((r,j)=>{let px=W-PAD;const ry=y+50+j*52;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{T(r[i]||'—',px-16,ry+36,{s:22,w:h==='الاسم'?700:400});px-=IW*p})});
     y+=54+rows.length*52+18;BR.push(y)}
-  const COLS4=[['المنصب',.26],['الاسم',.40],['الرقم',.16],['الرتبة',.18]];
-  grid('مرتب الدورية المنتقلة',COLS4,EV_CREW.filter(([k])=>E[k+'Name']).map(([k,r])=>[r,E[k+'Name'],E[k+'No'],E[k+'Rank']]));
-  grid('فريق تقييم التجربة الوهمية',[['الصفة',.26],['الاسم',.40],['الرقم',.16],['الرتبة',.18]],
-    [[E.evRole||'المقيّم',E.evName,E.evNo,E.evRank]].concat(E.ev2Name?[['مقيّم مشارك',E.ev2Name,E.ev2No,E.ev2Rank]]:[]));
+  const COLS4=[['الرقم',.16],['الرتبة',.18],['الاسم',.40],['المنصب',.26]];
+  grid('مرتب الدورية المنتقلة',COLS4,EV_CREW.filter(([k])=>E[k+'Name']).map(([k,r])=>[E[k+'No'],E[k+'Rank'],E[k+'Name'],r]));
+  grid('فريق تقييم التجربة الوهمية',[['الرقم',.16],['الرتبة',.18],['الاسم',.40],['الصفة',.26]],
+    [[E.evNo,E.evRank,E.evName,E.evRole||'المقيّم']].concat(E.ev2Name?[[E.ev2No,E.ev2Rank,E.ev2Name,'مقيّم مشارك']]:[]));
   rr(PAD,y,IW,150,12,'#fff',LN);
   T('اعتماد المقيّم',W-PAD-18,y+36,{s:19,c:MU});T((E.evRank?E.evRank+' / ':'')+(E.evName||''),W-PAD-18,y+80,{s:24,w:700});
   if(E.evRole)T(E.evRole,W-PAD-18,y+118,{s:20,c:MU});
@@ -1990,7 +1990,7 @@ async function mkDoc(title,sub,pill){
   D.para=(text,size=24)=>{const ls=wrap(text||'—',IW-44,f(size,400)),LH=size*1.75;for(let k=0;k<ls.length;k+=18){const part=ls.slice(k,k+18),h=30+part.length*LH;rr(PAD,D.y,IW,h,12,'#fff',LN);part.forEach((l,j)=>T_(l,W-PAD-22,D.y+18+LH*.8+j*LH,{s:size}));D.y+=h+12;D.br()}};
   D.table=(cols,rows)=>{const rh=52;rr(PAD,D.y,IW,54+rows.length*rh,12,'#fff',LN);x.fillStyle=GS;x.beginPath();x.roundRect(PAD,D.y,IW,50,[12,12,0,0]);x.fill();
     let cx0=W-PAD;cols.forEach(([h,p])=>{T_(h,cx0-16,D.y+33,{s:19,w:700,c:G});cx0-=IW*p});
-    rows.forEach((r,j)=>{let px=W-PAD;const ry=D.y+50+j*rh;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{let v=String(r[i]==null||r[i]===''?'—':r[i]);x.font=f(22,i===1?700:400);while(x.measureText(v).width>IW*p-26&&v.length>4)v=v.slice(0,-2)+'…';T_(v,px-16,ry+36,{s:22,w:i===1?700:400});px-=IW*p})});
+    const bi=cols.findIndex(c=>c[0]==='الاسم'),B=bi<0?1:bi;rows.forEach((r,j)=>{let px=W-PAD;const ry=D.y+50+j*rh;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{let v=String(r[i]==null||r[i]===''?'—':r[i]);x.font=f(22,i===B?700:400);while(x.measureText(v).width>IW*p-26&&v.length>4)v=v.slice(0,-2)+'…';T_(v,px-16,ry+36,{s:22,w:i===B?700:400});px-=IW*p})});
     D.y+=54+rows.length*rh+16;D.br()};
   D.notes=notes=>{notes.forEach((n,i)=>{const esc_=n.act==='esc';const tl=wrap(n.text||'—',IW-48,f(23,400)),al=wrap(n.action||'—',IW-48,f(23,400));
     const h=64+tl.length*38+52+al.length*38+18;rr(PAD,D.y,IW,h,14,esc_?'#fff8ea':'#fff',esc_?'#d48a1a':LN);
@@ -2032,7 +2032,7 @@ async function renderTour(){
   else D.banner(stable?'الحالة الأمنية: مستقرة  ✓':'الحالة الأمنية: توجد ملاحظات  ⚠',`${n} ${n===1?'ملاحظة':'ملاحظات'}${esc_?' · '+esc_+' مرفوعة للمسؤول الأعلى':''}`,stable?'#e3f4ea':'#fff6e0',stable?'#1e8e4e':'#d48a1a',stable?'#157a40':'#9a5a00');
   D.tiles([['فترة الدوام',T.shift],['الساعة من',T.tFrom],['إلى',T.tTo],['الفئة المناوبة',T.cat]]);
   D.sec('القائم بالجولة الميدانية');
-  D.table([['الصفة',.40],['الاسم',.30],['الرقم',.13],['الرتبة',.17]],[[T.role||'القائم بالجولة',T.offName,T.offNo,T.offRank]].concat(pplOut(T.comp).map((p,i,a)=>['المرافق'+(a.length>1?' '+(i+1):''),p.name,p.no,p.rank])));
+  D.table([['الرقم',.13],['الرتبة',.17],['الاسم',.30],['الصفة',.40]],[[T.offNo,T.offRank,T.offName,T.role||'القائم بالجولة']].concat(pplOut(T.comp).map((p,i,a)=>[p.no,p.rank,p.name,'المرافق'+(a.length>1?' '+(i+1):'')])));
   D.sec('النقاط التي تم المرور عليها');
   const vis=T.points.filter(p=>p.on).slice().sort((a,b)=>(a.a===b.a?0:a.a==='ديرة'?-1:b.a==='ديرة'?1:a.a.localeCompare(b.a))||(a.time||'').localeCompare(b.time||''));
   for(let k=0;k<vis.length;k+=12)D.table([['المنطقة',.18],['النقطة',.48],['الدورية',.17],['وقت المرور',.17]],vis.slice(k,k+12).map(p=>[p.a,p.n,p.p,p.time]));
@@ -2054,7 +2054,7 @@ async function renderEventRep(){
   D.kv([['رقم الحدث – الصادر عن العمليات',X.eventNo],['رقم المرجع – المسجّل في المركز المختص',X.refNo],['المنطقة',X.area],['اليوم',X.day],['موقع الحدث',(X.location||'')+(X.gps?'   📍 '+X.gps.replace('https://maps.google.com/?q=','GPS '):''),true]]);
   D.sec('تفاصيل الحدث والإجراءات المتخذة');D.para(X.details);
   D.sec('الدوريات والأفراد');D.kv([['الدوريات المنتقلة',X.patrols,true],['الفرد المرتب في موقع الحدث',X.stationed,true]]);
-  {const of=pplOut(X.offs);if(of.length){D.sec('الضباط الحاضرون لموقع الحدث');D.table([['الرتبة',.2],['الاسم',.42],['الرقم',.18],['وقت الحضور',.2]],of.map(p=>[p.rank,p.name,p.no,p.time]))}}
+  {const of=pplOut(X.offs);if(of.length){D.sec('الضباط الحاضرون لموقع الحدث');D.table([['الرقم',.18],['الرتبة',.2],['الاسم',.42],['وقت الحضور',.2]],of.map(p=>[p.no,p.rank,p.name,p.time]))}}
   if(X.notes.length){D.sec('ملاحظات تحتاج متابعة');D.notes(X.notes)}
   if(X.photos.length)D.note(`📎 صور الحدث: ${X.photos.length} ${X.photos.length<=2?'صورة':'صور'} في الصفحات التالية`);
   await D.sigs([['مسؤول الفئة',person(X.offRank,X.offName),xvSig.data()],['مدوّن التقرير – الكاتب',person(X.wrRank,X.wrName),'']]);
@@ -2187,9 +2187,9 @@ sec('الأفراد',R,pw);sec('السيل',L+sw,sw);y+=34;
 const rowsP=[].concat((Q.sup||[]).filter(p=>p.name).map(p=>['الإشراف على المهمة',p]),(Q.crew||[]).filter(p=>p.name).map(p=>['القائمون بالمهمة',p]),(Q.load||[]).filter(p=>p.name).map(p=>['القائم على التحميل أو التخزين',p]));
 const RH=(Q.sup||[]).length+(Q.crew||[]).length+(Q.load||[]).length>8?28:36;
 const tbl=(right,w,cols,rows)=>{let yy=y;let px=right;cols.forEach(([h,f])=>{const cw=w*f;box(px-cw,yy,cw,RH,'#f3f7f4');T(h,px-cw/2,yy+24,{s:15,w:700,c:G,a:'center'});px-=cw});yy+=RH;
-  rows.forEach(r=>{px=right;cols.forEach(([h,f],i)=>{const cw=w*f;box(px-cw,yy,cw,RH);const blank=i===0&&r[0]==='';const s=fitTxt(r[i]||'—',cw-12,16,i===1||i===2?700:400);if(!blank)T(r[i]||'—',px-cw/2,yy+24,{s,w:i===1||i===2?700:400,a:'center'});px-=cw});yy+=RH});return yy};
-const pRows=[];let lastRole='';rowsP.forEach(([role,p])=>{pRows.push([role===lastRole?'':role,p.rank,p.name,p.no]);lastRole=role});
-const yP=tbl(R,pw,[['الصفة',.34],['الرتبة',.18],['الاسم',.32],['الرقم',.16]],pRows);
+  rows.forEach(r=>{px=right;cols.forEach(([h,f],i)=>{const cw=w*f;box(px-cw,yy,cw,RH);const blank=h==='الصفة'&&r[i]==='';const s=fitTxt(r[i]||'—',cw-12,16,i===1||i===2?700:400);if(!blank)T(r[i]||'—',px-cw/2,yy+24,{s,w:i===1||i===2?700:400,a:'center'});px-=cw});yy+=RH});return yy};
+const pRows=[];let lastRole='';rowsP.forEach(([role,p])=>{pRows.push([p.no,p.rank,p.name,role===lastRole?'':role]);lastRole=role});
+const yP=tbl(R,pw,[['الرقم',.16],['الرتبة',.18],['الاسم',.32],['الصفة',.34]],pRows);
 const seals=(Q.seals||[]).filter(s=>s.no||s.code);
 const yS=tbl(L+sw,sw,[['م',.14],['رقم السيل',.46],['رمز تأكيد القفل',.40]],seals.length?seals.map((s,i)=>[i+1,s.no,s.code]):[['','','']]);
 y=Math.max(yP,yS)+16;
@@ -2361,7 +2361,7 @@ async function renderHandover(){
   y+=12;T('وعليه حُرِّر هذا المحضر، ووُقِّع من الطرفين بعد مطابقة الأصناف والكميات المبينة أعلاه.',R,y+20,{s:16.5,c:INK});y+=40;
   // two parties
   {const hw=(CW-20)/2;const party=(right,title,n,no,rk,tm,dt,sg)=>{let yy=y;x.fillStyle=G;x.fillRect(right-hw,yy,hw,38);T(title,right-hw/2,yy+26,{s:18,w:700,h:1,c:'#fff',a:'center'});yy+=38;
-      [['الاسم',n],['الرقم',no],['الرتبة / الوظيفة',rk],['الوقت',tm],['التاريخ',dt]].forEach(([l,v])=>{box(right-hw,yy,hw,46);x.fillStyle='#f3f7f4';x.fillRect(right-150,yy+1,149,44);T(l,right-12,yy+29,{s:15.5,c:MU});const s=fitS(v||'',hw-180,18,700);T(v||'',right-165,yy+29,{s,w:700});yy+=46});
+      [['الرقم',no],['الرتبة / الوظيفة',rk],['الاسم',n],['الوقت',tm],['التاريخ',dt]].forEach(([l,v])=>{box(right-hw,yy,hw,46);x.fillStyle='#f3f7f4';x.fillRect(right-150,yy+1,149,44);T(l,right-12,yy+29,{s:15.5,c:MU});const s=fitS(v||'',hw-180,18,700);T(v||'',right-165,yy+29,{s,w:700});yy+=46});
       box(right-hw,yy,hw,140);x.fillStyle='#f3f7f4';x.fillRect(right-150,yy+1,149,138);T('التوقيع',right-12,yy+76,{s:15.5,c:MU});if(sg)fit(sg,right-hw+20,yy+12,hw-200,116,false);yy+=140;return yy};
    const a=party(R,'الشخص القائم بالتسليم',H.gName,H.gNo,H.gRank,H.gTime,H.gDate,gs),b=party(L+hw,'الشخص القائم بالاستلام',H.rName,H.rNo,H.rRank,H.rTime,H.rDate,rs);y=Math.max(a,b)+16}
   // footer
