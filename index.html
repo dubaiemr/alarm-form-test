@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261111122545">
+<meta name="app-build" content="20261111125430">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -41,11 +41,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font
 button,input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
 
 /* ===== Official header ===== */
-.brand{background:#fff;padding:12px 14px;padding-top:calc(env(safe-area-inset-top) + 12px);display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:4px solid var(--green)}
+.brand{background:#fff;padding:12px 14px;padding-top:calc(env(safe-area-inset-top) + 30px);display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:4px solid var(--green)}
 .brand .r{display:flex;align-items:center;gap:12px;min-width:0}
 .brand img{display:block;height:40px;width:auto}
 .brand .vsep{display:block;width:1.5px;height:32px;background:var(--green);flex:none}
-@media (max-width:599px){.brand{padding:10px 10px;padding-top:calc(env(safe-area-inset-top) + 16px)}.brand .r{gap:6px}.brand img{height:24px}.brand .vsep{height:18px;width:1px}}
+@media (max-width:599px){.brand{padding:10px 10px;padding-top:calc(env(safe-area-inset-top) + 30px)}.brand .r{gap:6px}.brand img{height:24px}.brand .vsep{height:18px;width:1px}}
 .hero{background:radial-gradient(120% 140% at 100% 0%,#127a4c 0%,#0b5e3a 45%,#073d26 100%);color:#fff;padding:18px 16px 20px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;left:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(255,255,255,.05)}
 .hero .kick{display:inline-flex;align-items:center;gap:6px;font-size:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:3px 10px;border-radius:999px}
@@ -400,6 +400,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
       <div class="f"><label class="req" for="trDate"><span class="ic ic-date"></span>التاريخ</label><input type="date" id="trDate" data-tr="date"></div>
       <div class="f"><label for="trDay"><span class="ic ic-day"></span>اليوم <span class="auto">تلقائي</span></label><input id="trDay" readonly tabindex="-1"></div>
     </div>
+    <div class="f"><label class="req" for="trSec">القسم</label><select id="trSec" data-tr="sec"></select></div>
     <div class="grid2">
       <div class="f"><label class="req" for="trShift"><span class="ic ic-shift"></span>فترة الدوام</label><select id="trShift" data-tr="shift"><option value="">---</option><option>صباح</option><option>نهار</option><option>ليل</option></select></div>
       <div class="f"><label class="req" for="trCat">الفئة المناوبة</label><select id="trCat" data-tr="cat"><option value="">---</option><option>ص1</option><option>ص2</option><option>ص3</option><option>ف1</option><option>ف2</option><option>ف3</option></select></div>
@@ -425,6 +426,10 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><h2>النقاط التي تم المرور عليها</h2><p>اضغط على النقطة عند المرور عليها ليُسجَّل الوقت تلقائياً</p></div></div>
   <div class="card-b">
     <div id="trPoints" style="display:grid;gap:14px"></div>
+    <div id="trDipAdd" class="crew-row" hidden><div class="role">➕ إضافة موقع تم المرور عليه</div>
+      <input id="trDipName" placeholder="اسم المكان / المنشأة">
+      <div class="with-btn"><input type="time" id="trDipTime"><button class="mini" type="button" id="trDipNow">الآن</button></div>
+      <button type="button" class="btn sec" id="trDipBtn">➕ إضافة</button></div>
     <details class="head" id="trAddBox"><summary>➕ إضافة نقطة أخرى</summary>
       <div class="in">
         <input id="trNewName" placeholder="اسم النقطة / المنطقة">
@@ -779,6 +784,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-h"><span class="n"><span class="ic lg ic-date"></span></span><div><h2>بيانات التقرير</h2><p>الفئة والتاريخ والساعة</p></div></div>
   <div class="card-b">
     <div class="grid2">
+      <div class="f" style="grid-column:1/-1"><label class="req" for="xvSec">القسم</label><select id="xvSec" data-xv="sec"></select></div>
       <div class="f"><label class="req" for="xvCat">الفئة المناوبة</label><select id="xvCat" data-xv="cat"><option value="">---</option><option>ص1</option><option>ص2</option><option>ص3</option><option>ف1</option><option>ف2</option><option>ف3</option></select></div>
       <div class="f"><label class="req" for="xvTime"><span class="ic ic-clock"></span>الساعة</label><div class="with-btn"><input type="time" id="xvTime" data-xv="time"><button class="mini" type="button" id="xvNow">الآن</button></div></div>
     </div>
@@ -862,8 +868,8 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
       </div>
     </div>
     <div class="grid2">
-      <div class="f"><label for="patM">دورية م /</label><input id="patM" data-k="patM" inputmode="numeric"></div>
-      <div class="f"><label for="patQ">دورية ق /</label><input id="patQ" data-k="patQ" inputmode="numeric"></div>
+      <div class="f"><label class="req" for="sec">القسم</label><select id="sec" data-k="sec"></select></div>
+      <div class="f"><label class="req" for="patrol">الدورية</label><select id="patrol" data-k="patrol"></select></div>
     </div>
   </div>
 </section>
@@ -995,8 +1001,8 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
         <select id="evCat" data-e="cat"><option value="">---</option><option>صباح 1</option><option>صباح 2</option><option>صباح 3</option><option>الفئة الأولى</option><option>الفئة الثانية</option><option>الفئة الثالثة</option></select></div>
     </div>
     <div class="grid2">
-      <div class="f"><label class="req" for="evPatM">الدورية الخاضعة للتقييم م /</label><input id="evPatM" data-e="patM" inputmode="numeric"></div>
-      <div class="f"><label for="evPatQ">أو دورية ق /</label><input id="evPatQ" data-e="patQ" inputmode="numeric"></div>
+      <div class="f"><label class="req" for="evSec">القسم</label><select id="evSec" data-e="sec"></select></div>
+      <div class="f"><label class="req" for="evPatrol">الدورية الخاضعة للتقييم</label><select id="evPatrol" data-e="patrol"></select></div>
     </div>
     <div class="f"><label class="req" for="evFacility">اسم المنشأة</label><input id="evFacility" data-e="facility" list="facList" autocomplete="off"></div>
     <div class="grid2 stack-sm">
@@ -1148,6 +1154,14 @@ const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء',
 const CAUSES=['خلل فني في النظام','خطأ من موظف','انقطاع التيار الكهربائي','ضعف في بطارية الجهاز','تجربة وهمية','أخرى'];
 const MOCK='تجربة وهمية',DEPT='أمن الأسواق التجارية',DEPT_Q='أمن الهيئات والمنشآت الهامة';
 const ADM='إدارة أمن الهيئات والمنشآت الحيوية';
+const SEC_MKT='أمن الأسواق التجارية',SEC_DIP='أمن الهيئات الدبلوماسية والمنشآت الهامة';
+const PAT_MKT=['م1','م2','م3','م4','دورية مسؤول الفئة','دورية راجلة'],PAT_DIP=Array.from({length:12},(_,i)=>'ق'+(i+1));
+const secName=v=>v?'قسم '+v:ADM;
+const secOpts=v=>`<option value="">اختر القسم</option><option value="${SEC_MKT}"${v===SEC_MKT?' selected':''}>قسم ${SEC_MKT}</option><option value="${SEC_DIP}"${v===SEC_DIP?' selected':''}>قسم ${SEC_DIP}</option>`;
+function patOpts(sec,v){const L=sec===SEC_DIP?PAT_DIP:sec===SEC_MKT?PAT_MKT:[];return '<option value="">'+(sec?'اختر الدورية':'اختر القسم أولاً')+'</option>'+L.map(p=>`<option${p===v?' selected':''}>${p}</option>`).join('')}
+function patSplit(p){const m=/^م(\d+)$/.exec(p||''),q=/^ق(\d+)$/.exec(p||'');return {patM:m?m[1]:p==='دورية مسؤول الفئة'?'مسؤول الفئة':p==='دورية راجلة'?'راجلة':'',patQ:q?q[1]:''}}
+function patMigrate(o){if(o.sec||!(String(o.patM||'').trim()||String(o.patQ||'').trim()))return;const q=String(o.patQ||'').trim(),m=String(o.patM||'').trim();
+  if(q&&!m){o.sec=SEC_DIP;o.patrol=/^\d+$/.test(q)?'ق'+q:''}else{o.sec=SEC_MKT;o.patrol=/^\d+$/.test(m)?'م'+m:''}}
 const deptOf=o=>String(o.patQ||'').trim()&&!String(o.patM||'').trim()?DEPT_Q:DEPT;const isMock=()=>S.cause===MOCK;
 const facTypeTxt=o=>o.facType==='أخرى'?('أخرى'+((o.facTypeOther||'').trim()?' ('+o.facTypeOther.trim()+')':'')):(o.facType||'');
 const CREW=[['leader','مسؤول الدورية'],['driver','سائق الدورية'],['c1','مرافق الدورية']];
@@ -1171,6 +1185,7 @@ function collect(){
   const c=$('#causes .on');S.cause=c?c.dataset.v:'';
 }
 function apply(){
+  patMigrate(S);$('#sec').innerHTML=secOpts(S.sec);$('#patrol').innerHTML=patOpts(S.sec,S.patrol);
   fields().forEach(e=>{const v=S[e.dataset.k];if(v==null)return;if(e.type==='checkbox')e.checked=!!v;else setVal(e,v)});
   $$('.seg[data-k]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===S[g.dataset.k])));
   $$('#causes .chip').forEach(b=>b.classList.toggle('on',b.dataset.v===S.cause));
@@ -1205,13 +1220,13 @@ function derive(){
   $('#elapsed').textContent=S.elapsed||'—';
   $('#causeOther').style.display=S.cause==='أخرى'?'block':'none';
   $('#personBox').classList.toggle('dim',!!S.absent);
-  S.dept=deptOf(S);
+  {const ps=patSplit(S.patrol);S.patM=ps.patM;S.patQ=ps.patQ}S.dept=S.sec||'';
   $('#idTypeBox').hidden=!S.otherId;
   $('#idBackLbl').classList.toggle('req',!S.otherId);
   if(!S.otherId)S._idTouched=false;
   if(!S.otherId&&S.pIdType!=='بطاقة الهوية الإماراتية'){S.pIdType='بطاقة الهوية الإماراتية';$('#pIdType').value=S.pIdType}
   else if(S.otherId&&S.pIdType==='بطاقة الهوية الإماراتية'&&!S._idTouched){S.pIdType='جواز سفر';$('#pIdType').value=S.pIdType}
-  if(MODE==='rep')$('#heroSub').textContent=ADM+(S.eventNo?' · حدث رقم '+S.eventNo:'')+(mk?' · تجربة وهمية':'');
+  if(MODE==='rep')$('#heroSub').textContent=secName(S.sec)+(S.eventNo?' · حدث رقم '+S.eventNo:'')+(mk?' · تجربة وهمية':'');
   $('#summary').innerHTML=summary(true);
   const id=(S.pId||'').replace(/\D/g,''),h=$('#idHint');
   if(S.pIdType==='بطاقة الهوية الإماراتية'&&id){const ok=/^784\d{12}$/.test(id);h.textContent=ok?'✓ صيغة رقم الهوية صحيحة':'رقم الهوية الإماراتية 15 رقماً ويبدأ بـ 784';h.className='hint '+(ok?'ok':'bad')}else h.textContent='';
@@ -1230,7 +1245,7 @@ const TARGET_MIN=3;
 function required(){
   const mk=isMock();
   const r=[['date','التاريخ'],['tReport','وقت البلاغ'],['tArrive','وقت الوصول'],['state','حالة المنشأة'],['facility','اسم المنشأة'],['area','المنطقة'],['facType','نوع المنشأة'],['cause','سبب الإنذار'],['leaderName','مسؤول الدورية'],['result','النتيجة النهائية']];
-  r.unshift(['eventNo','رقم الحدث']);
+  r.unshift(['eventNo','رقم الحدث']);r.splice(2,0,['sec','القسم'],['patrol','الدورية']);
   if(mk)return r;
   if(!S.noLicense){r.splice(6,0,['license','رقم الرخصة (أو اختر «لا يوجد رقم رخصة»)']);if(String(S.license||'').trim())r.splice(10,0,['photo:license','صورة الرخصة'])}
   if(S.result==='اخفاق')r.push(['failReason','سبب الإخفاق']);
@@ -1405,7 +1420,7 @@ $$('[data-photo]').forEach(inp=>inp.addEventListener('change',async()=>{const f=
 $$('[data-del]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();P[b.dataset.del]='';showPhoto(b.dataset.del);save()}));
 
 /* crew */
-$('#saveCrew').addEventListener('click',()=>{collect();const c={};CREW.forEach(([k])=>['Name','No','Rank'].forEach(f=>c[k+f]=S[k+f]||''));c.patM=S.patM;c.patQ=S.patQ;c.cat=S.cat;toast(ls.set(CREW_KEY,c)?'✓ تم حفظ الطاقم على جهازك':'تعذر الحفظ')});
+$('#saveCrew').addEventListener('click',()=>{collect();const c={};CREW.forEach(([k])=>['Name','No','Rank'].forEach(f=>c[k+f]=S[k+f]||''));c.patM=S.patM;c.patQ=S.patQ;c.sec=S.sec;c.patrol=S.patrol;c.cat=S.cat;toast(ls.set(CREW_KEY,c)?'✓ تم حفظ الطاقم على جهازك':'تعذر الحفظ')});
 $('#loadCrew').addEventListener('click',()=>{const c=ls.get(CREW_KEY);if(!c){toast('لا يوجد طاقم محفوظ');return}Object.assign(S,c);apply();save();toast('✓ تم استرجاع الطاقم')});
 
 /* signature */
@@ -1439,7 +1454,7 @@ function validate(){
 function payload(){
   const _n=new Date();const o={v:1,sent:`${todayISO()} ${pad(_n.getHours())}:${pad(_n.getMinutes())}`};
   const mk=isMock();
-  const keys=['failReason','eventNo','date','day','shift','cat','dept','patM','patQ','tReport','tArrive','mins','state','tOwner','facility','license','area','facType','facTypeOther','location','gps','note','absent','pName','pIdType','pIssuer','pId','pRole','pMobile','pPhone','result','headNote','hName','hNo','hRank','hDate'];
+  const keys=['failReason','eventNo','date','day','shift','cat','dept','sec','patrol','patM','patQ','tReport','tArrive','mins','state','tOwner','facility','license','area','facType','facTypeOther','location','gps','note','absent','pName','pIdType','pIssuer','pId','pRole','pMobile','pPhone','result','headNote','hName','hNo','hRank','hDate'];
   const PERSON=['tOwner','absent','pName','pIdType','pIssuer','pId','pRole','pMobile','pPhone'];
   keys.forEach(k=>{if(mk&&PERSON.includes(k))return;if(k==='facTypeOther'&&S.facType!=='أخرى')return;const v=S[k];if(v!==''&&v!=null&&v!==false)o[k]=v});
   if(S.noLicense)o.license='لا يوجد';
@@ -1476,7 +1491,7 @@ async function renderReport(){
   /* title band */
   const g1=x.createLinearGradient(W,0,0,0);g1.addColorStop(0,'#127a4c');g1.addColorStop(1,GD);x.fillStyle=g1;x.fillRect(0,158,W,118);
   T('استمارة الاستجابة الفورية لحالات جرس الإنذار',W-PAD,212,{s:31,h:1,c:'#fff'});
-  T(ADM+'  ·  '+(S.day||'')+' '+(S.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
+  T(secName(S.sec)+'  ·  '+(S.day||'')+' '+(S.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
   x.font=f(24,800);const evT='حدث رقم '+(S.eventNo||'—'),evW=x.measureText(evT).width+44;rr(PAD,190,evW,56,28,'rgba(255,255,255,.14)','rgba(255,255,255,.35)');T(evT,PAD+evW-22,227,{s:24,w:800,c:'#fff'});
   const mk=isMock();
   let y=300;
@@ -1507,7 +1522,7 @@ async function renderReport(){
   }
   if(S.result==='اخفاق'&&S.failReason&&!mk){kv([['سبب الإخفاق',S.failReason,true]])}
   sec('بيانات البلاغ');
-  kv([['اليوم والتاريخ',(S.day||'')+'  '+(S.date||'')],['فترة الدوام / الفئة',[S.shift,S.cat].filter(Boolean).join(' / ')],['دورية م',S.patM],['دورية ق',S.patQ],['حالة المنشأة عند الوصول',S.state],['رقم الحدث',S.eventNo]]);
+  kv([['اليوم والتاريخ',(S.day||'')+'  '+(S.date||'')],['فترة الدوام / الفئة',[S.shift,S.cat].filter(Boolean).join(' / ')],['الدورية',S.patrol],['حالة المنشأة عند الوصول',S.state],['رقم الحدث',S.eventNo]]);
   sec('موجز البلاغ');
   {const ls=wrap(summary(false),IW-40,f(24,400));const extra=S.note?wrap('ملاحظة: '+S.note,IW-40,f(22,400)):[];const h=30+ls.length*44+(extra.length?extra.length*38+12:0)+14;rr(PAD,y,IW,h,12,'#fff',LN);ls.forEach((l,j)=>T(l,W-PAD-20,y+46+j*44,{s:24}));extra.forEach((l,j)=>T(l,W-PAD-20,y+46+ls.length*44+12+j*38,{s:22,c:MU}));y+=h+12;BR.push(y)}
   kv([['اسم المنشأة',S.facility],['رقم الرخصة',S.noLicense?'لا يوجد':S.license],['المنطقة',S.area],['نوع المنشأة',facTypeTxt(S)],['الموقع بالتفصيل',(S.location||'')+(S.gps?'   📍 '+S.gps.replace('https://maps.google.com/?q=','GPS ')+'':''),true],['سبب جرس الإنذار',causeText(),true]]);
@@ -1640,7 +1655,7 @@ $('#evSigClear').addEventListener('click',()=>{evSig.clear();saveE()});
 
 const efields=()=>$$('[data-e]').filter(e=>e.matches('input,select,textarea'));
 function ecollect(){efields().forEach(e=>E[e.dataset.e]=e.value);$$('.seg[data-e]').forEach(g=>{const on=g.querySelector('.on');E[g.dataset.e]=on?on.dataset.v:''})}
-function eapply(){efields().forEach(e=>{const v=E[e.dataset.e];setVal(e,v==null?'':v)});$$('.seg[data-e]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===E[g.dataset.e])));setEvGps(E.gps)}
+function eapply(){patMigrate(E);$('#evSec').innerHTML=secOpts(E.sec);$('#evPatrol').innerHTML=patOpts(E.sec,E.patrol);efields().forEach(e=>{const v=E[e.dataset.e];setVal(e,v==null?'':v)});$$('.seg[data-e]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===E[g.dataset.e])));setEvGps(E.gps)}
 let saveET;
 function saveE(){ecollect();ederive();idb.set(EDRAFT,{E,sig:evSig.data()})}
 function saveESoon(){clearTimeout(saveET);saveET=setTimeout(saveE,300)}
@@ -1652,6 +1667,7 @@ function autoLists(){const pos=[],imp=[];
   const num=a=>a.map((x,i)=>`${i+1}. ${x}`).join('\n');return{pos:num(pos),imp:num(imp)}}
 
 function ederive(){
+  {const ps=patSplit(E.patrol);E.patM=ps.patM;E.patQ=ps.patQ}
   E.day=E.date?DAYS[new Date(E.date+'T12:00:00').getDay()]:'';$('#evDay').value=E.day;
   const a=tsec(E.tReport),b=tsec(E.tArrive);
   E.secs=a!=null&&b!=null?(b-a+86400)%86400:null;
@@ -1674,14 +1690,14 @@ function ederive(){
   if(!E.posManual){E.pos=al.pos;$('#evPos').value=al.pos}
   if(!E.impManual){E.imp=al.imp;$('#evImp').value=al.imp}
   $('#evFacTypeOtherBox').style.display=E.facType==='أخرى'?'grid':'none';
-  if(MODE==='ev')$('#heroSub').textContent='تقييم مرتب الدوريات · '+ADM+(E.eventNo?' · حدث رقم '+E.eventNo:'');
+  if(MODE==='ev')$('#heroSub').textContent='تقييم مرتب الدوريات · '+secName(E.sec)+(E.eventNo?' · حدث رقم '+E.eventNo:'');
   eprogress();
 }
 function erequired(){
-  const r=[['eventNo','رقم الحدث'],['date','التاريخ'],['pat','الدورية الخاضعة للتقييم (م أو ق)'],['facility','اسم المنشأة'],['area','المنطقة'],['facType','نوع المنشأة'],['tReport','وقت استلام البلاغ'],['tArrive','وقت وصول الدورية']];
+  const r=[['eventNo','رقم الحدث'],['date','التاريخ'],['pat','القسم والدورية الخاضعة للتقييم'],['facility','اسم المنشأة'],['area','المنطقة'],['facType','نوع المنشأة'],['tReport','وقت استلام البلاغ'],['tArrive','وقت وصول الدورية']];
   EV_ALL.forEach((_,i)=>r.push(['sc'+i,'بند']));
   r.push(['leaderName','مسؤول الدورية المنتقلة'],['evName','اسم المقيّم'],['sig','توقيع المقيّم']);return r}
-function efilled(k){if(k==='pat')return !!(String(E.patM||'').trim()||String(E.patQ||'').trim());if(k.startsWith('sc'))return E.sc[+k.slice(2)]!=null;if(k==='sig')return evSig.has;if(k==='tReport'||k==='tArrive')return tsec(E[k])!=null;return !!String(E[k]||'').trim()}
+function efilled(k){if(k==='pat')return !!(E.sec&&E.patrol);if(k.startsWith('sc'))return E.sc[+k.slice(2)]!=null;if(k==='sig')return evSig.has;if(k==='tReport'||k==='tArrive')return tsec(E[k])!=null;return !!String(E[k]||'').trim()}
 const ESECT={e1:['eventNo','date','pat','facility','area','facType'],e2:['tReport','tArrive'],e3:EV_P.map((_,i)=>'sc'+i),e4:EV_Q.map((_,i)=>'sc'+(NP+i)),e5:['leaderName'],e6:['evName','sig']};
 function eprogress(){
   $$('#evSteps .step').forEach(st=>{const ok=ESECT[st.dataset.t].every(efilled);st.classList.toggle('done',ok);st.querySelector('i').textContent=ok?'✓':st.dataset.t.slice(1)});
@@ -1690,7 +1706,7 @@ function eprogress(){
 function evalidate(){
   ecollect();ederive();const miss=[];let items=0;
   erequired().forEach(([k,l])=>{if(efilled(k))return;
-    const el=k==='pat'?$('#evPatM'):k.startsWith('sc')?$('#evIt'+k.slice(2)):k==='sig'?$('#evSigWrap'):k==='area'?$('#evArea'):$(`[data-e="${k}"]`);
+    const el=k==='pat'?(E.sec?$('#evPatrol'):$('#evSec')):k.startsWith('sc')?$('#evIt'+k.slice(2)):k==='sig'?$('#evSigWrap'):k==='area'?$('#evArea'):$(`[data-e="${k}"]`);
     el&&el.classList.add('invalid');if(k.startsWith('sc'))items++;else miss.push(l)});
   if(items)miss.push(`درجة ${items} ${items>2&&items<11?'بنود':'بند'}`);
   if(E.secs!=null&&E.secs>7200){miss.push('الأوقات (الزمن المستغرق يتجاوز ساعتين – يُرجى التحقق منها)');$('#evTArrive').classList.add('invalid')}
@@ -1734,8 +1750,8 @@ setInterval(()=>{const el=$('#evLive');
 const EVR=['evName','evNo','evRank','evRole'];
 function saveEvaluator(){const o={};EVR.forEach(k=>o[k]=E[k]||'');ls.set(EVR_KEY,o)}
 function epayload(){
-  const _n=new Date();const o={v:1,kind:'eval',sent:`${todayISO()} ${pad(_n.getHours())}:${pad(_n.getMinutes())}`,dept:deptOf(E)};
-  ['eventNo','date','day','shift','cat','patM','patQ','facility','area','facType','facTypeOther','location','gps','tReport','tArrive','secs','mins','timeScore','proc','equip','total','grade','pos','imp','evNote','evName','evNo','evRank','evRole','ev2Name','ev2No','ev2Rank']
+  const _n=new Date();const o={v:1,kind:'eval',sent:`${todayISO()} ${pad(_n.getHours())}:${pad(_n.getMinutes())}`,dept:E.sec||''};
+  ['eventNo','date','day','shift','cat','sec','patrol','patM','patQ','facility','area','facType','facTypeOther','location','gps','tReport','tArrive','secs','mins','timeScore','proc','equip','total','grade','pos','imp','evNote','evName','evNo','evRank','evRole','ev2Name','ev2No','ev2Rank']
     .forEach(k=>{if(k==='facTypeOther'&&E.facType!=='أخرى')return;const v=E[k];if(v!==''&&v!=null)o[k]=typeof v==='string'?v.trim():v});
   o.sc=E.sc.slice();
   EV_CREW.forEach(([k])=>['Name','No','Rank'].forEach(f=>{if(E[k+f])o[k+f]=E[k+f].trim()}));
@@ -1762,7 +1778,7 @@ async function renderEval(){
   x.fillStyle=G;x.fillRect(0,150,W,6);x.fillStyle='#b8964a';x.fillRect(0,156,W,2);
   const g1=x.createLinearGradient(W,0,0,0);g1.addColorStop(0,'#127a4c');g1.addColorStop(1,GD);x.fillStyle=g1;x.fillRect(0,158,W,118);
   T('استمارة تقييم التجربة الوهمية',W-PAD,212,{s:31,h:1,c:'#fff'});
-  T('تقييم مرتب الدوريات  ·  '+ADM+'  ·  '+(E.day||'')+' '+(E.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
+  T('تقييم مرتب الدوريات  ·  '+secName(E.sec)+'  ·  '+(E.day||'')+' '+(E.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
   x.font=f(24,800);const evT='حدث رقم '+(E.eventNo||'—'),evW=x.measureText(evT).width+44;rr(PAD,190,evW,56,28,'rgba(255,255,255,.14)','rgba(255,255,255,.35)');T(evT,PAD+evW-22,227,{s:24,w:800,c:'#fff'});
   let y=300;const BR=[y];
   /* total banner */
@@ -1785,7 +1801,7 @@ async function renderEval(){
       draw(it,lines,W-PAD-w,w);if(it2)draw(it2,lines2,PAD,cw);y+=h+12;BR.push(y);i+=it2?2:1}}
   sec('بيانات التجربة');
   kv([['اليوم والتاريخ',(E.day||'')+'  '+(E.date||'')],['فترة الدوام / الفئة',[E.shift,E.cat].filter(Boolean).join(' / ')],
-      ['الدورية الخاضعة للتقييم',[E.patM?'م/'+E.patM:'',E.patQ?'ق/'+E.patQ:''].filter(Boolean).join('  ·  ')],['رقم الحدث',E.eventNo],
+      ['الدورية الخاضعة للتقييم',E.patrol||[E.patM?'م/'+E.patM:'',E.patQ?'ق/'+E.patQ:''].filter(Boolean).join('  ·  ')],['رقم الحدث',E.eventNo],
       ['اسم المنشأة',E.facility],['نوع النشاط',facTypeTxt(E)],['المنطقة',E.area],['الموقع بالتفصيل',(E.location||'')+(E.gps?'   📍 '+E.gps.replace('https://maps.google.com/?q=','GPS '):'')]]);
   /* scored tables */
   const cN=64,cMax=118,cGot=128,cT=IW-cN-cMax-cGot;
@@ -1954,12 +1970,13 @@ const FCATS=['ص1','ص2','ص3','ف1','ف2','ف3'];
 const TOUR_POINTS=[{a:'ديرة',n:'منطقة 15 خلف توين تاور',p:'ميم 1'},{a:'ديرة',n:'سوق الذهب',p:'ميم 2'},{a:'ديرة',n:'الدورية الراجلة في سوق الذهب',p:'راجلة'},{a:'بر دبي',n:'منطقة السوق الكبير',p:'ميم 3'},{a:'بر دبي',n:'منطقة الكرامة خلف لولو',p:'ميم 4'}];
 const EVENT_TYPES=['سرقة','محاولة سرقة','سطو أو كسر محل','مشاجرة','اشتباه بشخص أو مركبة','جسم مشبوه','حريق','حادث مروري','حالة صحية / إسعاف','عطل في أنظمة الأمن والإنذار','تجمهر أو إزعاج','أخرى'];
 const TDRAFT='draftTour',XDRAFT='draftEvent',TCREW_KEY='alarmForm.tourCrew.v1',XCREW_KEY='alarmForm.eventCrew.v1';
-const TCREW=['role','offName','offNo','offRank'],XCREW=['offName','offNo','offRank','wrName','wrNo','wrRank'];
+const TCREW=['sec','role','offName','offNo','offRank'],XCREW=['sec','offName','offNo','offRank','wrName','wrNo','wrRank'];
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const nowHM=()=>{const n=new Date();return pad(n.getHours())+':'+pad(n.getMinutes())};
 const dayOf=d=>d?DAYS[new Date(d+'T12:00:00').getDay()]:'';
 const catCode=c=>(c||'NA').replace('ص','S').replace('ف','F');
-const blankT=()=>({date:todayISO(),points:TOUR_POINTS.map(p=>({id:uid(),a:p.a,n:p.n,p:p.p,on:false,time:''})),notes:[],photos:[],status:'',comp:[]});
+const mktPoints=()=>TOUR_POINTS.map(p=>({id:uid(),a:p.a,n:p.n,p:p.p,on:false,time:''}));
+const blankT=()=>({date:todayISO(),sec:'',points:[],notes:[],photos:[],status:'',comp:[]});
 const blankX=()=>({date:todayISO(),time:nowHM(),notes:[],photos:[],offs:[]});
 let T=blankT(),X=blankX();
 const trSig=sigPad($('#trSig'),$('#trSigPh')),xvSig=sigPad($('#xvSig'),$('#xvSigPh'));
@@ -1980,7 +1997,12 @@ trSig.onEnd=()=>{$('#trSigWrap').classList.remove('invalid');tsaveSoon()};xvSig.
 $('#trSigClear').addEventListener('click',()=>{trSig.clear();tsave()});$('#xvSigClear').addEventListener('click',()=>{xvSig.clear();xsave()});
 
 /* --- tour: points --- */
+function trSecChange(t){const v=t.value;if(v===T.sec)return;if(T.points.some(p=>p.on)&&!confirm('تغيير القسم سيعيد ضبط النقاط المسجلة. هل تريد المتابعة؟')){t.value=T.sec||'';return}
+  T.sec=v;T.points=v===SEC_MKT?mktPoints():[];t.classList.remove('invalid');renderPoints()}
 function renderPoints(){
+  const dip=T.sec===SEC_DIP;$('#trDipAdd').hidden=!dip;$('#trAddBox').hidden=T.sec!==SEC_MKT;
+  if(!T.sec){$('#trPoints').innerHTML='<div class="hint" style="text-align:center;padding:6px">اختر القسم أولاً.</div>';$('#trWhere').innerHTML='';return}
+  if(dip&&!T.points.length){$('#trPoints').innerHTML='<div class="hint" style="text-align:center;padding:6px">أضف المواقع التي تم المرور عليها مع وقت المرور.</div>';$('#trWhere').innerHTML='';return}
   const areas=[...new Set(['ديرة','بر دبي'].concat(T.points.map(p=>p.a)))].filter(a=>T.points.some(p=>p.a===a));
   $('#trPoints').innerHTML=areas.map(a=>`<div class="ptgrp"><span class="lbl">${esc(a)}</span>${T.points.filter(p=>p.a===a).map(p=>`<div class="pt${p.on?' on':''}" data-pid="${p.id}">
     <div class="pt-h"><button type="button" class="pt-chk" data-act="tog" aria-label="تم المرور">✓</button><div class="pt-t" data-act="tog"><b>${esc(p.n)}</b><span>${esc(p.p||'')}</span></div><button type="button" class="pt-x" data-act="del" aria-label="حذف النقطة">×</button></div>
@@ -1993,6 +2015,9 @@ $('#trPoints').addEventListener('click',e=>{const b=e.target.closest('[data-act]
   else if(b.dataset.act==='del'){if(!confirm('حذف النقطة «'+p.n+'» من القائمة؟'))return;T.points=T.points.filter(x=>x!==p)}
   renderPoints();tsave()});
 $('#trPoints').addEventListener('input',e=>{const i=e.target.closest('[data-pf]');if(!i)return;const p=T.points.find(x=>x.id===i.closest('.pt').dataset.pid);if(p){p[i.dataset.pf]=i.value;tsaveSoon()}});
+$('#trDipNow').addEventListener('click',()=>{$('#trDipTime').value=nowHM()});
+$('#trDipBtn').addEventListener('click',()=>{const n=$('#trDipName').value.trim();if(!n){toast('اكتب اسم المكان');$('#trDipName').focus();return}
+  T.points.push({id:uid(),a:'المواقع التي تم المرور عليها',n,p:'',on:true,time:$('#trDipTime').value||nowHM()});$('#trDipName').value='';$('#trDipTime').value='';$('#t3').classList.remove('invalid');renderPoints();tsave();toast('✓ تمت إضافة الموقع')});
 $('#trAddPt').addEventListener('click',()=>{const n=$('#trNewName').value.trim();if(!n){toast('اكتب اسم النقطة');return}
   T.points.push({id:uid(),a:$('#trNewA').value,n,p:$('#trNewP').value.trim(),on:true,time:nowHM()});$('#trNewName').value='';$('#trNewP').value='';$('#trAddBox').open=false;renderPoints();tsave();toast('✓ تمت إضافة النقطة')});
 
@@ -2047,7 +2072,7 @@ function peopleUI(box,addBtn,get,saveFn,soonFn,max,role,withTime){
 const tComp=peopleUI($('#trComp'),$('#trAddComp'),()=>T.comp||(T.comp=[]),tsave,tsaveSoon,2,'المرافق',false);
 const xOffs=peopleUI($('#xvOffs'),$('#xvAddOff'),()=>X.offs||(X.offs=[]),xsave,xsaveSoon,10,'ضابط حاضر',true);
 const pplOut=a=>(a||[]).filter(p=>(p.name||'').trim()).map(p=>{const o={name:p.name.trim()};['no','rank','time'].forEach(k=>{if((p[k]||'').trim())o[k]=p[k].trim()});return o});
-function heroSubFor(){if(MODE==='tour')$('#heroSub').textContent=ADM+(T.cat?' · الفئة '+T.cat:'');else if(MODE==='event')$('#heroSub').textContent=ADM+(X.eventNo?' · حدث رقم '+X.eventNo:'')}
+function heroSubFor(){if(MODE==='tour')$('#heroSub').textContent=secName(T.sec)+(T.cat?' · الفئة '+T.cat:'');else if(MODE==='event')$('#heroSub').textContent=secName(X.sec)+(X.eventNo?' · حدث رقم '+X.eventNo:'')}
 
 /* --- role -> duty category --- */
 const ROLE_CAT={'مسؤول الفئة الأولى':'ف1','مسؤول الفئة الثانية':'ف2','مسؤول الفئة الثالثة':'ف3'};
@@ -2061,7 +2086,7 @@ function tAutoNarr(){
   const vis=T.points.filter(p=>p.on),areas=[...new Set(vis.map(p=>p.a))];
   const pats=[...new Set(vis.map(p=>p.p).filter(p=>p&&/ميم|م\s?\d/.test(p)))];
   const who=[T.offRank,T.offName].filter(Boolean).join(' / '),comp=pplOut(T.comp).map(p=>[p.rank,p.name].filter(Boolean).join(' / '));
-  let s=`في اليوم والتاريخ المذكورين أعلاه، قمتُ أنا ${who||'…'}${T.role?' – '+T.role:''}${comp.length?'، برفقة '+comp.join(' و'):''}، بجولة ميدانية تم خلالها المرور على الدوريات${pats.length?' ('+pats.join('، ')+')':''}${areas.length?' في '+areas.join(' و'):''} والتأكد من جاهزيتها وأوضاعها الأمنية`;
+  let s=`في اليوم والتاريخ المذكورين أعلاه، قمتُ أنا ${who||'…'}${T.role?' – '+T.role:''}${comp.length?'، برفقة '+comp.join(' و'):''}، بجولة ميدانية ${T.sec===SEC_DIP?`تم خلالها المرور على ${vis.length?'المواقع ('+vis.map(p=>p.n).join('، ')+')':'المواقع'} والتأكد من أوضاعها الأمنية`:`تم خلالها المرور على الدوريات${pats.length?' ('+pats.join('، ')+')':''}${areas.length?' في '+areas.join(' و'):''} والتأكد من جاهزيتها وأوضاعها الأمنية`}`;
   if(vis.some(p=>/راجلة/.test(p.n+p.p)))s+='، والقيام بدورية راجلة في سوق الذهب';
   const n=T.notes.length;
   if(T.status==='مستقرة')s+=n?`، وقد تبين أن الأوضاع الأمنية مستقرة، مع تسجيل ${n===1?'ملاحظة واحدة موضحة':n+' ملاحظات موضحة'} أدناه.`:`، وقد تبين أن الأوضاع الأمنية مستقرة ولم تسجل أي ملاحظات خلال فترة دوام ${T.shift||''}، وكان كل شيء على ما يرام.`;
@@ -2075,7 +2100,7 @@ function tderive(){
   tprogress();
 }
 $('#trReNarr').addEventListener('click',()=>{T.narrManual=false;tsave();toast('✓ تمت التعبئة التلقائية')});
-function treq(){const r=[['date','التاريخ'],['shift','فترة الدوام'],['cat','الفئة المناوبة'],['tFrom','الساعة من'],['tTo','الساعة إلى'],['role','صفة القائم بالجولة'],['offName','اسم القائم بالجولة'],['points','النقاط التي تم المرور عليها'],['status','الحالة الأمنية'],['narr','موجز الجولة']];
+function treq(){const r=[['sec','القسم'],['date','التاريخ'],['shift','فترة الدوام'],['cat','الفئة المناوبة'],['tFrom','الساعة من'],['tTo','الساعة إلى'],['role','صفة القائم بالجولة'],['offName','اسم القائم بالجولة'],['points','النقاط التي تم المرور عليها'],['status','الحالة الأمنية'],['narr','موجز الجولة']];
   if(T.status==='توجد ملاحظات')r.push(['notes','الملاحظات (ملاحظة واحدة على الأقل)']);r.push(['sig','توقيع القائم بالجولة']);return r}
 function tfilled(k){if(k==='points')return T.points.some(p=>p.on);if(k==='notes')return T.notes.length>0;if(k==='sig')return trSig.has;return !!String(T[k]||'').trim()}
 function tprogress(){if(MODE==='tour'){const r=treq();setMeter(Math.round(r.filter(x=>tfilled(x[0])).length/r.length*100))}}
@@ -2092,7 +2117,7 @@ function tvalidate(){fcollect('tr');tderive();const miss=[];
 
 /* --- event: derive, progress --- */
 function xderive(){X.day=dayOf(X.date);if(MODE==='event')heroSubFor();$('#xvDay').value=X.day;$('#xvTypeOtherBox').style.display=X.etype==='أخرى'?'':'none';xprogress()}
-function xreq(){const r=[['cat','الفئة المناوبة'],['date','التاريخ'],['time','الساعة'],['subject','الموضوع'],['etype','نوع الحدث']];if(X.etype==='أخرى')r.push(['etypeOther','نوع الحدث']);
+function xreq(){const r=[['sec','القسم'],['cat','الفئة المناوبة'],['date','التاريخ'],['time','الساعة'],['subject','الموضوع'],['etype','نوع الحدث']];if(X.etype==='أخرى')r.push(['etypeOther','نوع الحدث']);
   r.push(['details','تفاصيل الحدث والإجراءات المتخذة'],['offName','اسم مسؤول الفئة'],['sig','توقيع مسؤول الفئة']);return r}
 function xfilled(k){if(k==='sig')return xvSig.has;return !!String(X[k]||'').trim()}
 function xprogress(){if(MODE==='event'){const r=xreq();setMeter(Math.round(r.filter(x=>xfilled(x[0])).length/r.length*100))}}
@@ -2107,11 +2132,11 @@ $('#xvGpsBtn').addEventListener('click',()=>{fcollect('xv');gpsTo(X,setXGps,()=>
 /* --- payloads --- */
 const noteOut=n=>({id:n.id,text:(n.text||'').trim(),where:(n.where||'').trim(),time:n.time||'',act:n.act,action:(n.action||'').trim()});
 function stamp(){const n=new Date();return `${todayISO()} ${pad(n.getHours())}:${pad(n.getMinutes())}`}
-function tpayload(){const o={v:1,kind:'tour',sent:stamp(),dept:DEPT};
-  ['date','day','shift','tFrom','tTo','cat','status','narr'].concat(TCREW).forEach(k=>{const v=typeof T[k]==='string'?T[k].trim():T[k];if(v)o[k]=v});
+function tpayload(){const o={v:1,kind:'tour',sent:stamp(),dept:T.sec||''};
+  ['sec','date','day','shift','tFrom','tTo','cat','status','narr'].concat(TCREW).forEach(k=>{const v=typeof T[k]==='string'?T[k].trim():T[k];if(v)o[k]=v});
   o.comp=pplOut(T.comp);o.points=T.points.filter(p=>p.on).map(p=>({a:p.a,n:p.n,p:p.p,time:p.time}));o.notes=T.notes.map(noteOut);o.photos=T.photos.length;return o}
-function xpayload(){const o={v:1,kind:'event',sent:stamp(),dept:DEPT};
-  ['date','day','time','cat','subject','etype','etypeOther','eventNo','refNo','area','location','gps','details','patrols','stationed'].concat(XCREW).forEach(k=>{if(k==='etypeOther'&&X.etype!=='أخرى')return;const v=typeof X[k]==='string'?X[k].trim():X[k];if(v)o[k]=v});
+function xpayload(){const o={v:1,kind:'event',sent:stamp(),dept:X.sec||''};
+  ['sec','date','day','time','cat','subject','etype','etypeOther','eventNo','refNo','area','location','gps','details','patrols','stationed'].concat(XCREW).forEach(k=>{if(k==='etypeOther'&&X.etype!=='أخرى')return;const v=typeof X[k]==='string'?X[k].trim():X[k];if(v)o[k]=v});
   o.offs=pplOut(X.offs);o.notes=X.notes.map(noteOut);o.photos=X.photos.length;return o}
 const codeOf=o=>'ACIS1:'+b64(new TextEncoder().encode(JSON.stringify(o)));
 
@@ -2184,16 +2209,17 @@ async function photoPages(photos,title,sub,logos){
   return pages;
 }
 async function renderTour(){
-  const D=await mkDoc('تقرير النزول الميداني والحالة الأمنية',`${ADM}  ·  ${T.day||''} ${T.date||''}`,'الفئة '+(T.cat||'—'));
+  const D=await mkDoc('تقرير النزول الميداني والحالة الأمنية',`${secName(T.sec)}  ·  ${T.day||''} ${T.date||''}`,'الفئة '+(T.cat||'—'));
   const stable=T.status==='مستقرة',n=T.notes.length,esc_=T.notes.filter(x=>x.act==='esc').length;
   if(stable&&!n)D.banner('الحالة الأمنية: مستقرة  ✓','لم تسجل أي ملاحظات','#e3f4ea','#1e8e4e','#157a40');
   else D.banner(stable?'الحالة الأمنية: مستقرة  ✓':'الحالة الأمنية: توجد ملاحظات  ⚠',`${n} ${n===1?'ملاحظة':'ملاحظات'}${esc_?' · '+esc_+' مرفوعة للمسؤول الأعلى':''}`,stable?'#e3f4ea':'#fff6e0',stable?'#1e8e4e':'#d48a1a',stable?'#157a40':'#9a5a00');
   D.tiles([['فترة الدوام',T.shift],['الساعة من',T.tFrom],['إلى',T.tTo],['الفئة المناوبة',T.cat]]);
   D.sec('القائم بالجولة الميدانية');
   D.table([['الرقم',.13],['الرتبة',.17],['الاسم',.30],['الصفة',.40]],[[T.offNo,T.offRank,T.offName,T.role||'القائم بالجولة']].concat(pplOut(T.comp).map((p,i,a)=>[p.no,p.rank,p.name,'المرافق'+(a.length>1?' '+(i+1):'')])));
-  D.sec('النقاط التي تم المرور عليها');
+  const _dip=T.sec===SEC_DIP;D.sec(_dip?'المواقع التي تم المرور عليها':'النقاط التي تم المرور عليها');
   const vis=T.points.filter(p=>p.on).slice().sort((a,b)=>(a.a===b.a?0:a.a==='ديرة'?-1:b.a==='ديرة'?1:a.a.localeCompare(b.a))||(a.time||'').localeCompare(b.time||''));
-  for(let k=0;k<vis.length;k+=12)D.table([['المنطقة',.18],['النقطة',.48],['الدورية',.17],['وقت المرور',.17]],vis.slice(k,k+12).map(p=>[p.a,p.n,p.p,p.time]));
+  if(_dip){const vv=vis.slice().sort((a,b)=>(a.time||'').localeCompare(b.time||''));for(let k=0;k<vv.length;k+=12)D.table([['م',.10],['الموقع',.62],['وقت المرور',.28]],vv.slice(k,k+12).map((p,i)=>[String(k+i+1),p.n,p.time]))}
+  else for(let k=0;k<vis.length;k+=12)D.table([['المنطقة',.18],['النقطة',.48],['الدورية',.17],['وقت المرور',.17]],vis.slice(k,k+12).map(p=>[p.a,p.n,p.p,p.time]));
   D.sec('موجز الجولة');D.para(T.narr);
   if(n){D.sec('الملاحظات والإجراءات المتخذة');D.notes(T.notes)}
   if(T.photos.length)D.note(`📎 صور من الجولة الميدانية: ${T.photos.length} ${T.photos.length<=2?'صورة':'صور'} في الصفحات التالية`);
@@ -2204,7 +2230,7 @@ async function renderTour(){
 }
 async function renderEventRep(){
   const et=X.etype==='أخرى'?(X.etypeOther||'أخرى'):X.etype;
-  const D=await mkDoc('تقرير حدث ميداني',`${ADM}  ·  ${X.day||''} ${X.date||''}`,X.eventNo?'حدث رقم '+X.eventNo:'');
+  const D=await mkDoc('تقرير حدث ميداني',`${secName(X.sec)}  ·  ${X.day||''} ${X.date||''}`,X.eventNo?'حدث رقم '+X.eventNo:'');
   {const ls=D.wrap(X.subject||'—',D.IW-60,`700 30px ${HFONT}`).slice(0,3),h=60+ls.length*46;D.rr(D.PAD,D.y,D.IW,h,16,'#fdf3f2','#c0392b');D.T('الموضوع',D.W-D.PAD-26,D.y+38,{s:19,c:D.MU});
     ls.forEach((l,j)=>D.T(l,D.W-D.PAD-26,D.y+82+j*46,{s:30,h:1,c:'#8e2a22'}));D.y+=h+16;D.br()}
   D.tiles([['التاريخ',X.date],['الساعة',X.time],['الفئة المناوبة',X.cat],['نوع الحدث',et,'#8e2a22']]);
@@ -2234,12 +2260,13 @@ async function tinit(fresh){let d=!fresh&&await idb.get(TDRAFT);
   if(d&&d.T&&d.T.sentAt){await idb.del(TDRAFT);d=null;if(MODE==='tour')setTimeout(()=>toast('تم مسح التقرير المرسل سابقاً من الهاتف'),600)}
   trSig.clear();$('#trAlert').classList.remove('show');
   if(d&&d.T){T=Object.assign(blankT(),d.T);if(d.sig)trSig.load(d.sig)}else{T=Object.assign(blankT(),ls.get(TCREW_KEY)||{})}
-  fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()}
+  if(!T.sec&&T.points.length)T.sec=SEC_MKT;if(T.sec===SEC_MKT&&!T.points.length)T.points=mktPoints();
+  $('#trSec').innerHTML=secOpts(T.sec);fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()}
 async function xinit(fresh){let d=!fresh&&await idb.get(XDRAFT);
   if(d&&d.X&&d.X.sentAt){await idb.del(XDRAFT);d=null;if(MODE==='event')setTimeout(()=>toast('تم مسح التقرير المرسل سابقاً من الهاتف'),600)}
   xvSig.clear();$('#xvAlert').classList.remove('show');
   if(d&&d.X){X=Object.assign(blankX(),d.X);if(d.sig)xvSig.load(d.sig)}else{X=Object.assign(blankX(),ls.get(XCREW_KEY)||{})}
-  fapply('xv');setXGps(X.gps);xOffs.render();xNotes.render();xPhotos.render();xderive()}
+  $('#xvSec').innerHTML=secOpts(X.sec);fapply('xv');setXGps(X.gps);xOffs.render();xNotes.render();xPhotos.render();xderive()}
 function rememberCrew(keys,o,key){const c={};keys.forEach(k=>c[k]=o[k]||'');if(key===TCREW_KEY)c.comp=(o.comp||[]).filter(p=>(p.name||'').trim()).map(p=>({name:p.name,no:p.no,rank:p.rank}));ls.set(key,c)}
 
 
@@ -2780,10 +2807,13 @@ async function hlinit(fresh){let d=!fresh&&await idb.get(HLDRAFT);
   if(d&&d.HL){HL=Object.assign(blankHL(),d.HL);if(d.sg)hlS.load(d.sg)}else HL=blankHL();
   $('#hlORank').innerHTML=rankOpts(HL.oRank);fapply('hs');renderCases();renderLevel();renderPos();hlderive()}
 
-$('#evPatQ').addEventListener('input',()=>$('#evPatM').classList.remove('invalid'));
+document.addEventListener('change',e=>{const t=e.target;if(t.id==='sec'){S.sec=t.value;S.patrol='';$('#patrol').innerHTML=patOpts(S.sec,'');t.classList.remove('invalid')}
+  else if(t.id==='evSec'){E.sec=t.value;E.patrol='';$('#evPatrol').innerHTML=patOpts(E.sec,'');t.classList.remove('invalid')}
+  else if(t.id==='trSec'){trSecChange(t)}},true);
 /* init */
 async function init(fresh){
   let d=!fresh&&await idb.get(DRAFT);
+  $('#sec').innerHTML=secOpts('');$('#patrol').innerHTML=patOpts('','');
   if(d&&d.S&&d.S.sentAt){await idb.del(DRAFT);d=null;if(MODE==='rep')setTimeout(()=>toast('تم مسح البلاغ المرسل سابقاً من الهاتف'),600)}
   if(d&&d.S){S=d.S;P=Object.assign({id:'',idBack:'',license:''},d.P||{});apply()}
   else{$('#date').value=todayISO();const c=ls.get(CREW_KEY);if(c){Object.assign(S,c);apply()}}
