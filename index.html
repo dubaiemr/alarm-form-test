@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261111120927">
+<meta name="app-build" content="20261111122545">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -353,10 +353,10 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
 </header>
 <section class="hero" id="hero">
   <button type="button" class="back" id="backBtn" hidden>→ الرئيسية</button>
-  <div id="heroHome"><div class="brandT">نَبْض<i></i></div><div class="sub2">النظام المتكامل للعمليات الميدانية</div><div class="sub3">قسم أمن الأسواق التجارية</div></div>
+  <div id="heroHome"><div class="brandT">نَبْض<i></i></div><div class="sub2">النظام المتكامل للعمليات الميدانية</div><div class="sub3">إدارة أمن الهيئات والمنشآت الحيوية</div></div>
   <div id="heroForm"><span class="kick"><span class="dot"></span> <span id="kickTxt">بلاغ جرس إنذار</span></span>
   <h1 id="heroTitle">استمارة الاستجابة الفورية لحالات جرس الإنذار</h1>
-  <div class="sub" id="heroSub">قسم أمن الأسواق التجارية</div>
+  <div class="sub" id="heroSub">إدارة أمن الهيئات والمنشآت الحيوية</div>
   <div class="meter"><div class="track"><div class="fill" id="meter"></div></div><b id="meterTxt">0%</b></div></div>
 </section>
 
@@ -414,7 +414,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>القائم بالجولة الميدانية</h2><p>تُحفظ على جهازك وتُستعاد تلقائياً</p></div></div>
   <div class="card-b">
     <div class="crew-row"><div class="role"><span class="ic ic-crew"></span>القائم بالجولة <span class="req"></span></div>
-      <select id="trRole" data-tr="role"><option value="">اختر الصفة</option><option>مسؤول فئة الصباح</option><option>مسؤول الفئة الأولى</option><option>مسؤول الفئة الثانية</option><option>مسؤول الفئة الثالثة</option><option>ضابط قسم أمن الأسواق التجارية</option><option>رئيس قسم أمن الأسواق التجارية</option><option>نائب مدير إدارة أمن الهيئات والمنشآت الحيوية</option><option>مدير إدارة أمن الهيئات والمنشآت الحيوية</option><option>نائب مدير الإدارة العامة لأمن الهيئات والمنشآت والطوارئ</option><option>مدير الإدارة العامة لأمن الهيئات والمنشآت والطوارئ</option></select>
+      <select id="trRole" data-tr="role"><option value="">اختر الصفة</option><option>مسؤول فئة الصباح</option><option>مسؤول الفئة الأولى</option><option>مسؤول الفئة الثانية</option><option>مسؤول الفئة الثالثة</option><option>ضابط القسم</option><option>رئيس القسم</option><option>نائب مدير إدارة أمن الهيئات والمنشآت الحيوية</option><option>مدير إدارة أمن الهيئات والمنشآت الحيوية</option><option>نائب مدير الإدارة العامة لأمن الهيئات والمنشآت والطوارئ</option><option>مدير الإدارة العامة لأمن الهيئات والمنشآت والطوارئ</option></select>
       <input id="trOffName" data-tr="offName" placeholder="الاسم">
       <div class="grid2"><input data-tr="offNo" placeholder="الرقم" inputmode="numeric"><select data-tr="offRank" class="rank"><option value="">الرتبة</option><option>شرطي</option><option>شرطي أول</option><option>عريف</option><option>عريف أول</option><option>رقيب</option><option>رقيب أول</option><option>وكيل</option><option>وكيل أول</option><option>ملازم</option><option>ملازم أول</option><option>نقيب</option><option>رائد</option><option>مقدم</option><option>عقيد</option></select></div></div>
     <div id="trComp" style="display:grid;gap:10px"></div>
@@ -1147,6 +1147,7 @@ const ls={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return 
 const DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const CAUSES=['خلل فني في النظام','خطأ من موظف','انقطاع التيار الكهربائي','ضعف في بطارية الجهاز','تجربة وهمية','أخرى'];
 const MOCK='تجربة وهمية',DEPT='أمن الأسواق التجارية',DEPT_Q='أمن الهيئات والمنشآت الهامة';
+const ADM='إدارة أمن الهيئات والمنشآت الحيوية';
 const deptOf=o=>String(o.patQ||'').trim()&&!String(o.patM||'').trim()?DEPT_Q:DEPT;const isMock=()=>S.cause===MOCK;
 const facTypeTxt=o=>o.facType==='أخرى'?('أخرى'+((o.facTypeOther||'').trim()?' ('+o.facTypeOther.trim()+')':'')):(o.facType||'');
 const CREW=[['leader','مسؤول الدورية'],['driver','سائق الدورية'],['c1','مرافق الدورية']];
@@ -1210,7 +1211,7 @@ function derive(){
   if(!S.otherId)S._idTouched=false;
   if(!S.otherId&&S.pIdType!=='بطاقة الهوية الإماراتية'){S.pIdType='بطاقة الهوية الإماراتية';$('#pIdType').value=S.pIdType}
   else if(S.otherId&&S.pIdType==='بطاقة الهوية الإماراتية'&&!S._idTouched){S.pIdType='جواز سفر';$('#pIdType').value=S.pIdType}
-  if(MODE==='rep')$('#heroSub').textContent='قسم '+(S.dept||'أمن الأسواق التجارية')+(S.eventNo?' · حدث رقم '+S.eventNo:'')+(mk?' · تجربة وهمية':'');
+  if(MODE==='rep')$('#heroSub').textContent=ADM+(S.eventNo?' · حدث رقم '+S.eventNo:'')+(mk?' · تجربة وهمية':'');
   $('#summary').innerHTML=summary(true);
   const id=(S.pId||'').replace(/\D/g,''),h=$('#idHint');
   if(S.pIdType==='بطاقة الهوية الإماراتية'&&id){const ok=/^784\d{12}$/.test(id);h.textContent=ok?'✓ صيغة رقم الهوية صحيحة':'رقم الهوية الإماراتية 15 رقماً ويبدأ بـ 784';h.className='hint '+(ok?'ok':'bad')}else h.textContent='';
@@ -1475,7 +1476,7 @@ async function renderReport(){
   /* title band */
   const g1=x.createLinearGradient(W,0,0,0);g1.addColorStop(0,'#127a4c');g1.addColorStop(1,GD);x.fillStyle=g1;x.fillRect(0,158,W,118);
   T('استمارة الاستجابة الفورية لحالات جرس الإنذار',W-PAD,212,{s:31,h:1,c:'#fff'});
-  T('قسم '+(S.dept||'')+'  ·  '+(S.day||'')+' '+(S.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
+  T(ADM+'  ·  '+(S.day||'')+' '+(S.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
   x.font=f(24,800);const evT='حدث رقم '+(S.eventNo||'—'),evW=x.measureText(evT).width+44;rr(PAD,190,evW,56,28,'rgba(255,255,255,.14)','rgba(255,255,255,.35)');T(evT,PAD+evW-22,227,{s:24,w:800,c:'#fff'});
   const mk=isMock();
   let y=300;
@@ -1673,7 +1674,7 @@ function ederive(){
   if(!E.posManual){E.pos=al.pos;$('#evPos').value=al.pos}
   if(!E.impManual){E.imp=al.imp;$('#evImp').value=al.imp}
   $('#evFacTypeOtherBox').style.display=E.facType==='أخرى'?'grid':'none';
-  if(MODE==='ev')$('#heroSub').textContent='تقييم مرتب الدوريات · قسم '+deptOf(E)+(E.eventNo?' · حدث رقم '+E.eventNo:'');
+  if(MODE==='ev')$('#heroSub').textContent='تقييم مرتب الدوريات · '+ADM+(E.eventNo?' · حدث رقم '+E.eventNo:'');
   eprogress();
 }
 function erequired(){
@@ -1761,7 +1762,7 @@ async function renderEval(){
   x.fillStyle=G;x.fillRect(0,150,W,6);x.fillStyle='#b8964a';x.fillRect(0,156,W,2);
   const g1=x.createLinearGradient(W,0,0,0);g1.addColorStop(0,'#127a4c');g1.addColorStop(1,GD);x.fillStyle=g1;x.fillRect(0,158,W,118);
   T('استمارة تقييم التجربة الوهمية',W-PAD,212,{s:31,h:1,c:'#fff'});
-  T('تقييم مرتب الدوريات  ·  قسم '+deptOf(E)+'  ·  '+(E.day||'')+' '+(E.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
+  T('تقييم مرتب الدوريات  ·  '+ADM+'  ·  '+(E.day||'')+' '+(E.date||''),W-PAD,252,{s:20,c:'rgba(255,255,255,.85)'});
   x.font=f(24,800);const evT='حدث رقم '+(E.eventNo||'—'),evW=x.measureText(evT).width+44;rr(PAD,190,evW,56,28,'rgba(255,255,255,.14)','rgba(255,255,255,.35)');T(evT,PAD+evW-22,227,{s:24,w:800,c:'#fff'});
   let y=300;const BR=[y];
   /* total banner */
@@ -2046,7 +2047,7 @@ function peopleUI(box,addBtn,get,saveFn,soonFn,max,role,withTime){
 const tComp=peopleUI($('#trComp'),$('#trAddComp'),()=>T.comp||(T.comp=[]),tsave,tsaveSoon,2,'المرافق',false);
 const xOffs=peopleUI($('#xvOffs'),$('#xvAddOff'),()=>X.offs||(X.offs=[]),xsave,xsaveSoon,10,'ضابط حاضر',true);
 const pplOut=a=>(a||[]).filter(p=>(p.name||'').trim()).map(p=>{const o={name:p.name.trim()};['no','rank','time'].forEach(k=>{if((p[k]||'').trim())o[k]=p[k].trim()});return o});
-function heroSubFor(){if(MODE==='tour')$('#heroSub').textContent='قسم '+DEPT+(T.cat?' · الفئة '+T.cat:'');else if(MODE==='event')$('#heroSub').textContent='قسم '+DEPT+(X.eventNo?' · حدث رقم '+X.eventNo:'')}
+function heroSubFor(){if(MODE==='tour')$('#heroSub').textContent=ADM+(T.cat?' · الفئة '+T.cat:'');else if(MODE==='event')$('#heroSub').textContent=ADM+(X.eventNo?' · حدث رقم '+X.eventNo:'')}
 
 /* --- role -> duty category --- */
 const ROLE_CAT={'مسؤول الفئة الأولى':'ف1','مسؤول الفئة الثانية':'ف2','مسؤول الفئة الثالثة':'ف3'};
@@ -2183,7 +2184,7 @@ async function photoPages(photos,title,sub,logos){
   return pages;
 }
 async function renderTour(){
-  const D=await mkDoc('تقرير النزول الميداني والحالة الأمنية',`قسم ${DEPT}  ·  ${T.day||''} ${T.date||''}`,'الفئة '+(T.cat||'—'));
+  const D=await mkDoc('تقرير النزول الميداني والحالة الأمنية',`${ADM}  ·  ${T.day||''} ${T.date||''}`,'الفئة '+(T.cat||'—'));
   const stable=T.status==='مستقرة',n=T.notes.length,esc_=T.notes.filter(x=>x.act==='esc').length;
   if(stable&&!n)D.banner('الحالة الأمنية: مستقرة  ✓','لم تسجل أي ملاحظات','#e3f4ea','#1e8e4e','#157a40');
   else D.banner(stable?'الحالة الأمنية: مستقرة  ✓':'الحالة الأمنية: توجد ملاحظات  ⚠',`${n} ${n===1?'ملاحظة':'ملاحظات'}${esc_?' · '+esc_+' مرفوعة للمسؤول الأعلى':''}`,stable?'#e3f4ea':'#fff6e0',stable?'#1e8e4e':'#d48a1a',stable?'#157a40':'#9a5a00');
@@ -2203,7 +2204,7 @@ async function renderTour(){
 }
 async function renderEventRep(){
   const et=X.etype==='أخرى'?(X.etypeOther||'أخرى'):X.etype;
-  const D=await mkDoc('تقرير حدث ميداني',`قسم ${DEPT}  ·  ${X.day||''} ${X.date||''}`,X.eventNo?'حدث رقم '+X.eventNo:'');
+  const D=await mkDoc('تقرير حدث ميداني',`${ADM}  ·  ${X.day||''} ${X.date||''}`,X.eventNo?'حدث رقم '+X.eventNo:'');
   {const ls=D.wrap(X.subject||'—',D.IW-60,`700 30px ${HFONT}`).slice(0,3),h=60+ls.length*46;D.rr(D.PAD,D.y,D.IW,h,16,'#fdf3f2','#c0392b');D.T('الموضوع',D.W-D.PAD-26,D.y+38,{s:19,c:D.MU});
     ls.forEach((l,j)=>D.T(l,D.W-D.PAD-26,D.y+82+j*46,{s:30,h:1,c:'#8e2a22'}));D.y+=h+16;D.br()}
   D.tiles([['التاريخ',X.date],['الساعة',X.time],['الفئة المناوبة',X.cat],['نوع الحدث',et,'#8e2a22']]);
