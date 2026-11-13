@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261113213448">
+<meta name="app-build" content="20261113213816">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -798,8 +798,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
     </div>
     <div class="f"><label for="spGD">الإدارة العامة المعنية</label><input id="spGD" value="الإدارة العامة لأمن الهيئات والمنشآت والطوارئ" readonly tabindex="-1"></div>
     <div class="f"><label for="spSD">الإدارة الفرعية المختصة بالتنفيذ</label><input id="spSD" value="إدارة أمن الهيئات والمنشآت الحيوية" readonly tabindex="-1"></div>
-    <div class="f"><label class="req" for="spSec">القسم المختص بالتنفيذ</label><input id="spSec" data-sp="sec" list="spSecL" placeholder="اختر القسم أو اكتبه" autocomplete="off">
-      <datalist id="spSecL"><option>قسم أمن الأسواق التجارية</option><option>قسم أمن الهيئات الدبلوماسية والمنشآت الهامة</option><option>قسم أمن المحاكم والنيابة العامة</option><option>قسم تأمين المتفجرات والألعاب النارية</option><option>قسم تأمين منشآت النقل والمواصلات</option></datalist></div>
+    <div class="f"><label class="req" for="spSec">القسم <span class="auto">لأغراض الإحصائيات فقط – لا يظهر في الاستمارة</span></label><select id="spSec" data-sp="sec"><option value="">اختر القسم</option><option>قسم أمن الأسواق التجارية</option><option>قسم أمن الهيئات الدبلوماسية والمنشآت الهامة</option><option>قسم أمن المحاكم والنيابة العامة</option><option>قسم تأمين المتفجرات والألعاب النارية</option><option>قسم تأمين منشآت النقل والمواصلات</option><option>على مستوى الإدارة</option></select></div>
   </div>
 </section>
 <section class="card" id="sp2">
@@ -835,7 +834,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   </div>
 </section>
 <section class="card" id="sp6">
-  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>معدّ الاستمارة</h2><p>من القسم المختص بالتنفيذ</p></div></div>
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>معدّ الاستمارة</h2><p>بيانات من قام بتعبئة الاستمارة</p></div></div>
   <div class="card-b">
     <div class="grid2">
       <div class="f"><label class="req" for="spPNo">الرقم</label><input id="spPNo" data-sp="pNo" inputmode="numeric"></div>
@@ -1992,7 +1991,7 @@ $('#sheetX').addEventListener('click',()=>$('#sheet').classList.remove('show'));
 $('#sheet').addEventListener('click',e=>{if(e.target.id==='sheet')$('#sheet').classList.remove('show')});
 $('#shareBtn').addEventListener('click',async()=>{
   const ev=MODE==='ev';
-  const text=MODE==='sug'?`استمارة تقييم الاقتراحات المطبقة – اقتراح رقم ${SP.no||''} – ${SP.title||''} – ${SP.sec||''}`
+  const text=MODE==='sug'?`استمارة تقييم الاقتراحات المطبقة – اقتراح رقم ${SP.no||''} – ${SP.title||''}`
            :MODE==='hall'?`استمارة تأمين القاعات – ${HL_SEC} – قاعة ${HL.hallNo||''} – المستوى ${HL.level||''} – ${HL.date||''}`
            :MODE==='court'?`استمارة حدث – ${CT_SEC} – رقم الحدث ${CT.eventNo||''} – ${CT.date||''}`
            :MODE==='handover'?`محضر ${H.op||'استلام وتسليم'} – ${H.company||''} – تصريح رقم ${H.permitNo||''} – ${H.date||''}`
@@ -2970,27 +2969,27 @@ $('#spPts').addEventListener('change',e=>{const f=e.target.closest('[data-pv]');
 const spPpl=()=>(SP.ppl||[]).filter(p=>(p.name||'').trim()).map(p=>{const o={name:p.name.trim()};['no','rank','role'].forEach(k=>{if((p[k]||'').trim())o[k]=p[k].trim()});return o});
 const spDocs=()=>(SP.docs||[]).filter(d=>(d.desc||'').trim()||(d.ref||'').trim()||d.type).map(d=>({type:d.type||'',ref:(d.ref||'').trim(),desc:(d.desc||'').trim()}));
 const spImpOut=()=>SP_IMP.map(([t],i)=>{const c=(SP.imp||[])[i]||{};return{t:i===SP_IMP.length-1&&(c.lbl||'').trim()?'أخرى – '+c.lbl.trim():t,b:(c.b||'').trim(),a:(c.a||'').trim()}});
-function spderive(){if(MODE==='sug'){$('#heroSub').textContent=(SP.sec||'إدارة أمن الهيئات والمنشآت الحيوية')+(SP.no?' · اقتراح رقم '+SP.no:'');spprogress()}}
-function spreq(){return [['no','رقم الاقتراح'],['cat','فئة الاقتراح'],['title','عنوان الاقتراح'],['date','تاريخ الاقتراح'],['appDate','تاريخ التطبيق'],['sec','القسم المختص بالتنفيذ'],['ppl','أسماء القائمين بالتطبيق'],['docs','المستندات الداعمة'],['imp','معيار واحد على الأقل (قبل وبعد)'],['pts','نقاط التقييم كاملة'],['pNo','رقم معدّ الاستمارة'],['pRank','رتبة معدّ الاستمارة'],['pName','اسم معدّ الاستمارة']]}
+function spderive(){if(MODE==='sug'){$('#heroSub').textContent='إدارة أمن الهيئات والمنشآت الحيوية'+(SP.no?' · اقتراح رقم '+SP.no:'');spprogress()}}
+function spreq(){return [['no','رقم الاقتراح'],['cat','فئة الاقتراح'],['title','عنوان الاقتراح'],['date','تاريخ الاقتراح'],['appDate','تاريخ التطبيق'],['sec','القسم (للإحصائيات)'],['ppl','أسماء القائمين بالتطبيق'],['docs','المستندات الداعمة'],['imp','معيار واحد على الأقل (قبل وبعد)'],['pts','نقاط التقييم كاملة'],['pNo','رقم معدّ الاستمارة'],['pRank','رتبة معدّ الاستمارة'],['pName','اسم معدّ الاستمارة']]}
 function spfilled(k){if(k==='ppl')return spPpl().length>0;if(k==='docs')return spDocs().some(d=>d.desc||d.ref);if(k==='imp')return spImpOut().some(c=>c.b&&c.a);if(k==='pts')return spTotal()!=null;return !!String(SP[k]||'').trim()}
 function spprogress(){const r=spreq();setMeter(Math.round(r.filter(x=>spfilled(x[0])).length/r.length*100))}
 function spvalidate(){fcollect('sp');spderive();const miss=[];
   spreq().forEach(([k,l])=>{if(spfilled(k))return;miss.push(l);const el={ppl:'#sp2',docs:'#sp3',imp:'#sp4',pts:'#sp5'}[k];el?$(el).classList.add('invalid'):($(`[data-sp="${k}"]`)||{classList:{add(){}}}).classList.add('invalid')});
   if(!miss.length&&SP.date&&SP.appDate&&SP.appDate<SP.date){miss.push('تاريخ التطبيق يجب أن يكون بعد تاريخ الاقتراح');$('#spApp').classList.add('invalid')}
   return failWith('#spAlert',miss)}
-function sppayload(){const o={v:1,kind:'suggestion',sent:stamp(),dept:SP.sec||''};
+function sppayload(){const o={v:1,kind:'suggestion',sent:stamp(),dept:'إدارة أمن الهيئات والمنشآت الحيوية'};
   ['no','title','cat','date','appDate','sec','before','after','pNo','pRank','pName','pRole'].forEach(k=>{const v=typeof SP[k]==='string'?SP[k].trim():SP[k];if(v)o[k]=v});
   o.ppl=spPpl();o.docs=spDocs();o.imp=spImpOut().filter(c=>c.b||c.a);
   o.pts=SP_F.map(([t,L],i)=>{const p=SP.pts[i]||{};return{f:t,lv:p.lv===''?'':L[+p.lv][0],v:spVal(i)}});o.total=spTotal();o.max=SP_MAX;return o}
 /* PDF */
 async function renderSug(){
-  const sub=[SP.sec,SP.no?'اقتراح رقم '+SP.no:''].filter(Boolean).join('  ·  ');
+  const sub=['إدارة أمن الهيئات والمنشآت الحيوية',SP.no?'اقتراح رقم '+SP.no:''].filter(Boolean).join('  ·  ');
   const grid=(D,rows,rh=70)=>{const {x,W,PAD,IW,LN,MU}=D;rows.forEach(r=>{const tw=r.reduce((a,c)=>a+(c[2]||1),0),gap=10;let px=W-PAD;const avail=IW-gap*(r.length-1);
     const cells=r.map(([l,v,f])=>{const w=avail*(f||1)/tw;return{l,v:String(v||'—'),w,ls:D.wrap(String(v||'—'),w-28,`700 21px ${FONT}`).slice(0,3)}});const h=Math.max(rh,40+Math.max(...cells.map(c=>c.ls.length))*30+8);
     cells.forEach(c=>{D.rr(px-c.w,D.y,c.w,h,12,'#fff',LN);D.T(c.l,px-14,D.y+28,{s:16,c:MU});c.ls.forEach((l,k)=>D.T(l,px-14,D.y+58+k*30,{s:21,w:700}));px-=c.w+gap});D.y+=h+10;D.br()})};
   const head=async(part,short)=>{const D=await mkDoc(SP_TITLE,part+'  ·  '+sub,SP.no?'رقم '+SP.no:'');
     if(short){D.y-=8;grid(D,[[['عنوان الاقتراح',SP.title,3],['رقم الاقتراح',SP.no],['تاريخ التطبيق',SP.appDate]]]);return D}
-    D.sec('بيانات الاقتراح');grid(D,[[['عنوان الاقتراح',SP.title,3],['فئة الاقتراح',SP.cat,1.3]],[['رقم الاقتراح',SP.no],['تاريخ الاقتراح',SP.date],['تاريخ التطبيق',SP.appDate],['القسم المختص بالتنفيذ',SP.sec,1.8]],[['الإدارة العامة المعنية','الإدارة العامة لأمن الهيئات والمنشآت والطوارئ'],['الإدارة الفرعية المختصة بالتنفيذ','إدارة أمن الهيئات والمنشآت الحيوية']]]);
+    D.sec('بيانات الاقتراح');grid(D,[[['عنوان الاقتراح',SP.title,3],['فئة الاقتراح',SP.cat,1.3]],[['رقم الاقتراح',SP.no],['تاريخ الاقتراح',SP.date],['تاريخ التطبيق',SP.appDate]],[['الإدارة العامة المعنية','الإدارة العامة لأمن الهيئات والمنشآت والطوارئ'],['الإدارة الفرعية المختصة بالتنفيذ','إدارة أمن الهيئات والمنشآت الحيوية']]]);
     return D};
   const ppl=D=>{D.sec('القائمون على تطبيق الاقتراح');const P=spPpl();const rows=P.length?P:[{}];for(let k=0;k<rows.length;k+=10)D.table([['م',.07],['الرقم',.14],['الرتبة',.17],['الاسم',.34],['الصفة',.28]],rows.slice(k,k+10).map((p,i)=>[k+i+1,p.no,p.rank,p.name,p.role]))};
   /* part 1 – evaluation */
