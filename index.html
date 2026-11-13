@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261111125430">
+<meta name="app-build" content="20261113213448">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -172,6 +172,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
 .hl-info{background:var(--soft,#eef6f1);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.8}.hl-info ul{margin:4px 0 6px;padding-right:18px}.hl-req{font-size:13px;color:var(--muted)}
 .hl-sum{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px;color:var(--muted)}.hl-sum span{display:flex;align-items:center;gap:5px}.hl-sum i{width:11px;height:11px;border-radius:50%;display:inline-block}.hl-sum b{color:var(--ink)}.hl-sum .t{margin-inline-start:auto;font-weight:700}.hl-sum .bad,.hl-sum .bad b{color:var(--danger)}
 .hl-n{font-style:normal;width:26px;height:26px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.sp-it .opt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:right;border:1.5px solid var(--line);background:var(--field);border-radius:12px;padding:10px 12px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}.sp-it .opt small{flex:none;color:var(--muted);font-size:12.5px}.sp-it .opt.on{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}.sp-it .opt.on small{color:rgba(255,255,255,.85)}.sp-it .with-btn input{min-height:44px;text-align:center;font-weight:700;font-size:18px}
 .es-total{display:flex;justify-content:space-between;align-items:center;background:var(--green-soft);border-radius:14px;padding:12px 16px;font-weight:700}.es-total b{font-size:22px;color:var(--green-2)}
 
 .gps-link{font-size:12.5px;color:var(--green-2);word-break:break-all;text-decoration:none}
@@ -388,6 +389,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <button type="button" class="hcard" data-go="handover"><span class="hi" style="background:#fdf1e4"><svg viewBox="0 0 24 24" style="stroke:#a35a12"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span><span class="ht"><b>محضر استلام وتسليم</b><span class="d">قسم تأمين المتفجرات والألعاب النارية</span></span><span class="badge" data-badge="handover" hidden>مسودة</span><span class="chev">‹</span></button>
   <button type="button" class="hcard" data-go="court"><span class="hi" style="background:#eaf0fb"><svg viewBox="0 0 24 24" style="stroke:#2d4a8a"><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 006 0zM17 7l-3 7a3 3 0 006 0zM8 21h8"/></svg></span><span class="ht"><b>استمارة حدث</b><span class="d">قسم أمن المحاكم والنيابة العامة</span></span><span class="badge" data-badge="court" hidden>مسودة</span><span class="chev">‹</span></button>
   <button type="button" class="hcard" data-go="hall"><span class="hi" style="background:#eaf0fb"><svg viewBox="0 0 24 24" style="stroke:#2d4a8a"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h4M13 12h4M7 16h4M13 16h4"/></svg></span><span class="ht"><b>استمارة تأمين القاعات</b><span class="d">قسم أمن المحاكم والنيابة العامة</span></span><span class="badge" data-badge="hall" hidden>مسودة</span><span class="chev">‹</span></button>
+  <button type="button" class="hcard" data-go="sug"><span class="hi" style="background:#fff7dc"><svg viewBox="0 0 24 24" style="stroke:#a07a00"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0012 3z"/></svg></span><span class="ht"><b>استمارة تقييم الاقتراحات المطبقة</b><span class="d">تقييم الاقتراح وقياس الأثر</span></span><span class="badge" data-badge="sug" hidden>مسودة</span><span class="chev">‹</span></button>
   <p class="hint" style="text-align:center;margin:6px 0 0">تُحفظ كل استمارة على حدة في هذا الهاتف، ويمكن التنقل بين الاستمارات دون فقدان البيانات.</p>
 </div>
 
@@ -778,6 +780,75 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   </div>
 </section>
 </div><!-- /hallView -->
+
+<!-- ================= Applied suggestions evaluation & impact form ================= -->
+<div id="sugView" hidden>
+<section class="card" id="sp1">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0012 3z"/></svg></span><div><h2>بيانات الاقتراح</h2><p>تُكتب مرة واحدة وتظهر في جزأي الاستمارة</p></div></div>
+  <div class="card-b">
+    <div class="grid2">
+      <div class="f"><label class="req" for="spNo">رقم الاقتراح</label><input id="spNo" data-sp="no" inputmode="numeric"></div>
+      <div class="f"><label class="req" for="spCat">فئة الاقتراح</label><select id="spCat" data-sp="cat"></select></div>
+    </div>
+    <div class="hl-info" id="spCatInfo" hidden></div>
+    <div class="f"><label class="req" for="spTitle">عنوان الاقتراح</label><input id="spTitle" data-sp="title"></div>
+    <div class="grid2">
+      <div class="f"><label class="req" for="spDate"><span class="ic ic-date"></span>تاريخ الاقتراح</label><input type="date" id="spDate" data-sp="date"></div>
+      <div class="f"><label class="req" for="spApp"><span class="ic ic-date"></span>تاريخ التطبيق</label><input type="date" id="spApp" data-sp="appDate"></div>
+    </div>
+    <div class="f"><label for="spGD">الإدارة العامة المعنية</label><input id="spGD" value="الإدارة العامة لأمن الهيئات والمنشآت والطوارئ" readonly tabindex="-1"></div>
+    <div class="f"><label for="spSD">الإدارة الفرعية المختصة بالتنفيذ</label><input id="spSD" value="إدارة أمن الهيئات والمنشآت الحيوية" readonly tabindex="-1"></div>
+    <div class="f"><label class="req" for="spSec">القسم المختص بالتنفيذ</label><input id="spSec" data-sp="sec" list="spSecL" placeholder="اختر القسم أو اكتبه" autocomplete="off">
+      <datalist id="spSecL"><option>قسم أمن الأسواق التجارية</option><option>قسم أمن الهيئات الدبلوماسية والمنشآت الهامة</option><option>قسم أمن المحاكم والنيابة العامة</option><option>قسم تأمين المتفجرات والألعاب النارية</option><option>قسم تأمين منشآت النقل والمواصلات</option></datalist></div>
+  </div>
+</section>
+<section class="card" id="sp2">
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>القائمون على تطبيق الاقتراح</h2><p>الرقم – الرتبة – الاسم – الصفة</p></div></div>
+  <div class="card-b">
+    <div id="spPpl" style="display:grid;gap:10px"></div>
+    <button type="button" class="btn sec" id="spAddP">➕ إضافة اسم</button>
+    <datalist id="spRoleL"><option>صاحب الاقتراح</option><option>مشارك في التطبيق</option><option>مشرف على التطبيق</option><option>رئيس القسم</option><option>ضابط القسم</option></datalist>
+  </div>
+</section>
+<section class="card" id="sp3">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></span><div><h2>المستندات الداعمة للتطبيق</h2><p>مذكرات داخلية، مخاطبات رسمية، أوامر إدارية، أوامر القوة… إلخ</p></div></div>
+  <div class="card-b">
+    <div id="spDocs" style="display:grid;gap:10px"></div>
+    <button type="button" class="btn sec" id="spAddD">➕ إضافة مستند</button>
+    <div class="f"><label>صور المستندات <span class="auto">اختياري – تُرفق في نهاية الاستمارة</span></label><div id="spPhotos" class="phgrid"></div></div>
+  </div>
+</section>
+<section class="card" id="sp4">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 16V9M11 16V5M16 16v-4M21 16V8"/></svg></span><div><h2>قياس الأثر</h2><p>الوضع قبل تطبيق الاقتراح وبعده حسب معايير التقييم</p></div></div>
+  <div class="card-b">
+    <div class="f"><label for="spBefore">الوضع قبل تطبيق الاقتراح <span class="auto">إحصائيات</span></label><textarea id="spBefore" data-sp="before" style="min-height:80px"></textarea></div>
+    <div class="f"><label for="spAfter">الوضع بعد تطبيق الاقتراح <span class="auto">النتائج المترتبة على التطبيق</span></label><textarea id="spAfter" data-sp="after" style="min-height:80px"></textarea></div>
+    <p class="hint">املأ المعايير التي تنطبق على الاقتراح (معيار واحد على الأقل)، واترك غيرها فارغاً.</p>
+    <div id="spImp" style="display:grid;gap:12px"></div>
+  </div>
+</section>
+<section class="card" id="sp5">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></span><div><h2>تقييم الاقتراح</h2><p>اختر المستوى ثم حدّد النقاط ضمن المدى المسموح</p></div></div>
+  <div class="card-b">
+    <div id="spPts" style="display:grid;gap:12px"></div>
+    <div class="es-total"><span>المجموع الإجمالي للنقاط</span><b id="spTotal">— من 125</b></div>
+  </div>
+</section>
+<section class="card" id="sp6">
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>معدّ الاستمارة</h2><p>من القسم المختص بالتنفيذ</p></div></div>
+  <div class="card-b">
+    <div class="grid2">
+      <div class="f"><label class="req" for="spPNo">الرقم</label><input id="spPNo" data-sp="pNo" inputmode="numeric"></div>
+      <div class="f"><label class="req" for="spPRank">الرتبة</label><select id="spPRank" data-sp="pRank"></select></div>
+    </div>
+    <div class="f"><label class="req" for="spPName">الاسم</label><input id="spPName" data-sp="pName"></div>
+    <div class="f"><label for="spPRole">الصفة</label><input id="spPRole" data-sp="pRole" placeholder="مثال: منسق الاقتراحات في القسم"></div>
+    <div class="f"><div class="sig-tools"><span class="lbl">التوقيع</span><button type="button" class="ghost" id="spSigClear">مسح</button></div>
+      <div class="sig-wrap"><canvas id="spSig" style="display:block;width:100%;height:150px;border-radius:14px"></canvas><div class="sig-ph" id="spSigPh">وقّع هنا بإصبعك</div></div></div>
+    <div class="alert" id="spAlert"></div>
+  </div>
+</section>
+</div><!-- /sugView -->
 
 <div id="eventView" hidden>
 <section class="card" id="x1">
@@ -1861,9 +1932,9 @@ async function einit(fresh){
   else{E=Object.assign(blankE(),{date:todayISO()},ls.get(EVR_KEY)||{});eapply()}
   ecollect();ederive();
 }
-const VIEWS={home:'#homeView',rep:'#repView',ev:'#evView',tour:'#tourView',event:'#eventView',escort:'#escortView',handover:'#handoverView',court:'#courtView',hall:'#hallView'};
-const MTXT={hall:['تأمين القاعات','استمارة تأمين القاعات','معاينة وإرسال الاستمارة'],court:['استمارة حدث','استمارة حدث','معاينة وإرسال الاستمارة'],handover:['محضر استلام وتسليم','محضر استلام وتسليم','معاينة وإرسال المحضر'],escort:['مهام المرافقات الأمنية','استمارة مهام المرافقات الأمنية','معاينة وإرسال الاستمارة'],rep:['بلاغ جرس إنذار','استمارة الاستجابة الفورية لحالات جرس الإنذار','معاينة وإرسال التقرير'],ev:['تقييم تجربة وهمية','استمارة تقييم التجربة الوهمية','معاينة وإرسال التقييم'],tour:['النزول الميداني والحالة الأمنية','تقرير النزول الميداني والحالة الأمنية','معاينة وإرسال التقرير'],event:['تقرير حدث ميداني','تقرير حدث ميداني','معاينة وإرسال التقرير']};
-function badges(){const has={rep:!!(S.eventNo||S.facility||S.cause),ev:!!(E.eventNo||E.facility),tour:!!(T.points.some(p=>p.on)||T.notes.length||T.photos.length||T.shift),event:!!(X.subject||X.details||X.eventNo),escort:!!(Q.missionNo||Q.from||Q.to||(Q.crew||[]).length),handover:!!(H.permitNo||H.company||H.gName||(H.items||[]).some(i=>i.name)),court:!!(CT.eventNo||CT.place||CT.content||(CT.parties||[]).some(p=>p.name)),hall:!!(HL.hallNo||HL.level||(HL.pos||[]).some(p=>p.name))};
+const VIEWS={home:'#homeView',rep:'#repView',ev:'#evView',tour:'#tourView',event:'#eventView',escort:'#escortView',handover:'#handoverView',court:'#courtView',hall:'#hallView',sug:'#sugView'};
+const MTXT={sug:['تقييم الاقتراحات','استمارة تقييم الاقتراحات المطبقة','معاينة وإرسال الاستمارة'],hall:['تأمين القاعات','استمارة تأمين القاعات','معاينة وإرسال الاستمارة'],court:['استمارة حدث','استمارة حدث','معاينة وإرسال الاستمارة'],handover:['محضر استلام وتسليم','محضر استلام وتسليم','معاينة وإرسال المحضر'],escort:['مهام المرافقات الأمنية','استمارة مهام المرافقات الأمنية','معاينة وإرسال الاستمارة'],rep:['بلاغ جرس إنذار','استمارة الاستجابة الفورية لحالات جرس الإنذار','معاينة وإرسال التقرير'],ev:['تقييم تجربة وهمية','استمارة تقييم التجربة الوهمية','معاينة وإرسال التقييم'],tour:['النزول الميداني والحالة الأمنية','تقرير النزول الميداني والحالة الأمنية','معاينة وإرسال التقرير'],event:['تقرير حدث ميداني','تقرير حدث ميداني','معاينة وإرسال التقرير']};
+function badges(){const has={rep:!!(S.eventNo||S.facility||S.cause),ev:!!(E.eventNo||E.facility),tour:!!(T.points.some(p=>p.on)||T.notes.length||T.photos.length||T.shift),event:!!(X.subject||X.details||X.eventNo),escort:!!(Q.missionNo||Q.from||Q.to||(Q.crew||[]).length),handover:!!(H.permitNo||H.company||H.gName||(H.items||[]).some(i=>i.name)),court:!!(CT.eventNo||CT.place||CT.content||(CT.parties||[]).some(p=>p.name)),hall:!!(HL.hallNo||HL.level||(HL.pos||[]).some(p=>p.name)),sug:!!(SP.no||SP.title||(SP.ppl||[]).some(p=>p.name))};
   $$('[data-badge]').forEach(b=>b.hidden=!has[b.dataset.badge])}
 function setMode(m,noHist){
   if(!VIEWS[m])m='home';const from=MODE;MODE=m;ls.set(MODE_KEY,m);const home=m==='home';
@@ -1874,7 +1945,7 @@ function setMode(m,noHist){
   if(home){document.title='نبض – النظام المتكامل للعمليات الميدانية';badges();return}
   if(!noHist&&from==='home')try{history.pushState({nb:m},'')}catch(e){}
   const t=MTXT[m];$('#kickTxt').textContent=t[0];$('#heroTitle').textContent=t[1];$('#sendTxt').textContent=t[2];document.title=t[0]+' – نبض';
-  if(m==='ev'){evSig.size();ederive()}else if(m==='rep'){sizeCanvas();collect();derive()}else if(m==='tour'){trSig.size();tderive();heroSubFor()}else if(m==='escort'){esSig.size();qderive()}else if(m==='handover'){hoG.size();hoR.size();hderive()}else if(m==='court'){ctS.size();cderive()}else if(m==='hall'){hlS.size();hlderive()}else{xvSig.size();xderive();heroSubFor()}
+  if(m==='ev'){evSig.size();ederive()}else if(m==='rep'){sizeCanvas();collect();derive()}else if(m==='tour'){trSig.size();tderive();heroSubFor()}else if(m==='escort'){esSig.size();qderive()}else if(m==='handover'){hoG.size();hoR.size();hderive()}else if(m==='court'){ctS.size();cderive()}else if(m==='hall'){hlS.size();hlderive()}else if(m==='sug'){spS.size();spderive()}else{xvSig.size();xderive();heroSubFor()}
 }
 $('#homeView').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;setMode(b.dataset.go);window.scrollTo({top:0})});
 $('#backBtn').addEventListener('click',()=>{if(history.state&&history.state.nb)history.back();else{setMode('home');window.scrollTo({top:0})}});
@@ -1916,12 +1987,13 @@ async function sendEval(){
   }catch(e){console.error(e);toast('تعذر تجهيز التقييم')}
   $('#busy').classList.remove('show');
 }
-$('#sendBtn').addEventListener('click',()=>({rep:sendReport,ev:sendEval,tour:sendTour,event:sendEvent,escort:sendEscort,handover:sendHandover,court:sendCourt,hall:sendHall}[MODE]||(()=>{}))());
+$('#sendBtn').addEventListener('click',()=>({rep:sendReport,ev:sendEval,tour:sendTour,event:sendEvent,escort:sendEscort,handover:sendHandover,court:sendCourt,hall:sendHall,sug:sendSug}[MODE]||(()=>{}))());
 $('#sheetX').addEventListener('click',()=>$('#sheet').classList.remove('show'));
 $('#sheet').addEventListener('click',e=>{if(e.target.id==='sheet')$('#sheet').classList.remove('show')});
 $('#shareBtn').addEventListener('click',async()=>{
   const ev=MODE==='ev';
-  const text=MODE==='hall'?`استمارة تأمين القاعات – ${HL_SEC} – قاعة ${HL.hallNo||''} – المستوى ${HL.level||''} – ${HL.date||''}`
+  const text=MODE==='sug'?`استمارة تقييم الاقتراحات المطبقة – اقتراح رقم ${SP.no||''} – ${SP.title||''} – ${SP.sec||''}`
+           :MODE==='hall'?`استمارة تأمين القاعات – ${HL_SEC} – قاعة ${HL.hallNo||''} – المستوى ${HL.level||''} – ${HL.date||''}`
            :MODE==='court'?`استمارة حدث – ${CT_SEC} – رقم الحدث ${CT.eventNo||''} – ${CT.date||''}`
            :MODE==='handover'?`محضر ${H.op||'استلام وتسليم'} – ${H.company||''} – تصريح رقم ${H.permitNo||''} – ${H.date||''}`
            :MODE==='escort'?`استمارة مهام المرافقات الأمنية${Q.missionNo?' – مهمة رقم '+Q.missionNo:''} – ${Q.from||''} إلى ${Q.to||''} – ${Q.date||''} – النتيجة ${Q.total??''}/100`
@@ -1930,7 +2002,7 @@ $('#shareBtn').addEventListener('click',async()=>{
            :ev?`تقييم تجربة وهمية${E.eventNo?' – حدث رقم '+E.eventNo:''} – ${E.facility||''} – ${E.total}/100 ${E.grade||''}`
                :`${isMock()?'بلاغ تجربة وهمية':'بلاغ جرس إنذار'}${S.eventNo?' – حدث رقم '+S.eventNo:''} – ${S.facility||''} – ${S.result||''}`;
   try{
-    if(navigator.canShare&&navigator.canShare({files})){await navigator.share({files,title:MODE==='hall'?'استمارة تأمين القاعات':MODE==='court'?'استمارة حدث':MODE==='handover'?'محضر استلام وتسليم':MODE==='escort'?'استمارة مهام المرافقات الأمنية':MODE==='tour'?'تقرير الحالة الأمنية':MODE==='event'?'تقرير حدث ميداني':ev?'تقييم تجربة وهمية':'تقرير جرس الإنذار',text});markSent();return}
+    if(navigator.canShare&&navigator.canShare({files})){await navigator.share({files,title:MODE==='sug'?'استمارة تقييم الاقتراحات المطبقة':MODE==='hall'?'استمارة تأمين القاعات':MODE==='court'?'استمارة حدث':MODE==='handover'?'محضر استلام وتسليم':MODE==='escort'?'استمارة مهام المرافقات الأمنية':MODE==='tour'?'تقرير الحالة الأمنية':MODE==='event'?'تقرير حدث ميداني':ev?'تقييم تجربة وهمية':'تقرير جرس الإنذار',text});markSent();return}
   }catch(e){if(e.name==='AbortError')return}
   download();toast('المشاركة غير مدعومة على هذا الجهاز – تم حفظ الملف');
 });
@@ -1938,6 +2010,7 @@ function download(){files.forEach((f,i)=>setTimeout(()=>{const a=document.create
 $('#dlBtn').addEventListener('click',()=>{download();markSent()});
 /* after sending: offer immediate wipe; a sent draft is wiped automatically next time the app opens */
 function markSent(){
+  if(MODE==='sug'){SP.sentAt=Date.now();spsave();$('#sentT1').textContent='✓ بعد التأكد من وصول الاستمارة إلى منسق الاقتراحات:';$('#sentT2').textContent='امسح بيانات الاستمارة من الهاتف.';$('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال');return}
   if(MODE==='hall'){HL.sentAt=Date.now();hlsave();$('#sentT1').textContent='✓ بعد التأكد من وصول الاستمارة عبر ويبكس:';$('#sentT2').textContent='امسح بيانات الاستمارة والتوقيع من الهاتف.';$('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال');return}
   if(MODE==='court'){CT.sentAt=Date.now();csave();$('#sentT1').textContent='✓ بعد التأكد من وصول الاستمارة عبر ويبكس:';$('#sentT2').textContent='امسح بيانات الاستمارة والتوقيع من الهاتف.';$('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال');return}
   if(MODE==='handover'){H.sentAt=Date.now();hsave();$('#sentT1').textContent='✓ بعد التأكد من وصول المحضر عبر ويبكس:';$('#sentT2').textContent='امسح بيانات المحضر والتوقيعات من الهاتف.';$('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال');return}
@@ -1950,11 +2023,12 @@ function markSent(){
   if(MODE==='ev'){E.sentAt=Date.now();saveE();$('#sentT1').textContent='✓ بعد التأكد من وصول التقييم عبر ويبكس:';$('#sentT2').textContent='امسح بيانات التقييم من الهاتف (تبقى بيانات المقيّم المحفوظة).'}
   else{S.sentAt=Date.now();save();$('#sentT1').textContent='✓ بعد التأكد من وصول البلاغ عبر ويبكس:';$('#sentT2').textContent='امسح بيانات البلاغ من الهاتف (تبقى بيانات الطاقم المحفوظة). وإذا حُفظت صور المستندات في معرض الصور، فيُرجى حذفها أيضاً.'}
   $('#sentBox').hidden=false;toast('✓ تم تجهيز الإرسال')}
-$('#wipeBtn').addEventListener('click',async()=>{await idb.del({rep:DRAFT,ev:EDRAFT,tour:TDRAFT,event:XDRAFT,escort:ESDRAFT,handover:HODRAFT,court:CTDRAFT,hall:HLDRAFT}[MODE]);ls.set('alarmForm.resume',MODE);location.reload()});
-$('#codeBtn').addEventListener('click',async()=>{const t=MODE==='hall'?codeOf(hlpayload()):MODE==='court'?codeOf(cpayload()):MODE==='handover'?codeOf(hpayload()):MODE==='escort'?codeOf(qpayload()):MODE==='tour'?codeOf(tpayload()):MODE==='event'?codeOf(xpayload()):MODE==='ev'?evDataCode():dataCode();try{await navigator.clipboard.writeText(t);toast('✓ تم نسخ رمز البيانات – الصقه في ويبكس')}catch(e){prompt('انسخ الرمز:',t)}});
+$('#wipeBtn').addEventListener('click',async()=>{await idb.del({rep:DRAFT,ev:EDRAFT,tour:TDRAFT,event:XDRAFT,escort:ESDRAFT,handover:HODRAFT,court:CTDRAFT,hall:HLDRAFT,sug:SPDRAFT}[MODE]);ls.set('alarmForm.resume',MODE);location.reload()});
+$('#codeBtn').addEventListener('click',async()=>{const t=MODE==='sug'?codeOf(sppayload()):MODE==='hall'?codeOf(hlpayload()):MODE==='court'?codeOf(cpayload()):MODE==='handover'?codeOf(hpayload()):MODE==='escort'?codeOf(qpayload()):MODE==='tour'?codeOf(tpayload()):MODE==='event'?codeOf(xpayload()):MODE==='ev'?evDataCode():dataCode();try{await navigator.clipboard.writeText(t);toast('✓ تم نسخ رمز البيانات – الصقه في ويبكس')}catch(e){prompt('انسخ الرمز:',t)}});
 
 /* new form */
 $('#newForm').addEventListener('click',async()=>{
+  if(MODE==='sug'){if(!confirm('مسح بيانات الاستمارة الحالية؟'))return;await idb.del(SPDRAFT);$$('#sugView .invalid').forEach(e=>e.classList.remove('invalid'));await spinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
   if(MODE==='hall'){if(!confirm('مسح بيانات الاستمارة الحالية؟'))return;await idb.del(HLDRAFT);$$('#hallView .invalid').forEach(e=>e.classList.remove('invalid'));await hlinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
   if(MODE==='court'){if(!confirm('مسح بيانات الاستمارة الحالية؟'))return;await idb.del(CTDRAFT);$$('#courtView .invalid').forEach(e=>e.classList.remove('invalid'));await cinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
   if(MODE==='handover'){if(!confirm('مسح بيانات المحضر الحالي؟'))return;await idb.del(HODRAFT);$$('#handoverView .invalid').forEach(e=>e.classList.remove('invalid'));await hinit(true);window.scrollTo({top:0,behavior:'smooth'});return}
@@ -2810,6 +2884,169 @@ async function hlinit(fresh){let d=!fresh&&await idb.get(HLDRAFT);
 document.addEventListener('change',e=>{const t=e.target;if(t.id==='sec'){S.sec=t.value;S.patrol='';$('#patrol').innerHTML=patOpts(S.sec,'');t.classList.remove('invalid')}
   else if(t.id==='evSec'){E.sec=t.value;E.patrol='';$('#evPatrol').innerHTML=patOpts(E.sec,'');t.classList.remove('invalid')}
   else if(t.id==='trSec'){trSecChange(t)}},true);
+/* ================= Applied suggestions – evaluation & impact measurement ================= */
+const SPDRAFT='draftSuggestion',SP_TITLE='استمارة تقييم الاقتراحات المطبقة';
+const SP_CATS=[
+ ['فئة الضبط الجنائي',['الاقتراحات المؤدية إلى منع الجريمة وزيادة ضبط الشروع في ارتكاب الجرائم.','الاقتراحات المؤدية إلى ضبط الجرائم وتخفيض المجهولية فيها.','الاقتراحات المؤدية إلى تخفيض زمن كشف الجريمة وتحقيق الردع الفوري.','الاقتراحات المؤدية إلى تحقيق الأمن الوقائي واستشعار الجرائم المستقبلية والتصدي لها.','العامل (X): كافة الاقتراحات المتعلقة بالضبط الجنائي في المجالات غير المذكورة.']],
+ ['فئة الضبط المروري',['الاقتراحات المؤدية إلى تخفيض معدلات حوادث السير أو الحد من ارتفاعها.','الاقتراحات المؤدية إلى تخفيض شدة الحوادث بما يؤدي إلى تخفيض الوفيات والإصابات.','الاقتراحات المؤدية إلى تحسين الحركة المرورية ومنع الاختناقات المرورية على الطرق.','العامل (X): كافة الاقتراحات المتعلقة بالضبط المروري في المجالات غير المذكورة.']],
+ ['فئة الموارد المالية',['الاقتراحات المؤدية إلى تخفيض النفقات العامة للقوة دون التأثير على الأداء.','الاقتراحات المؤدية إلى زيادة الإيرادات السنوية لشرطة دبي دون التأثير على قطاعات المجتمع.','الاقتراحات المؤدية إلى تطوير الرقابة على النفقات والإيرادات.','العامل (X): كافة الاقتراحات المتعلقة بالموارد المالية في المجالات غير المذكورة.']],
+ ['فئة الموارد البشرية',['الاقتراحات المؤدية إلى زيادة كفاءة أداء الموظفين وفاعليته.','الاقتراحات المؤدية إلى تهذيب سلوكيات الموظفين وحيادهم والارتقاء بالولاء وأخلاقيات المهنة.','العامل (X): كافة الاقتراحات المتعلقة بالموارد البشرية في المجالات غير المذكورة.']],
+ ['فئة التحسين المستمر',['الاقتراحات المؤدية إلى إدخال عُدّة أو عتاد يسهم في تطوير أدوات العمل الشرطي.','الاقتراحات المؤدية إلى استحداث أساليب تحسّن بيئة العمل.','العامل (X): كافة الاقتراحات المتعلقة بالأجهزة والأدوات وبيئة العمل في المجالات غير المذكورة.']],
+ ['فئة تبسيط الإجراءات',['الاقتراحات المؤدية إلى تخفيض زمن إنجاز الأعمال.','الاقتراحات المؤدية إلى تخفيض تكلفة إنجاز الأعمال.','الاقتراحات المؤدية إلى تعديل أساليب العمل المطبقة إلى الأفضل.','الاقتراحات المؤدية إلى تغيير أساليب العمل المطبقة واستحداث أساليب أخرى جديدة.','العامل (X): كافة الاقتراحات المتعلقة بتبسيط الإجراءات في المجالات غير المذكورة.']],
+ ['فئة الخدمة الاجتماعية',['الاقتراحات المؤدية إلى تطوير برامج السلامة العامة.','الاقتراحات المؤدية إلى تطوير برامج المحافظة على الحريات العامة.','الاقتراحات المؤدية إلى تطوير برامج رعاية الفئات الأولى بالرعاية.','العامل (X): كافة الاقتراحات المتعلقة بالخدمة الاجتماعية ونشر ثقافة الأمن والسلامة.']],
+ ['الفئة الإبداعية',['فكرة جديدة لتحسين عملية.','إطلاق خدمة جديدة.','وضع استراتيجيات جديدة.','الاقتراحات المبدعة والرائدة ذات التأثير الإيجابي الكبير على القوة.']]];
+const L4=[['لا يوجد',0,0],['ضعيفة',1,5],['متوسطة',6,10],['كبيرة',11,15]];
+const SP_F=[
+ ['درجة التحسين في العمليات الرئيسية',L4],
+ ['درجة التحسين في العمليات الفرعية',L4],
+ ['درجة التحسين في علاقات الموظفين أو ظروف العمل أو السلامة الوظيفية أو كفاءة أداء الموظفين وفاعليته',L4],
+ ['درجة التحسين في الخدمات المقدمة للمتعاملين من الجمهور الخارجي',L4],
+ ['نطاق التطبيق',[['على مستوى شعبة',1,5],['على مستوى قسم',6,10],['على مستوى الإدارة الفرعية',11,15],['على مستوى الإدارة العامة / مركز الشرطة',16,20],['على مستوى الدولة أو الإمارة',21,25]]],
+ ['اكتمال الاقتراح',[['مقدَّم بصورة غير مكتملة أو غير واضحة أو يتطلب توضيحاً كبيراً',1,5],['يعرض الحقائق الأساسية لكنه يتطلب مزيداً من الجهد لوضع الفكرة موضع التنفيذ',6,10],['مقدَّم بصورة شاملة وكاملة ولا يحتاج إلى توضيح',11,15],['يعرض الحقائق بوضوح ولا يتطلب أي جهد إضافي لتنفيذ الفكرة',16,20]]],
+ ['الجهد المبذول',[['لا ينطوي على أي أبحاث',0,0],['جهد ملموس متوسط',5,5],['جهد شخصي كبير في البحث',10,10]]],
+ ['تكاليف اعتماد الاقتراح',[['كبيرة',0,0],['متوسطة',5,5],['صغيرة',10,10]]]];
+const SP_MAX=SP_F.reduce((a,f)=>a+f[1][f[1].length-1][2],0);
+const SP_IMP=[['زمن الإنجاز',''],['التكاليف والمبالغ المالية المترتبة والمحصّلة',''],['عدد الإجراءات المتخذة','التبسيط'],['نسبة رضا المتعاملين',''],['الاستحداث','إجراء جديد، قسم جديد… إلخ'],['تأثير الاقتراح على مستوى أداء العمل','نسبة الجرائم، نسبة الاختناقات المرورية، الشفافية، نسبة الأخطاء… إلخ'],['أخرى – تخصصية','حسب نوع الاقتراح والهدف الذي تحقق من التطبيق']];
+const SP_DOCT=['مذكرة داخلية','مخاطبة رسمية','أمر إداري','أمر القوة','أخرى'];
+const blankSP=()=>({date:'',appDate:todayISO(),cat:'',ppl:[{no:'',rank:'',name:'',role:'صاحب الاقتراح'}],docs:[{type:'',ref:'',desc:''}],photos:[],imp:SP_IMP.map(()=>({b:'',a:'',lbl:''})),pts:SP_F.map(()=>({lv:'',v:''}))});
+let SP=blankSP();
+F2.sp={get o(){return SP},set o(v){SP=v}};
+const spS=sigPad($('#spSig'),$('#spSigPh'));
+let spT;
+function spsave(){fcollect('sp');spderive();return idb.set(SPDRAFT,{SP,sg:spS.data()})}
+const spsaveSoon=()=>{clearTimeout(spT);spT=setTimeout(spsave,300)};
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset&&t.dataset.sp){t.classList.remove('invalid');spsaveSoon()}});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset&&t.dataset.sp){if(t.id==='spCat'){SP.cat=t.value;spCatInfo()}spsave()}});
+spS.onEnd=()=>spsaveSoon();$('#spSigClear').addEventListener('click',()=>{spS.clear();spsave()});
+const spPhotos=photosUI($('#spPhotos'),()=>SP.photos||(SP.photos=[]),spsave,spsaveSoon,6);
+const catOpts=v=>'<option value="">اختر الفئة</option>'+SP_CATS.map(([c])=>`<option${c===v?' selected':''}>${c}</option>`).join('');
+function spCatInfo(){const c=SP_CATS.find(k=>k[0]===SP.cat),el=$('#spCatInfo');el.hidden=!c;if(c)el.innerHTML=`<b>المجالات المستهدفة – ${c[0]}</b><ul>${c[1].map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`}
+/* implementers */
+function renderSpPpl(){const a=SP.ppl||(SP.ppl=[]);
+  $('#spPpl').innerHTML=a.map((p,i)=>`<div class="crew-row" data-i="${i}"><div class="role" style="justify-content:space-between"><span><span class="ic ic-crew"></span> ${i+1}</span>${a.length>1?'<button type="button" class="ghost" data-pdel style="padding:4px 10px">حذف</button>':''}</div>
+    <div class="grid2"><input data-pf="no" placeholder="الرقم" inputmode="numeric" value="${esc(p.no)}"><select data-pf="rank" class="rank">${rankOpts(p.rank)}</select></div>
+    <input data-pf="name" placeholder="الاسم${i===0?' *':''}" value="${esc(p.name)}">
+    <input data-pf="role" placeholder="الصفة" list="spRoleL" value="${esc(p.role)}"></div>`).join('');
+  $('#spAddP').hidden=a.length>=12}
+$('#spPpl').addEventListener('click',e=>{const d=e.target.closest('[data-pdel]');if(!d)return;const i=+d.closest('.crew-row').dataset.i;if((SP.ppl[i].name||'').trim()&&!confirm('حذف '+SP.ppl[i].name+'؟'))return;SP.ppl.splice(i,1);renderSpPpl();spsave()});
+const spRowIn=(sel,key,cb)=>$(sel).addEventListener('input',e=>{const f=e.target.closest('[data-pf]');if(!f)return;e.stopPropagation();const p=SP[key][+f.closest('.crew-row').dataset.i];if(p){p[f.dataset.pf]=f.value;f.classList.remove('invalid');cb&&cb();spsaveSoon()}});
+spRowIn('#spPpl','ppl',()=>$('#sp2').classList.remove('invalid'));
+$('#spPpl').addEventListener('change',e=>{const f=e.target.closest('select[data-pf]');if(f){SP.ppl[+f.closest('.crew-row').dataset.i].rank=f.value;spsave()}});
+$('#spAddP').addEventListener('click',()=>{SP.ppl.push({no:'',rank:'',name:'',role:''});renderSpPpl();spsave();const l=$('#spPpl .crew-row:last-child input');l&&l.focus()});
+/* documents */
+function renderSpDocs(){const a=SP.docs||(SP.docs=[]);
+  $('#spDocs').innerHTML=a.map((d,i)=>`<div class="crew-row" data-i="${i}"><div class="role" style="justify-content:space-between"><span>المستند ${i+1}</span>${a.length>1?'<button type="button" class="ghost" data-pdel style="padding:4px 10px">حذف</button>':''}</div>
+    <div class="grid2"><select data-pf="type"><option value="">نوع المستند</option>${SP_DOCT.map(t=>`<option${t===d.type?' selected':''}>${t}</option>`).join('')}</select><input data-pf="ref" placeholder="الرقم / التاريخ" value="${esc(d.ref)}"></div>
+    <input data-pf="desc" placeholder="الموضوع${i===0?' *':''}" value="${esc(d.desc)}"></div>`).join('');
+  $('#spAddD').hidden=a.length>=10}
+$('#spDocs').addEventListener('click',e=>{const d=e.target.closest('[data-pdel]');if(!d)return;SP.docs.splice(+d.closest('.crew-row').dataset.i,1);renderSpDocs();spsave()});
+spRowIn('#spDocs','docs',()=>$('#sp3').classList.remove('invalid'));
+$('#spDocs').addEventListener('change',e=>{const f=e.target.closest('select[data-pf]');if(f){SP.docs[+f.closest('.crew-row').dataset.i].type=f.value;$('#sp3').classList.remove('invalid');spsave()}});
+$('#spAddD').addEventListener('click',()=>{SP.docs.push({type:'',ref:'',desc:''});renderSpDocs();spsave()});
+/* impact */
+function renderSpImp(){SP.imp=SP_IMP.map((_,i)=>(SP.imp||[])[i]||{b:'',a:'',lbl:''});
+  $('#spImp').innerHTML=SP_IMP.map(([t,h],i)=>{const c=SP.imp[i];return `<div class="it" data-i="${i}"><div class="it-h"><span class="it-n">${i+1}</span><span class="it-t">${t}${h?`<br><small style="font-weight:400;color:var(--muted)">${h}</small>`:''}</span></div>
+    ${i===SP_IMP.length-1?`<input data-im="lbl" placeholder="اسم المعيار التخصصي" value="${esc(c.lbl)}">`:''}
+    <div class="grid2"><textarea data-im="b" placeholder="قبل" style="min-height:58px">${esc(c.b)}</textarea><textarea data-im="a" placeholder="بعد" style="min-height:58px">${esc(c.a)}</textarea></div></div>`}).join('')}
+$('#spImp').addEventListener('input',e=>{const f=e.target.closest('[data-im]');if(!f)return;SP.imp[+f.closest('.it').dataset.i][f.dataset.im]=f.value;$('#sp4').classList.remove('invalid');spsaveSoon()});
+/* points */
+const spLv=(i,k)=>SP_F[i][1][k];
+function spVal(i){const p=SP.pts[i];if(!p||p.lv===''||p.lv==null)return null;const [,mn,mx]=spLv(i,+p.lv);if(mn===mx)return mn;const v=parseInt(p.v,10);return isNaN(v)?null:Math.min(mx,Math.max(mn,v))}
+function spTotal(){const v=SP_F.map((_,i)=>spVal(i));return v.some(x=>x==null)?null:v.reduce((a,b)=>a+b,0)}
+const rng=(mn,mx)=>mn===mx?`${mn} ${mn===2?'نقطتان':mn>2&&mn<=10?'نقاط':'نقطة'}`:`${mn} – ${mx} ${mx<=10?'نقاط':'نقطة'}`;
+function renderSpPts(){SP.pts=SP_F.map((_,i)=>(SP.pts||[])[i]||{lv:'',v:''});
+  $('#spPts').innerHTML=SP_F.map(([t,L],i)=>{const p=SP.pts[i],lv=p.lv===''?null:+p.lv,v=spVal(i),mx=L[L.length-1][2];
+    return `<div class="it sp-it" data-i="${i}"><div class="it-h"><span class="it-n">${i+1}</span><span class="it-t">${t}</span><span class="it-s">${v==null?'— من '+mx:v+' من '+mx}</span></div>
+    <div style="display:grid;gap:6px">${L.map(([l,mn,mx2],k)=>`<button type="button" class="opt${lv===k?' on':''}" data-lv="${k}"><span>${l}</span><small>${rng(mn,mx2)}</small></button>`).join('')}</div>
+    ${lv!=null&&spLv(i,lv)[1]!==spLv(i,lv)[2]?`<div class="with-btn"><span class="hint" style="flex:none;align-self:center">النقاط الممنوحة (${spLv(i,lv)[1]} – ${spLv(i,lv)[2]})</span><input data-pv type="number" inputmode="numeric" min="${spLv(i,lv)[1]}" max="${spLv(i,lv)[2]}" value="${esc(p.v)}" style="flex:1"></div>`:''}</div>`}).join('');
+  spTotalTxt()}
+function spTotalTxt(){const t=spTotal();$('#spTotal').textContent=(t==null?'—':t)+' من '+SP_MAX}
+$('#spPts').addEventListener('click',e=>{const b=e.target.closest('[data-lv]');if(!b)return;const el=b.closest('.sp-it'),i=+el.dataset.i,k=+b.dataset.lv,[,mn,mx]=spLv(i,k);
+  SP.pts[i]={lv:k,v:mn===mx?String(mn):''};$('#sp5').classList.remove('invalid');renderSpPts();spsave();if(mn!==mx){const inp=$(`.sp-it[data-i="${i}"] [data-pv]`);inp&&inp.focus()}});
+$('#spPts').addEventListener('input',e=>{const f=e.target.closest('[data-pv]');if(!f)return;const el=f.closest('.sp-it'),i=+el.dataset.i;SP.pts[i].v=f.value;f.classList.remove('invalid');
+  const v=spVal(i),mx=SP_F[i][1][SP_F[i][1].length-1][2];el.querySelector('.it-s').textContent=v==null?'— من '+mx:v+' من '+mx;spTotalTxt();spsaveSoon()});
+$('#spPts').addEventListener('change',e=>{const f=e.target.closest('[data-pv]');if(!f)return;const i=+f.closest('.sp-it').dataset.i,v=spVal(i);if(v!=null&&String(v)!==f.value){SP.pts[i].v=String(v);f.value=v;toast('تم ضبط النقاط ضمن المدى المسموح')}spTotalTxt();spsave()});
+/* derive / validate */
+const spPpl=()=>(SP.ppl||[]).filter(p=>(p.name||'').trim()).map(p=>{const o={name:p.name.trim()};['no','rank','role'].forEach(k=>{if((p[k]||'').trim())o[k]=p[k].trim()});return o});
+const spDocs=()=>(SP.docs||[]).filter(d=>(d.desc||'').trim()||(d.ref||'').trim()||d.type).map(d=>({type:d.type||'',ref:(d.ref||'').trim(),desc:(d.desc||'').trim()}));
+const spImpOut=()=>SP_IMP.map(([t],i)=>{const c=(SP.imp||[])[i]||{};return{t:i===SP_IMP.length-1&&(c.lbl||'').trim()?'أخرى – '+c.lbl.trim():t,b:(c.b||'').trim(),a:(c.a||'').trim()}});
+function spderive(){if(MODE==='sug'){$('#heroSub').textContent=(SP.sec||'إدارة أمن الهيئات والمنشآت الحيوية')+(SP.no?' · اقتراح رقم '+SP.no:'');spprogress()}}
+function spreq(){return [['no','رقم الاقتراح'],['cat','فئة الاقتراح'],['title','عنوان الاقتراح'],['date','تاريخ الاقتراح'],['appDate','تاريخ التطبيق'],['sec','القسم المختص بالتنفيذ'],['ppl','أسماء القائمين بالتطبيق'],['docs','المستندات الداعمة'],['imp','معيار واحد على الأقل (قبل وبعد)'],['pts','نقاط التقييم كاملة'],['pNo','رقم معدّ الاستمارة'],['pRank','رتبة معدّ الاستمارة'],['pName','اسم معدّ الاستمارة']]}
+function spfilled(k){if(k==='ppl')return spPpl().length>0;if(k==='docs')return spDocs().some(d=>d.desc||d.ref);if(k==='imp')return spImpOut().some(c=>c.b&&c.a);if(k==='pts')return spTotal()!=null;return !!String(SP[k]||'').trim()}
+function spprogress(){const r=spreq();setMeter(Math.round(r.filter(x=>spfilled(x[0])).length/r.length*100))}
+function spvalidate(){fcollect('sp');spderive();const miss=[];
+  spreq().forEach(([k,l])=>{if(spfilled(k))return;miss.push(l);const el={ppl:'#sp2',docs:'#sp3',imp:'#sp4',pts:'#sp5'}[k];el?$(el).classList.add('invalid'):($(`[data-sp="${k}"]`)||{classList:{add(){}}}).classList.add('invalid')});
+  if(!miss.length&&SP.date&&SP.appDate&&SP.appDate<SP.date){miss.push('تاريخ التطبيق يجب أن يكون بعد تاريخ الاقتراح');$('#spApp').classList.add('invalid')}
+  return failWith('#spAlert',miss)}
+function sppayload(){const o={v:1,kind:'suggestion',sent:stamp(),dept:SP.sec||''};
+  ['no','title','cat','date','appDate','sec','before','after','pNo','pRank','pName','pRole'].forEach(k=>{const v=typeof SP[k]==='string'?SP[k].trim():SP[k];if(v)o[k]=v});
+  o.ppl=spPpl();o.docs=spDocs();o.imp=spImpOut().filter(c=>c.b||c.a);
+  o.pts=SP_F.map(([t,L],i)=>{const p=SP.pts[i]||{};return{f:t,lv:p.lv===''?'':L[+p.lv][0],v:spVal(i)}});o.total=spTotal();o.max=SP_MAX;return o}
+/* PDF */
+async function renderSug(){
+  const sub=[SP.sec,SP.no?'اقتراح رقم '+SP.no:''].filter(Boolean).join('  ·  ');
+  const grid=(D,rows,rh=70)=>{const {x,W,PAD,IW,LN,MU}=D;rows.forEach(r=>{const tw=r.reduce((a,c)=>a+(c[2]||1),0),gap=10;let px=W-PAD;const avail=IW-gap*(r.length-1);
+    const cells=r.map(([l,v,f])=>{const w=avail*(f||1)/tw;return{l,v:String(v||'—'),w,ls:D.wrap(String(v||'—'),w-28,`700 21px ${FONT}`).slice(0,3)}});const h=Math.max(rh,40+Math.max(...cells.map(c=>c.ls.length))*30+8);
+    cells.forEach(c=>{D.rr(px-c.w,D.y,c.w,h,12,'#fff',LN);D.T(c.l,px-14,D.y+28,{s:16,c:MU});c.ls.forEach((l,k)=>D.T(l,px-14,D.y+58+k*30,{s:21,w:700}));px-=c.w+gap});D.y+=h+10;D.br()})};
+  const head=async(part,short)=>{const D=await mkDoc(SP_TITLE,part+'  ·  '+sub,SP.no?'رقم '+SP.no:'');
+    if(short){D.y-=8;grid(D,[[['عنوان الاقتراح',SP.title,3],['رقم الاقتراح',SP.no],['تاريخ التطبيق',SP.appDate]]]);return D}
+    D.sec('بيانات الاقتراح');grid(D,[[['عنوان الاقتراح',SP.title,3],['فئة الاقتراح',SP.cat,1.3]],[['رقم الاقتراح',SP.no],['تاريخ الاقتراح',SP.date],['تاريخ التطبيق',SP.appDate],['القسم المختص بالتنفيذ',SP.sec,1.8]],[['الإدارة العامة المعنية','الإدارة العامة لأمن الهيئات والمنشآت والطوارئ'],['الإدارة الفرعية المختصة بالتنفيذ','إدارة أمن الهيئات والمنشآت الحيوية']]]);
+    return D};
+  const ppl=D=>{D.sec('القائمون على تطبيق الاقتراح');const P=spPpl();const rows=P.length?P:[{}];for(let k=0;k<rows.length;k+=10)D.table([['م',.07],['الرقم',.14],['الرتبة',.17],['الاسم',.34],['الصفة',.28]],rows.slice(k,k+10).map((p,i)=>[k+i+1,p.no,p.rank,p.name,p.role]))};
+  /* part 1 – evaluation */
+  const A=await head('الجزء الأول: تقييم الاقتراح');const {x,W,PAD,IW,G,GS,MU,LN}=A;
+  ppl(A);
+  A.sec('شروط التقييم');
+  {const dc=spDocs().length>0,ba=spImpOut().some(c=>c.b&&c.a),cw=(IW-10)/2;[['توافر المستندات الداعمة للتطبيق',dc],['تحديد الوضع قبل تطبيق الاقتراح وبعده',ba]].forEach(([t,ok],k)=>{const px=W-PAD-k*(cw+10);A.rr(px-cw,A.y,cw,56,12,ok?'#eef8f2':'#fdecea',LN);A.T((ok?'✓  ':'✗  ')+t,px-18,A.y+36,{s:20,w:700,c:ok?'#157a40':'#a5281c'})});A.y+=66;A.br()}
+  A.sec('الجزء الخاص بتقييم الاقتراح');
+  {const cR=W-PAD,cw=[.64,.14,.22];
+   const hdr=()=>{A.rr(PAD,A.y,IW,46,12,GS,null);let px=cR;[['العوامل',cw[0]],['النقاط الممنوحة',cw[1]],['اعتماد مركز الأفكار',cw[2]]].forEach(([h,f],k)=>{A.T(h,k?px-IW*f/2:px-16,A.y+31,{s:18,w:700,c:G,a:k?'center':'right'});px-=IW*f});A.y+=52};
+   hdr();
+   SP_F.forEach(([t,L],i)=>{const p=SP.pts[i]||{},lv=p.lv===''?null:+p.lv,v=spVal(i),mx=L[L.length-1][2],fw=IW*cw[0]-34;
+     const tl=A.wrap((i+1)+'. '+t,fw,`700 20px ${FONT}`);
+     // flow the levels inline
+     x.font=`400 15px ${FONT}`;const toks=L.map(([l,mn,mx2],k)=>({t:(lv===k?'● ':'○ ')+l+' ('+rng(mn,mx2)+')',on:lv===k}));const lines=[[]];let lw=0;
+     toks.forEach(tk=>{x.font=`${tk.on?700:400} 15px ${FONT}`;const w=x.measureText(tk.t).width+22;if(lw+w>fw&&lines[lines.length-1].length){lines.push([]);lw=0}lines[lines.length-1].push([tk,w]);lw+=w});
+     const h=Math.max(16+tl.length*28+lines.length*25+10,84);
+     A.rr(PAD,A.y,IW,h,10,'#fff',LN);
+     tl.forEach((l,j)=>A.T(l,cR-16,A.y+30+j*28,{s:20,w:700}));
+     let yy=A.y+30+tl.length*28-2;lines.forEach(ln=>{let px=cR-18;ln.forEach(([tk,w])=>{A.T(tk.t,px,yy,{s:15,w:tk.on?700:400,c:tk.on?G:MU});px-=w});yy+=25});
+     const c1=cR-IW*cw[0];x.fillStyle=LN;x.fillRect(c1,A.y+8,1,h-16);x.fillRect(c1-IW*cw[1],A.y+8,1,h-16);
+     A.T(v==null?'—':String(v),c1-IW*cw[1]/2,A.y+h/2+6,{s:30,w:800,a:'center',c:G});A.T('من '+mx,c1-IW*cw[1]/2,A.y+h/2+30,{s:14,a:'center',c:MU});
+     A.y+=h+8;A.br()});
+   const t=spTotal();A.rr(PAD,A.y,IW,64,14,'#e3f4ea','#1e8e4e');A.T('المجموع الإجمالي للنقاط',cR-20,A.y+43,{s:24,h:1,c:'#157a40'});A.T(`${t==null?'—':t} من ${SP_MAX}`,cR-IW*cw[0]-IW*cw[1]/2,A.y+43,{s:26,w:800,a:'center',c:'#157a40'});A.y+=80;A.br()}
+  {const c=SP_CATS.find(k=>k[0]===SP.cat);if(c){A.sec('المجالات المستهدفة – '+c[0]);const ls=c[1].flatMap(t=>A.wrap('•  '+t,IW-44,`400 18px ${FONT}`));const h=24+ls.length*30;A.rr(PAD,A.y,IW,h,12,'#fff',LN);ls.forEach((l,k)=>A.T(l,W-PAD-22,A.y+36+k*30,{s:18}));A.y+=h+12;A.br()}}
+  await A.sigs([['معدّ الاستمارة',[SP.pRank,SP.pName].filter(Boolean).join(' / '),spS.has?spS.data():''],['منسق الاقتراحات',' ',''],['اعتماد المنسق الأعلى',' ','']]);
+  const r1=A.finish(),p1=paginate(r1);
+  /* part 2 – impact measurement */
+  const B=await head('الجزء الثاني: قياس الأثر',true);
+  B.sec('الوضع قبل تطبيق الاقتراح وبعده');
+  grid(B,[[['الوضع قبل تطبيق الاقتراح (إحصائيات)',SP.before],['الوضع بعد تطبيق الاقتراح (النتائج المترتبة على التطبيق)',SP.after]]],84);
+  B.sec('معايير التقييم');
+  {const I=spImpOut(),cR=B.W-B.PAD,IW2=B.IW,cw=[.36,.32,.32];B.rr(B.PAD,B.y,IW2,46,12,B.GS,null);let px=cR;[['المعيار',cw[0]],['قبل',cw[1]],['بعد',cw[2]]].forEach(([h,f])=>{B.T(h,px-16,B.y+31,{s:18,w:700,c:B.G});px-=IW2*f});B.y+=52;
+   I.forEach((c,i)=>{const h0=SP_IMP[i][1];const tl=B.wrap((i+1)+'. '+c.t,IW2*cw[0]-24,`700 19px ${FONT}`),hl=h0&&(c.b||c.a)?B.wrap('('+h0+')',IW2*cw[0]-30,`400 15px ${FONT}`):[];
+     const bl=B.wrap(c.b||'—',IW2*cw[1]-28,`400 18px ${FONT}`).slice(0,8),al=B.wrap(c.a||'—',IW2*cw[2]-28,`400 18px ${FONT}`).slice(0,8);
+     const h=Math.max(14+tl.length*27+hl.length*21,14+Math.max(bl.length,al.length)*27)+10;B.rr(B.PAD,B.y,IW2,h,10,'#fff',B.LN);
+     tl.forEach((l,j)=>B.T(l,cR-16,B.y+30+j*28,{s:19,w:700}));hl.forEach((l,j)=>B.T(l,cR-16,B.y+30+tl.length*28+j*22-4,{s:15,c:B.MU}));
+     const c1=cR-IW2*cw[0],c2=c1-IW2*cw[1];B.x.fillStyle=B.LN;B.x.fillRect(c1,B.y+8,1,h-16);B.x.fillRect(c2,B.y+8,1,h-16);
+     bl.forEach((l,j)=>B.T(l,c1-14,B.y+30+j*28,{s:18,w:c.b?700:400,c:c.b?'#16201b':B.MU}));al.forEach((l,j)=>B.T(l,c2-14,B.y+30+j*28,{s:18,w:c.a?700:400,c:c.a?'#16201b':B.MU}));
+     B.y+=h+6;B.br()})}
+  B.sec('المستندات الداعمة للتطبيق');{const d=spDocs();B.table([['م',.06],['نوع المستند',.18],['الرقم / التاريخ',.31],['الموضوع',.45]],(d.length?d:[{}]).map((q,i)=>[i+1,q.type,q.ref,q.desc]))}
+  const r2=B.finish(),p2=paginate(r2);
+  const pages=p1.concat(p2);
+  if((SP.photos||[]).length)pages.push(...await photoPages(SP.photos,'المستندات الداعمة للتطبيق',[SP.title,SP.no?'اقتراح رقم '+SP.no:''].filter(Boolean).join('  ·  '),r1.logos));
+  stampFooters(pages,`${SP_TITLE}  ·  ${SP.no?'اقتراح رقم '+SP.no+'  ·  ':''}`);return pages}
+async function sendSug(){if(!spvalidate())return;await spsave();$('#busy').classList.add('show');
+  try{const pages=await renderSug();const pdf=await makePDF(pages,`${SP_TITLE} - ${SP.no||''} - ${SP.title||''}`,codeOf(sppayload()));
+    await showPreview(pages,pdf,`ACIS_Suggestion_${(SP.no||'NA').replace(/[^\w-]+/g,'_')}_${SP.appDate||todayISO()}.pdf`)}catch(e){console.error(e);toast('تعذر تجهيز الاستمارة')}
+  $('#busy').classList.remove('show')}
+async function spinit(fresh){let d=!fresh&&await idb.get(SPDRAFT);
+  if(d&&d.SP&&d.SP.sentAt){await idb.del(SPDRAFT);d=null;if(MODE==='sug')setTimeout(()=>toast('تم مسح الاستمارة المرسلة سابقاً من الهاتف'),600)}
+  spS.clear();$('#spAlert').classList.remove('show');
+  if(d&&d.SP){SP=Object.assign(blankSP(),d.SP);if(d.sg)spS.load(d.sg)}else SP=blankSP();
+  $('#spCat').innerHTML=catOpts(SP.cat);$('#spPRank').innerHTML=rankOpts(SP.pRank);
+  fapply('sp');spCatInfo();renderSpPpl();renderSpDocs();renderSpImp();renderSpPts();spPhotos.render();spderive()}
+
 /* init */
 async function init(fresh){
   let d=!fresh&&await idb.get(DRAFT);
@@ -2824,7 +3061,7 @@ refreshFacList();
 window.__nabdhSave=async()=>{ls.set('alarmForm.resume',MODE);
   if(MODE==='ev'){ecollect();ederive();await idb.set(EDRAFT,{E,sig:evSig.data()})}
   else if(MODE==='rep'){collect();derive();await idb.set(DRAFT,{S,P,sig:sigData()})}
-  else if(MODE==='tour')await tsave();else if(MODE==='event')await xsave();else if(MODE==='escort')await qsave();else if(MODE==='handover')await hsave();else if(MODE==='court')await csave();else if(MODE==='hall')await hlsave()};
+  else if(MODE==='tour')await tsave();else if(MODE==='event')await xsave();else if(MODE==='escort')await qsave();else if(MODE==='handover')await hsave();else if(MODE==='court')await csave();else if(MODE==='hall')await hlsave();else if(MODE==='sug')await spsave()};
 /* ---------- digits: Arabic-Indic / Persian digits are converted to English as the user types (all fields) ---------- */
 const toEnDigits=v=>String(v).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-0x660).replace(/[۰-۹]/g,d=>d.charCodeAt(0)-0x6F0);
 const AR_DIGIT=/[٠-٩۰-۹]/;
@@ -2832,8 +3069,8 @@ function fixDigits(el){if(!el||typeof el.value!=='string'||!AR_DIGIT.test(el.val
   let a=null,b=null;try{a=el.selectionStart;b=el.selectionEnd}catch(e){}el.value=toEnDigits(el.value);try{if(a!=null)el.setSelectionRange(a,b)}catch(e){}return true}
 document.addEventListener('input',e=>{const t=e.target;if(t&&t.matches&&t.matches('input,textarea'))fixDigits(t)},true);
 function fixAllDigits(){$$('input,textarea').forEach(el=>{if(fixDigits(el))el.dispatchEvent(new Event('input',{bubbles:true}))})}
-(async()=>{await init();await einit();await tinit();await xinit();await qinit();await hinit();await cinit();await hlinit();fixAllDigits();const r=ls.get('alarmForm.resume');try{localStorage.removeItem('alarmForm.resume')}catch(e){}setMode(VIEWS[r]?r:'home',true)})();
-window.__test={get HL(){return HL},renderHall,hlpayload,hlS,get CT(){return CT},renderCourt,cpayload,ctS,get H(){return H},renderHandover,hpayload,hoG,hoR,get Q(){return Q},renderEscort,qpayload,setQ(o){Object.assign(Q,o);fapply('es');qSup.render();qCrew.render();qLoad.render();qDl.render();qRv.render();renderTkIk();renderSeals();renderCrit();qderive()},esSig,get T(){return T},get X(){return X},renderTour,renderEventRep,tpayload,xpayload,setT(o){Object.assign(T,o);fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()},setX(o){Object.assign(X,o);fapply('xv');xOffs.render();xNotes.render();xPhotos.render();xderive()},trSig,xvSig,get files(){return files},openScanner,loadFile,get SC(){return SC},renderReport,renderEval,payload,epayload,dataCode,evDataCode,timeScore,setMode,areaOf,rememberFacility,get S(){return S},get E(){return E},setPhoto(k,d){P[k]=d;showPhoto(k);save()}};
+(async()=>{await init();await einit();await tinit();await xinit();await qinit();await hinit();await cinit();await hlinit();await spinit();fixAllDigits();const r=ls.get('alarmForm.resume');try{localStorage.removeItem('alarmForm.resume')}catch(e){}setMode(VIEWS[r]?r:'home',true)})();
+window.__test={get SP(){return SP},renderSug,sppayload,spS,get HL(){return HL},renderHall,hlpayload,hlS,get CT(){return CT},renderCourt,cpayload,ctS,get H(){return H},renderHandover,hpayload,hoG,hoR,get Q(){return Q},renderEscort,qpayload,setQ(o){Object.assign(Q,o);fapply('es');qSup.render();qCrew.render();qLoad.render();qDl.render();qRv.render();renderTkIk();renderSeals();renderCrit();qderive()},esSig,get T(){return T},get X(){return X},renderTour,renderEventRep,tpayload,xpayload,setT(o){Object.assign(T,o);fapply('tr');renderPoints();tComp.render();tNotes.render();tPhotos.render();tderive()},setX(o){Object.assign(X,o);fapply('xv');xOffs.render();xNotes.render();xPhotos.render();xderive()},trSig,xvSig,get files(){return files},openScanner,loadFile,get SC(){return SC},renderReport,renderEval,payload,epayload,dataCode,evDataCode,timeScore,setMode,areaOf,rememberFacility,get S(){return S},get E(){return E},setPhoto(k,d){P[k]=d;showPhoto(k);save()}};
 })();
 </script>
 <script>
