@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261113213816">
+<meta name="app-build" content="20261114101201">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -801,12 +801,13 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
     <div class="f"><label class="req" for="spSec">القسم <span class="auto">لأغراض الإحصائيات فقط – لا يظهر في الاستمارة</span></label><select id="spSec" data-sp="sec"><option value="">اختر القسم</option><option>قسم أمن الأسواق التجارية</option><option>قسم أمن الهيئات الدبلوماسية والمنشآت الهامة</option><option>قسم أمن المحاكم والنيابة العامة</option><option>قسم تأمين المتفجرات والألعاب النارية</option><option>قسم تأمين منشآت النقل والمواصلات</option><option>على مستوى الإدارة</option></select></div>
   </div>
 </section>
-<section class="card" id="sp2">
-  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>القائمون على تطبيق الاقتراح</h2><p>الرقم – الرتبة – الاسم – الصفة</p></div></div>
+<section class="card" id="sp4">
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 16V9M11 16V5M16 16v-4M21 16V8"/></svg></span><div><h2>الجزء الأول: قياس الأثر</h2><p>الوضع قبل تطبيق الاقتراح وبعده حسب معايير التقييم</p></div></div>
   <div class="card-b">
-    <div id="spPpl" style="display:grid;gap:10px"></div>
-    <button type="button" class="btn sec" id="spAddP">➕ إضافة اسم</button>
-    <datalist id="spRoleL"><option>صاحب الاقتراح</option><option>مشارك في التطبيق</option><option>مشرف على التطبيق</option><option>رئيس القسم</option><option>ضابط القسم</option></datalist>
+    <div class="f"><label for="spBefore">الوضع قبل تطبيق الاقتراح <span class="auto">إحصائيات</span></label><textarea id="spBefore" data-sp="before" style="min-height:80px"></textarea></div>
+    <div class="f"><label for="spAfter">الوضع بعد تطبيق الاقتراح <span class="auto">النتائج المترتبة على التطبيق</span></label><textarea id="spAfter" data-sp="after" style="min-height:80px"></textarea></div>
+    <p class="hint">املأ المعايير التي تنطبق على الاقتراح (معيار واحد على الأقل)، واترك غيرها فارغاً.</p>
+    <div id="spImp" style="display:grid;gap:12px"></div>
   </div>
 </section>
 <section class="card" id="sp3">
@@ -817,17 +818,16 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
     <div class="f"><label>صور المستندات <span class="auto">اختياري – تُرفق في نهاية الاستمارة</span></label><div id="spPhotos" class="phgrid"></div></div>
   </div>
 </section>
-<section class="card" id="sp4">
-  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 16V9M11 16V5M16 16v-4M21 16V8"/></svg></span><div><h2>قياس الأثر</h2><p>الوضع قبل تطبيق الاقتراح وبعده حسب معايير التقييم</p></div></div>
+<section class="card" id="sp2">
+  <div class="card-h"><span class="n"><span class="ic lg ic-crew"></span></span><div><h2>القائمون على تطبيق الاقتراح</h2><p>الرقم – الرتبة – الاسم – الصفة</p></div></div>
   <div class="card-b">
-    <div class="f"><label for="spBefore">الوضع قبل تطبيق الاقتراح <span class="auto">إحصائيات</span></label><textarea id="spBefore" data-sp="before" style="min-height:80px"></textarea></div>
-    <div class="f"><label for="spAfter">الوضع بعد تطبيق الاقتراح <span class="auto">النتائج المترتبة على التطبيق</span></label><textarea id="spAfter" data-sp="after" style="min-height:80px"></textarea></div>
-    <p class="hint">املأ المعايير التي تنطبق على الاقتراح (معيار واحد على الأقل)، واترك غيرها فارغاً.</p>
-    <div id="spImp" style="display:grid;gap:12px"></div>
+    <div id="spPpl" style="display:grid;gap:10px"></div>
+    <button type="button" class="btn sec" id="spAddP">➕ إضافة اسم</button>
+    <datalist id="spRoleL"><option>صاحب الاقتراح</option><option>مشارك في التطبيق</option><option>مشرف على التطبيق</option><option>رئيس القسم</option><option>ضابط القسم</option></datalist>
   </div>
 </section>
 <section class="card" id="sp5">
-  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></span><div><h2>تقييم الاقتراح</h2><p>اختر المستوى ثم حدّد النقاط ضمن المدى المسموح</p></div></div>
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></span><div><h2>الجزء الثاني: تقييم الاقتراح</h2><p>اختر المستوى ثم حدّد النقاط ضمن المدى المسموح</p></div></div>
   <div class="card-b">
     <div id="spPts" style="display:grid;gap:12px"></div>
     <div class="es-total"><span>المجموع الإجمالي للنقاط</span><b id="spTotal">— من 125</b></div>
@@ -2258,8 +2258,8 @@ async function mkDoc(title,sub,pill){
   D.note=txt=>{rr(PAD,D.y,IW,64,12,GS,null);T_(txt,W-PAD-20,D.y+41,{s:21,w:700,c:G});D.y+=76;D.br()};
   D.sigs=async boxes=>{const n=boxes.length,bw=(IW-(n-1)*16)/n;for(let i=0;i<n;i++){const b=boxes[i],px=W-PAD-i*(bw+16)-bw;rr(px,D.y,bw,160,12,'#fff',LN);T_(b[0],px+bw-18,D.y+36,{s:19,c:MU});T_(b[1]||'—',px+bw-18,D.y+80,{s:23,w:700});
     if(b[2]){const im=await loadImg(b[2]);if(im)fit(im,px+16,D.y+90,bw-32,62,false)}}D.y+=180;D.br()};
-  D.finish=()=>{if(lt){const s=Math.min(520/lt.width,1),w=lt.width*s,h=lt.height*s;x.drawImage(lt,(W-w)/2,D.y,w,h);D.y+=h+14}
-    const now=new Date();T_(`أُنشئ التقرير: ${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}  ·  نبض – النظام المتكامل للعمليات الميدانية`,W/2,D.y+22,{s:17,c:MU,a:'center'});D.y+=44;
+  D.finish=bare=>{if(bare){D.y+=10}else{if(lt){const s=Math.min(520/lt.width,1),w=lt.width*s,h=lt.height*s;x.drawImage(lt,(W-w)/2,D.y,w,h);D.y+=h+14}
+    const now=new Date();T_(`أُنشئ التقرير: ${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}  ·  نبض – النظام المتكامل للعمليات الميدانية`,W/2,D.y+22,{s:17,c:MU,a:'center'});D.y+=44}
     const out=document.createElement('canvas');out.width=W*SC;out.height=Math.ceil(D.y*SC);out.getContext('2d').drawImage(c,0,0,W*SC,out.height,0,0,W*SC,out.height);
     return {canvas:out,breaks:D.BR.map(b=>Math.round(b*SC)),logos:D.logos}};
   return D;
@@ -2992,9 +2992,24 @@ async function renderSug(){
     D.sec('بيانات الاقتراح');grid(D,[[['عنوان الاقتراح',SP.title,3],['فئة الاقتراح',SP.cat,1.3]],[['رقم الاقتراح',SP.no],['تاريخ الاقتراح',SP.date],['تاريخ التطبيق',SP.appDate]],[['الإدارة العامة المعنية','الإدارة العامة لأمن الهيئات والمنشآت والطوارئ'],['الإدارة الفرعية المختصة بالتنفيذ','إدارة أمن الهيئات والمنشآت الحيوية']]]);
     return D};
   const ppl=D=>{D.sec('القائمون على تطبيق الاقتراح');const P=spPpl();const rows=P.length?P:[{}];for(let k=0;k<rows.length;k+=10)D.table([['م',.07],['الرقم',.14],['الرتبة',.17],['الاسم',.34],['الصفة',.28]],rows.slice(k,k+10).map((p,i)=>[k+i+1,p.no,p.rank,p.name,p.role]))};
-  /* part 1 – evaluation */
-  const A=await head('الجزء الأول: تقييم الاقتراح');const {x,W,PAD,IW,G,GS,MU,LN}=A;
-  ppl(A);
+  /* part 1 – impact measurement */
+  const B=await head('الجزء الأول: قياس الأثر');
+  B.sec('الوضع قبل تطبيق الاقتراح وبعده');
+  grid(B,[[['الوضع قبل تطبيق الاقتراح (إحصائيات)',SP.before],['الوضع بعد تطبيق الاقتراح (النتائج المترتبة على التطبيق)',SP.after]]],84);
+  B.sec('معايير التقييم');
+  {const I=spImpOut(),cR=B.W-B.PAD,IW2=B.IW,cw=[.36,.32,.32];B.rr(B.PAD,B.y,IW2,46,12,B.GS,null);let px=cR;[['المعيار',cw[0]],['قبل',cw[1]],['بعد',cw[2]]].forEach(([h,f])=>{B.T(h,px-16,B.y+31,{s:18,w:700,c:B.G});px-=IW2*f});B.y+=52;
+   I.forEach((c,i)=>{const h0=SP_IMP[i][1];const tl=B.wrap((i+1)+'. '+c.t,IW2*cw[0]-24,`700 19px ${FONT}`),hl=h0&&(c.b||c.a)?B.wrap('('+h0+')',IW2*cw[0]-30,`400 15px ${FONT}`):[];
+     const bl=B.wrap(c.b||'—',IW2*cw[1]-28,`400 18px ${FONT}`).slice(0,8),al=B.wrap(c.a||'—',IW2*cw[2]-28,`400 18px ${FONT}`).slice(0,8);
+     const h=Math.max(14+tl.length*27+hl.length*21,14+Math.max(bl.length,al.length)*27)+10;B.rr(B.PAD,B.y,IW2,h,10,'#fff',B.LN);
+     tl.forEach((l,j)=>B.T(l,cR-16,B.y+30+j*28,{s:19,w:700}));hl.forEach((l,j)=>B.T(l,cR-16,B.y+30+tl.length*28+j*22-4,{s:15,c:B.MU}));
+     const c1=cR-IW2*cw[0],c2=c1-IW2*cw[1];B.x.fillStyle=B.LN;B.x.fillRect(c1,B.y+8,1,h-16);B.x.fillRect(c2,B.y+8,1,h-16);
+     bl.forEach((l,j)=>B.T(l,c1-14,B.y+30+j*28,{s:18,w:c.b?700:400,c:c.b?'#16201b':B.MU}));al.forEach((l,j)=>B.T(l,c2-14,B.y+30+j*28,{s:18,w:c.a?700:400,c:c.a?'#16201b':B.MU}));
+     B.y+=h+6;B.br()})}
+  B.sec('المستندات الداعمة للتطبيق');{const d=spDocs();B.table([['م',.06],['نوع المستند',.18],['الرقم / التاريخ',.31],['الموضوع',.45]],(d.length?d:[{}]).map((q,i)=>[i+1,q.type,q.ref,q.desc]))}
+  ppl(B);
+  const r2=B.finish(true),p2=paginate(r2);
+  /* part 2 – evaluation (single signature block at the end) */
+  const A=await head('الجزء الثاني: تقييم الاقتراح',true);const {x,W,PAD,IW,G,GS,MU,LN}=A;
   A.sec('شروط التقييم');
   {const dc=spDocs().length>0,ba=spImpOut().some(c=>c.b&&c.a),cw=(IW-10)/2;[['توافر المستندات الداعمة للتطبيق',dc],['تحديد الوضع قبل تطبيق الاقتراح وبعده',ba]].forEach(([t,ok],k)=>{const px=W-PAD-k*(cw+10);A.rr(px-cw,A.y,cw,56,12,ok?'#eef8f2':'#fdecea',LN);A.T((ok?'✓  ':'✗  ')+t,px-18,A.y+36,{s:20,w:700,c:ok?'#157a40':'#a5281c'})});A.y+=66;A.br()}
   A.sec('الجزء الخاص بتقييم الاقتراح');
@@ -3017,22 +3032,7 @@ async function renderSug(){
   {const c=SP_CATS.find(k=>k[0]===SP.cat);if(c){A.sec('المجالات المستهدفة – '+c[0]);const ls=c[1].flatMap(t=>A.wrap('•  '+t,IW-44,`400 18px ${FONT}`));const h=24+ls.length*30;A.rr(PAD,A.y,IW,h,12,'#fff',LN);ls.forEach((l,k)=>A.T(l,W-PAD-22,A.y+36+k*30,{s:18}));A.y+=h+12;A.br()}}
   await A.sigs([['معدّ الاستمارة',[SP.pRank,SP.pName].filter(Boolean).join(' / '),spS.has?spS.data():''],['منسق الاقتراحات',' ',''],['اعتماد المنسق الأعلى',' ','']]);
   const r1=A.finish(),p1=paginate(r1);
-  /* part 2 – impact measurement */
-  const B=await head('الجزء الثاني: قياس الأثر',true);
-  B.sec('الوضع قبل تطبيق الاقتراح وبعده');
-  grid(B,[[['الوضع قبل تطبيق الاقتراح (إحصائيات)',SP.before],['الوضع بعد تطبيق الاقتراح (النتائج المترتبة على التطبيق)',SP.after]]],84);
-  B.sec('معايير التقييم');
-  {const I=spImpOut(),cR=B.W-B.PAD,IW2=B.IW,cw=[.36,.32,.32];B.rr(B.PAD,B.y,IW2,46,12,B.GS,null);let px=cR;[['المعيار',cw[0]],['قبل',cw[1]],['بعد',cw[2]]].forEach(([h,f])=>{B.T(h,px-16,B.y+31,{s:18,w:700,c:B.G});px-=IW2*f});B.y+=52;
-   I.forEach((c,i)=>{const h0=SP_IMP[i][1];const tl=B.wrap((i+1)+'. '+c.t,IW2*cw[0]-24,`700 19px ${FONT}`),hl=h0&&(c.b||c.a)?B.wrap('('+h0+')',IW2*cw[0]-30,`400 15px ${FONT}`):[];
-     const bl=B.wrap(c.b||'—',IW2*cw[1]-28,`400 18px ${FONT}`).slice(0,8),al=B.wrap(c.a||'—',IW2*cw[2]-28,`400 18px ${FONT}`).slice(0,8);
-     const h=Math.max(14+tl.length*27+hl.length*21,14+Math.max(bl.length,al.length)*27)+10;B.rr(B.PAD,B.y,IW2,h,10,'#fff',B.LN);
-     tl.forEach((l,j)=>B.T(l,cR-16,B.y+30+j*28,{s:19,w:700}));hl.forEach((l,j)=>B.T(l,cR-16,B.y+30+tl.length*28+j*22-4,{s:15,c:B.MU}));
-     const c1=cR-IW2*cw[0],c2=c1-IW2*cw[1];B.x.fillStyle=B.LN;B.x.fillRect(c1,B.y+8,1,h-16);B.x.fillRect(c2,B.y+8,1,h-16);
-     bl.forEach((l,j)=>B.T(l,c1-14,B.y+30+j*28,{s:18,w:c.b?700:400,c:c.b?'#16201b':B.MU}));al.forEach((l,j)=>B.T(l,c2-14,B.y+30+j*28,{s:18,w:c.a?700:400,c:c.a?'#16201b':B.MU}));
-     B.y+=h+6;B.br()})}
-  B.sec('المستندات الداعمة للتطبيق');{const d=spDocs();B.table([['م',.06],['نوع المستند',.18],['الرقم / التاريخ',.31],['الموضوع',.45]],(d.length?d:[{}]).map((q,i)=>[i+1,q.type,q.ref,q.desc]))}
-  const r2=B.finish(),p2=paginate(r2);
-  const pages=p1.concat(p2);
+  const pages=p2.concat(p1);
   if((SP.photos||[]).length)pages.push(...await photoPages(SP.photos,'المستندات الداعمة للتطبيق',[SP.title,SP.no?'اقتراح رقم '+SP.no:''].filter(Boolean).join('  ·  '),r1.logos));
   stampFooters(pages,`${SP_TITLE}  ·  ${SP.no?'اقتراح رقم '+SP.no+'  ·  ':''}`);return pages}
 async function sendSug(){if(!spvalidate())return;await spsave();$('#busy').classList.add('show');
