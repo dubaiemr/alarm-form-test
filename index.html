@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261117082920">
+<meta name="app-build" content="20261117121801">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -957,17 +957,17 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
     <div class="elapsed"><span class="l"><span class="ic ic-clock"></span>الوقت المستغرق <span class="auto">تلقائي</span></span><b id="elapsed">—</b></div>
     <div class="f"><span class="lbl req">حالة المنشأة عند الوصول</span>
       <div class="seg" data-k="state" id="state"><button type="button" data-v="مفتوح">مفتوح</button><button type="button" data-v="مغلق">مغلق</button></div></div>
-    <div class="f" id="tOwnerBox"><label for="tOwner"><span class="ic ic-clock"></span>وقت وصول صاحب المحل</label>
+    <div class="f" id="tOwnerBox"><label for="tOwner"><span class="ic ic-clock"></span><span id="tOwnerLbl">وقت وصول صاحب المحل</span></label>
       <div class="with-btn"><input type="time" id="tOwner" data-k="tOwner"><button class="mini" type="button" data-now="tOwner">الآن</button></div></div>
   </div>
 </section>
 
 <!-- 3 -->
 <section class="card" id="s3">
-  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6"/></svg></span><div><h2>المنشأة وسبب الإنذار</h2><p>مع صورة واضحة للرخصة التجارية</p></div></div>
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6"/></svg></span><div><h2>المنشأة وسبب الإنذار</h2><p id="s3sub">مع صورة واضحة للرخصة التجارية</p></div></div>
   <div class="card-b">
     <div class="f"><label class="req" for="facility">اسم المنشأة</label><input id="facility" data-k="facility" list="facList" autocomplete="off" placeholder="مثال: محل … للعطور"></div>
-    <div class="f"><label class="req" for="license" id="licLbl">رقم رخصة المنشأة</label><input id="license" data-k="license" inputmode="numeric">
+    <div class="f" id="licBox"><label class="req" for="license" id="licLbl">رقم رخصة المنشأة</label><input id="license" data-k="license" inputmode="numeric">
       <label class="toggle" style="padding:8px 14px"><span style="font-size:13.5px">لا يوجد رقم رخصة</span><input type="checkbox" id="noLicense" data-k="noLicense"><span class="sw"></span></label></div>
     <div class="grid2 stack-sm">
       <div class="f"><span class="lbl req">المنطقة</span>
@@ -975,7 +975,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
       <div class="f"><label class="req" for="facType">نوع المنشأة</label>
         <select id="facType" data-k="facType"><option value="">---</option><option>مجوهرات</option><option>بنوك</option><option>صرافة</option><option>صياغة ذهب</option><option>تجارة عامة</option><option>أخرى</option></select></div>
     </div>
-    <div class="f" id="facTypeOtherBox" style="display:none"><label for="facTypeOther">نوع النشاط (ملاحظة)</label><input id="facTypeOther" data-k="facTypeOther" placeholder="اكتب نوع النشاط…"></div>
+    <div class="f" id="facTypeOtherBox" style="display:none"><label for="facTypeOther" id="ftoLbl">نوع النشاط (ملاحظة)</label><input id="facTypeOther" data-k="facTypeOther" placeholder="اكتب نوع النشاط…"></div>
     <div class="f"><label for="location">الموقع بالتفصيل</label>
       <div class="with-btn"><input id="location" data-k="location" placeholder="المنطقة / المول / الشارع / الطابق"><button class="mini" type="button" id="gpsBtn"><svg class="svg-ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>موقعي</button></div>
       <a class="gps-link" id="gpsLink" target="_blank" rel="noopener"></a>
@@ -1235,7 +1235,10 @@ function patSplit(p){const m=/^م(\d+)$/.exec(p||''),q=/^ق(\d+)$/.exec(p||'');r
 function patMigrate(o){if(o.sec||!(String(o.patM||'').trim()||String(o.patQ||'').trim()))return;const q=String(o.patQ||'').trim(),m=String(o.patM||'').trim();
   if(q&&!m){o.sec=SEC_DIP;o.patrol=/^\d+$/.test(q)?'ق'+q:''}else{o.sec=SEC_MKT;o.patrol=/^\d+$/.test(m)?'م'+m:''}}
 const deptOf=o=>String(o.patQ||'').trim()&&!String(o.patM||'').trim()?DEPT_Q:DEPT;const isMock=()=>S.cause===MOCK;
-const facTypeTxt=o=>o.facType==='أخرى'?('أخرى'+((o.facTypeOther||'').trim()?' ('+o.facTypeOther.trim()+')':'')):(o.facType||'');
+const FT_MKT=['مجوهرات','بنوك','صرافة','صياغة ذهب','تجارة عامة','أخرى'],FT_DIP=['هيئة دبلوماسية','أخرى'];
+const ftOpts=(sec,v)=>{const L=sec===SEC_DIP?FT_DIP:FT_MKT;return '<option value="">---</option>'+L.map(t=>`<option${t===v?' selected':''}>${t}</option>`).join('')+(v&&!L.includes(v)?`<option selected>${v}</option>`:'')};
+const isDipO=o=>o&&o.sec===SEC_DIP;
+const facTypeTxt=o=>isDipO(o)&&o.facType==='أخرى'&&(o.facTypeOther||'').trim()?o.facTypeOther.trim():o.facType==='أخرى'?('أخرى'+((o.facTypeOther||'').trim()?' ('+o.facTypeOther.trim()+')':'')):(o.facType||'');
 const CREW=[['leader','مسؤول الدورية'],['driver','سائق الدورية'],['c1','مرافق الدورية']];
 const pad=n=>String(n).padStart(2,'0');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -1257,7 +1260,7 @@ function collect(){
   const c=$('#causes .on');S.cause=c?c.dataset.v:'';
 }
 function apply(){
-  patMigrate(S);$('#sec').innerHTML=secOpts(S.sec);$('#patrol').innerHTML=patOpts(S.sec,S.patrol);
+  patMigrate(S);$('#sec').innerHTML=secOpts(S.sec);$('#patrol').innerHTML=patOpts(S.sec,S.patrol);$('#facType').innerHTML=ftOpts(S.sec,S.facType);
   fields().forEach(e=>{const v=S[e.dataset.k];if(v==null)return;if(e.type==='checkbox')e.checked=!!v;else setVal(e,v)});
   $$('.seg[data-k]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===S[g.dataset.k])));
   $$('#causes .chip').forEach(b=>b.classList.toggle('on',b.dataset.v===S.cause));
@@ -1281,8 +1284,14 @@ function derive(){
   $('#failBox').style.display=S.result==='اخفاق'?'grid':'none';
   $('#mockNote').classList.toggle('show',mk);
   ['#tOwnerBox','#s4','#steps [data-t=s4]'].forEach(q=>{const el=$(q);if(el)el.hidden=mk});
+  const dip=S.sec===SEC_DIP;
+  if(dip&&(S.license||S.noLicense)){S.license='';S.noLicense=false;$('#license').value='';$('#noLicense').checked=false}
+  $('#licBox').hidden=dip;$('#tOwnerLbl').textContent=dip?'وقت وصول مسؤول المنشأة':'وقت وصول صاحب المحل';$('#s3sub').textContent=dip?'اسم المنشأة ونوعها وسبب الإنذار':'مع صورة واضحة للرخصة التجارية';
+  $('#facility').placeholder=dip?'مثال: القنصلية العامة لـ…':'مثال: محل … للعطور';$('#facility').setAttribute('list',dip?'':'facList');
+  $('#location').placeholder=dip?'المنطقة / الشارع / المبنى':'المنطقة / المول / الشارع / الطابق';
+  $('#ftoLbl').textContent=dip?'حدّد نوع المنشأة':'نوع النشاط (ملاحظة)';$('#ftoLbl').classList.toggle('req',dip);$('#facTypeOther').placeholder=dip?'اكتب نوع المنشأة…':'اكتب نوع النشاط…';
   const noLic=!!S.noLicense;
-  $('#licPhotoBox').hidden=mk||noLic;
+  $('#licPhotoBox').hidden=mk||noLic||dip;
   $('#licLbl').classList.toggle('req',!mk&&!noLic);
   if(noLic&&S.license){S.license='';$('#license').value=''}
   $('#license').disabled=noLic;$('#license').classList.toggle('dim',noLic);if(noLic)$('#license').classList.remove('invalid');
@@ -1308,7 +1317,7 @@ function derive(){
 }
 function summary(html){
   const g=v=>v&&String(v).trim(), m=html?(v=>v?`<mark>${esc(v)}</mark>`:'<span class="gap">…</span>'):(v=>v||'—');
-  const ft=g(facTypeTxt(S)),lic=S.noLicense?'، ولا يوجد لها رقم رخصة':isMock()&&!g(S.license)?'':`، رقم رخصة المنشأة ${m(g(S.license))}`,loc=[g(S.location),g(S.area)].filter(Boolean).join(' – ');
+  const ft=g(facTypeTxt(S)),lic=S.sec===SEC_DIP?'':S.noLicense?'، ولا يوجد لها رقم رخصة':isMock()&&!g(S.license)?'':`، رقم رخصة المنشأة ${m(g(S.license))}`,loc=[g(S.location),g(S.area)].filter(Boolean).join(' – ');
   return `في يوم ${m(g(S.day))} الموافق ${m(g(S.date))} الساعة ${m(g(S.tReport))} ورد بلاغ من غرفة العمليات يفيد بوجود جرس إنذار في ${m(g(S.facility))}${ft?` (${m(ft)})`:''}${lic}، الكائنة في ${m(loc)}، وعند الانتقال تبيّن بأن سبب حالة جرس الإنذار: ${m(g(causeText()))}.`;
 }
 
@@ -1319,7 +1328,8 @@ function required(){
   const r=[['date','التاريخ'],['tReport','وقت البلاغ'],['tArrive','وقت الوصول'],['state','حالة المنشأة'],['facility','اسم المنشأة'],['area','المنطقة'],['facType','نوع المنشأة'],['cause','سبب الإنذار'],['leaderName','مسؤول الدورية'],['result','النتيجة النهائية']];
   r.unshift(['eventNo','رقم الحدث']);r.splice(2,0,['sec','القسم'],['patrol','الدورية']);
   if(mk)return r;
-  if(!S.noLicense){r.splice(6,0,['license','رقم الرخصة (أو اختر «لا يوجد رقم رخصة»)']);if(String(S.license||'').trim())r.splice(10,0,['photo:license','صورة الرخصة'])}
+  if(S.sec===SEC_DIP){if(S.facType==='أخرى')r.splice(9,0,['facTypeOther','نوع المنشأة (أخرى)'])}
+  else if(!S.noLicense){r.splice(6,0,['license','رقم الرخصة (أو اختر «لا يوجد رقم رخصة»)']);if(String(S.license||'').trim())r.splice(10,0,['photo:license','صورة الرخصة'])}
   if(S.result==='اخفاق')r.push(['failReason','سبب الإخفاق']);
   if(!S.absent)r.push(['pName','اسم الشخص المخوّل'],['pId','رقم الهوية'],['pMobile','الهاتف المتحرك'],['photo:id','صورة الهوية (الوجه الأمامي)']);
   if(!S.absent&&!S.otherId)r.push(['photo:idBack','صورة الهوية (الوجه الخلفي)']);
@@ -1529,7 +1539,7 @@ function payload(){
   const keys=['failReason','eventNo','date','day','shift','cat','dept','sec','patrol','patM','patQ','tReport','tArrive','mins','state','tOwner','facility','license','area','facType','facTypeOther','location','gps','note','absent','pName','pIdType','pIssuer','pId','pRole','pMobile','pPhone','result','headNote','hName','hNo','hRank','hDate'];
   const PERSON=['tOwner','absent','pName','pIdType','pIssuer','pId','pRole','pMobile','pPhone'];
   keys.forEach(k=>{if(mk&&PERSON.includes(k))return;if(k==='facTypeOther'&&S.facType!=='أخرى')return;const v=S[k];if(v!==''&&v!=null&&v!==false)o[k]=v});
-  if(S.noLicense)o.license='لا يوجد';
+  if(S.noLicense&&S.sec!==SEC_DIP)o.license='لا يوجد';if(S.sec===SEC_DIP)delete o.license;
   if(mk)o.mock=1;
   o.cause=causeText();
   CREW.forEach(([k])=>['Name','No','Rank'].forEach(f=>{if(S[k+f])o[k+f]=S[k+f]}));
@@ -1575,7 +1585,7 @@ async function renderReport(){
   T(mk?'النتيجة حسب زمن الدورية':'النتيجة النهائية',PAD+26,y+52,{s:21,c:MU,a:'left'});
   y+=104;
   /* time tiles */
-  const tiles=[['وقت البلاغ',S.tReport],['وقت الوصول',S.tArrive],['الوقت المستغرق',S.elapsed],mk?['المنطقة',S.area]:['وصول صاحب المحل',S.tOwner]];
+  const tiles=[['وقت البلاغ',S.tReport],['وقت الوصول',S.tArrive],['الوقت المستغرق',S.elapsed],mk?['المنطقة',S.area]:[S.sec===SEC_DIP?'وصول مسؤول المنشأة':'وصول صاحب المحل',S.tOwner]];
   const tw=(IW-3*14)/4;tiles.forEach((t,i)=>{const px=W-PAD-i*(tw+14)-tw;rr(px,y,tw,104,14,'#fff',LN);T(t[0],px+tw-18,y+36,{s:18,c:MU});T(t[1]||'—',px+tw-18,y+82,{s:i===2?30:32,w:800,c:i===2?G:INK})});
   y+=126;
   const BR=[y];
@@ -1597,7 +1607,7 @@ async function renderReport(){
   kv([['اليوم والتاريخ',(S.day||'')+'  '+(S.date||'')],['فترة الدوام / الفئة',[S.shift,S.cat].filter(Boolean).join(' / ')],['الدورية',S.patrol],['حالة المنشأة عند الوصول',S.state],['رقم الحدث',S.eventNo]]);
   sec('موجز البلاغ');
   {const ls=wrap(summary(false),IW-40,f(24,400));const extra=S.note?wrap('ملاحظة: '+S.note,IW-40,f(22,400)):[];const h=30+ls.length*44+(extra.length?extra.length*38+12:0)+14;rr(PAD,y,IW,h,12,'#fff',LN);ls.forEach((l,j)=>T(l,W-PAD-20,y+46+j*44,{s:24}));extra.forEach((l,j)=>T(l,W-PAD-20,y+46+ls.length*44+12+j*38,{s:22,c:MU}));y+=h+12;BR.push(y)}
-  kv([['اسم المنشأة',S.facility],['رقم الرخصة',S.noLicense?'لا يوجد':S.license],['المنطقة',S.area],['نوع المنشأة',facTypeTxt(S)],['الموقع بالتفصيل',(S.location||'')+(S.gps?'   📍 '+S.gps.replace('https://maps.google.com/?q=','GPS ')+'':''),true],['سبب جرس الإنذار',causeText(),true]]);
+  kv([['اسم المنشأة',S.facility,S.sec===SEC_DIP],...(S.sec===SEC_DIP?[]:[['رقم الرخصة',S.noLicense?'لا يوجد':S.license]]),['المنطقة',S.area],['نوع المنشأة',facTypeTxt(S)],['الموقع بالتفصيل',(S.location||'')+(S.gps?'   📍 '+S.gps.replace('https://maps.google.com/?q=','GPS ')+'':''),true],['سبب جرس الإنذار',causeText(),true]]);
   if(!mk){sec('بيانات الشخص المخوّل في المنشأة');
   if(S.absent){kv([['الحالة','لم يحضر الشخص المخوّل',true]])}
   else kv([['الاسم',S.pName],['الصفة',S.pRole],['نوع الهوية',S.pIdType],['جهة الإصدار',S.pIssuer],['رقم الهوية',S.pId],['الهاتف المتحرك',S.pMobile],['هاتف المنشأة',S.pPhone]]);}
@@ -1727,7 +1737,7 @@ $('#evSigClear').addEventListener('click',()=>{evSig.clear();saveE()});
 
 const efields=()=>$$('[data-e]').filter(e=>e.matches('input,select,textarea'));
 function ecollect(){efields().forEach(e=>E[e.dataset.e]=e.value);$$('.seg[data-e]').forEach(g=>{const on=g.querySelector('.on');E[g.dataset.e]=on?on.dataset.v:''})}
-function eapply(){patMigrate(E);$('#evSec').innerHTML=secOpts(E.sec);$('#evPatrol').innerHTML=patOpts(E.sec,E.patrol);efields().forEach(e=>{const v=E[e.dataset.e];setVal(e,v==null?'':v)});$$('.seg[data-e]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===E[g.dataset.e])));setEvGps(E.gps)}
+function eapply(){patMigrate(E);$('#evSec').innerHTML=secOpts(E.sec);$('#evPatrol').innerHTML=patOpts(E.sec,E.patrol);$('#evFacType').innerHTML=ftOpts(E.sec,E.facType);efields().forEach(e=>{const v=E[e.dataset.e];setVal(e,v==null?'':v)});$$('.seg[data-e]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===E[g.dataset.e])));setEvGps(E.gps)}
 let saveET;
 function saveE(){ecollect();ederive();idb.set(EDRAFT,{E,sig:evSig.data()})}
 function saveESoon(){clearTimeout(saveET);saveET=setTimeout(saveE,300)}
@@ -1968,7 +1978,7 @@ async function sendReport(){
   try{
     const rep=await renderReport();
     const pages=paginate(rep);
-    if(P.license&&!isMock())pages.push(await docPage(P.license,'الرخصة التجارية',rep.logos));
+    if(P.license&&!isMock()&&S.sec!==SEC_DIP)pages.push(await docPage(P.license,'الرخصة التجارية',rep.logos));
     if((P.id||P.idBack)&&!S.absent&&!isMock())pages.push(await docPage([[P.id,P.idBack?'الوجه الأمامي':''],[P.idBack,'الوجه الخلفي']],'هوية الشخص المخوّل',rep.logos));
     stampFooters(pages);
     const tag=(S.eventNo||'NA')+'_'+(S.date||todayISO());
@@ -2750,16 +2760,16 @@ const HLDRAFT='draftHallSec',HL_SEC='قسم أمن المحاكم والنياب
 const HL_CASES=['جنايات','جنح','استئناف','تمييز','مرور','الأحوال الشخصية','الجنسية والإقامة'];
 const HGR={cage:{c:'#C0392B',t:'مجموعة تأمين قفص الاتهام',u:'مجموعة تأمين قفص الاتهام'},prot:{c:'#D4AC0D',t:'تأمين أعضاء الهيئة القضائية',u:'تأمين أعضاء الهيئة القضائية'},hall:{c:'#1E8449',t:'تأمين القاعة',u:'تأمين القاعة'},wom:{c:'#8E44AD',t:'الشرطة النسائية',u:'الشرطة النسائية'}};
 const HGO=['cage','prot','hall','wom'];
-const LOCS={cR:[86.5,36,'داخل القفص – يمين المتهم'],cL:[86.5,59,'داخل القفص – يسار المتهم'],pR:[83,12,'يمين الهيئة القضائية'],pL:[17,12,'يسار الهيئة القضائية'],eR:[63,82,'يمين المدخل من الداخل'],eL:[37,82,'يسار المدخل من الداخل'],oL:[37,96,'يسار المدخل من الخارج'],pubL:[12.5,52,'يسار الجمهور'],wm:[86.5,76,'موقع الشرطة النسائية (يمين القاعة)']};
-const LOC_OLD={cT:'cR',cB:'cL',wT:'wm',wB:'wm',hR:'wm',hL:'pubL',gL:'pubL'};
-const HLV={A:{n:'مرتفع جداً',min:8,tot:9,def:[['cage','cR'],['cage','cL'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['hall','pubL'],['wom','wm'],['wom','wm']],
+const LOCS={cR:[86.5,36,'داخل القفص – يمين المتهم'],cL:[86.5,59,'داخل القفص – يسار المتهم'],pR:[83,12,'يمين الهيئة القضائية'],pL:[17,12,'يسار الهيئة القضائية'],eR:[63,82,'يمين المدخل من الداخل'],eL:[37,82,'يسار المدخل من الداخل'],oL:[37,96,'يسار المدخل من الخارج'],pubL:[12.5,52,'يسار الجمهور'],wm1:[80.5,76,'موقع الشرطة النسائية (1)'],wm2:[76,82.5,'موقع الشرطة النسائية (2)']};
+const LOC_OLD={cT:'cR',cB:'cL',wT:'wm1',wB:'wm2',hR:'wm1',hL:'pubL',gL:'pubL'};
+const HLV={A:{n:'مرتفع جداً',min:8,tot:9,def:[['cage','cR'],['cage','cL'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['hall','pubL'],['wom','wm1'],['wom','wm2']],
   cases:['القضايا الدولية والسياسية والأمنية','أفراد العصابات الدولية الخطرون','القضايا ذات الرأي العام (يحددها مدير الإدارة العامة أو نائبه أو مدير الإدارة)']},
- B:{n:'مرتفع',min:5,tot:7,def:[['cage','cR'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['wom','wm'],['wom','wm']],
+ B:{n:'مرتفع',min:5,tot:7,def:[['cage','cR'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['wom','wm1'],['wom','wm2']],
   cases:['بشرط وجود موقوفين (حضورياً)','القتل العمد','المتاجرة بالمخدرات وتعاطيها','المطلوبون دولياً','هتك العرض بالإكراه','السرقة بالإكراه (السطو المسلح)','الخطف','القضايا ذات الرأي العام (يحددها مدير الإدارة أو نائبه أو رئيس القسم)']},
  C:{n:'متوسط',min:0,tot:4,def:[['hall','pubL'],['prot','pL'],['hall','eR'],['hall','eL']],
   cases:['النزلاء أو الموقوفون من ذوي الجنح الذين قد يحاولون الهرب','القضايا التي قد تشغل الرأي العام','إذا كان عدد الموقوفين يتطلب تغييراً في الإجراءات الأمنية'],note:'يمكن الاستعانة بعناصر من الشرطة النسائية لتأمين القاعات إذا استدعى الأمر.'}};
 const HL_ROLES=['رئيس القسم','مسؤول الشعبة','مسؤول القاعة'];
-const hlMig=o=>{(o.pos||[]).forEach(p=>{if(LOC_OLD[p.l])p.l=LOC_OLD[p.l];if(p.g==='guard')p.g=p.l==='pubL'?'hall':'cage';if(!LOCS[p.l])p.l='eL'})};
+const hlMig=o=>{let w=0;(o.pos||[]).forEach(p=>{if(p.l==='wm')p.l=w++?'wm2':'wm1';if(LOC_OLD[p.l])p.l=LOC_OLD[p.l];if(p.g==='guard')p.g=p.l==='pubL'?'hall':'cage';if(!LOCS[p.l])p.l='eL'})};
 const blankHL=()=>({date:todayISO(),cases:[],level:'',pos:[]});
 let HL=blankHL();
 F2.hs={get o(){return HL},set o(v){HL=v}};
@@ -2794,7 +2804,7 @@ function hlsum(){const a=HL.pos||[],L=HLV[HL.level],el=$('#hlSum');if(!L){el.inn
 $('#hlPos').addEventListener('click',e=>{const d=e.target.closest('[data-hdel]');if(!d)return;HL.pos.splice(+d.closest('.crew-row').dataset.i,1);renderPos();hlsave()});
 $('#hlPos').addEventListener('input',e=>{const f=e.target.closest('[data-hp]');if(!f||f.tagName==='SELECT')return;const p=HL.pos[+f.closest('.crew-row').dataset.i];if(p){p[f.dataset.hp]=f.value;f.classList.remove('invalid');$('#hl3').classList.remove('invalid');hlsaveSoon()}});
 $('#hlPos').addEventListener('change',e=>{const f=e.target.closest('select[data-hp]');if(!f)return;const p=HL.pos[+f.closest('.crew-row').dataset.i];if(!p)return;p[f.dataset.hp]=f.value;f.classList.remove('invalid');if(f.dataset.hp==='g')renderPos();else hlsum();hlsave()});
-$('#hlAdd').addEventListener('click',()=>{const used=new Set((HL.pos||[]).map(p=>p.l)),l=['pubL','eL','eR','cR','cL','pL','pR','wm'].find(k=>!used.has(k))||'eL';
+$('#hlAdd').addEventListener('click',()=>{const used=new Set((HL.pos||[]).map(p=>p.l)),l=['pubL','eL','eR','cR','cL','pL','pR','wm1','wm2'].find(k=>!used.has(k))||'eL';
   HL.pos.push({g:'hall',l,no:'',rank:'',name:''});renderPos();hlsave();const r=$('#hlPos .crew-row:last-child [data-hp=no]');r&&r.focus()});
 function hlderive(){HL.day=dayOf(HL.date);$('#hlDay').value=HL.day;if(MODE==='hall'){$('#heroSub').textContent=HL_SEC+(HL.level?' · المستوى '+HL.level:'');hlprogress()}}
 function hlreq(){return [['date','التاريخ'],['hallNo','رقم القاعة'],['cases','نوع القضايا'],['level','مستوى التأمين'],['pos','بيانات الأفراد (الرقم والرتبة والاسم لكل موقع)'],['min','عدد الأفراد لا يقل عن الحد الأدنى للمستوى'],['detained','عدد الموقوفين'],['bailed','عدد المكفولين'],['caseCount','عدد القضايا'],['public','عدد الجمهور'],['oRole','صفة المعتمِد'],['oNo','رقم المعتمِد'],['oRank','رتبة المعتمِد'],['oName','اسم المعتمِد'],['sg','التوقيع']]}
@@ -2854,7 +2864,6 @@ async function renderHall(){
    rr(X_(77),Y_(24),X_(96)-X_(77),Y_(66)-Y_(24),5,'#fbeaea','#C0392B',2,[8,5]);
    T('قفص الاتهام',X_(86.5),Y_(29),{s:15,w:700,c:'#C0392B',a:'center'});
    x.beginPath();x.arc(X_(86.5),Y_(44.5),9,0,7);x.fillStyle='#7a6a55';x.fill();rr(X_(86.5)-11,Y_(44.5)+10,22,20,8,'#7a6a55');T('المتهم',X_(86.5)-22,Y_(44.5)+20,{s:13,c:'#7a6a55',a:'right'});T('◄',X_(86.5)-15,Y_(44.5)+4,{s:12,c:'#7a6a55',a:'right'});
-   if(P.some(p=>p.l==='wm'))rr(X_(79),Y_(70),X_(95)-X_(79),Y_(84)-Y_(70),8,null,'#8E44AD',1.5,[6,4]);
    x.fillStyle='#fff';x.fillRect(X_(43),Y_(WB)-4,X_(57)-X_(43),8);x.fillStyle='#c9b98f';[43,57].forEach(q=>x.fillRect(X_(q)-3,Y_(WB)-9,6,18));
    T('المدخل',X_(50),Y_(WB)-12,{s:15,c:'#7a6a55',a:'center'});T('خارج القاعة',X_(70),Y_(98),{s:14,c:'#9a8a75',a:'center'});
    const grp={};P.forEach((p,i)=>{(grp[p.l]=grp[p.l]||[]).push(i)});
@@ -2890,8 +2899,8 @@ async function hlinit(fresh){let d=!fresh&&await idb.get(HLDRAFT);
   if(d&&d.HL){HL=Object.assign(blankHL(),d.HL);hlMig(HL);if(d.sg)hlS.load(d.sg)}else HL=blankHL();
   $('#hlORank').innerHTML=rankOpts(HL.oRank);fapply('hs');renderCases();renderLevel();renderPos();hlderive()}
 
-document.addEventListener('change',e=>{const t=e.target;if(t.id==='sec'){S.sec=t.value;S.patrol='';$('#patrol').innerHTML=patOpts(S.sec,'');t.classList.remove('invalid')}
-  else if(t.id==='evSec'){E.sec=t.value;E.patrol='';$('#evPatrol').innerHTML=patOpts(E.sec,'');t.classList.remove('invalid')}
+document.addEventListener('change',e=>{const t=e.target;if(t.id==='sec'){S.sec=t.value;S.patrol='';$('#patrol').innerHTML=patOpts(S.sec,'');t.classList.remove('invalid');const L=S.sec===SEC_DIP?FT_DIP:FT_MKT;if(S.facType&&!L.includes(S.facType))S.facType='';$('#facType').innerHTML=ftOpts(S.sec,S.facType);if(S.sec===SEC_DIP){S.license='';S.noLicense=false;$('#license').value='';$('#noLicense').checked=false}}
+  else if(t.id==='evSec'){E.sec=t.value;E.patrol='';$('#evPatrol').innerHTML=patOpts(E.sec,'');t.classList.remove('invalid');const L=E.sec===SEC_DIP?FT_DIP:FT_MKT;if(E.facType&&!L.includes(E.facType))E.facType='';$('#evFacType').innerHTML=ftOpts(E.sec,E.facType)}
   else if(t.id==='trSec'){trSecChange(t)}},true);
 /* ================= Applied suggestions – evaluation & impact measurement ================= */
 const SPDRAFT='draftSuggestion',SP_TITLE='استمارة تقييم الاقتراحات المطبقة';
