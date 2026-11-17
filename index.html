@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261114101201">
+<meta name="app-build" content="20261117082920">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -169,7 +169,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
 .es-it{display:grid;gap:10px}.es-it .seg.sm button{font-size:12.5px;padding:9px 2px}.es-pct{max-width:220px}
 .ho-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.ho-cats button{border:1.5px solid var(--line);background:var(--field);border-radius:12px;padding:12px 4px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer}.ho-cats button.on{background:var(--green);border-color:var(--green);color:#fff}.ho-cats button.on::before{content:"✓ "}.ho-cats.invalid{outline:2px solid var(--danger);border-radius:12px}
 .hl-lv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.hl-lv button{border:1.5px solid var(--line);background:var(--field);border-radius:14px;padding:12px 4px;cursor:pointer;display:grid;gap:2px;justify-items:center;color:var(--muted)}.hl-lv button b{font-size:26px;line-height:1.1;color:var(--ink)}.hl-lv button span{font-size:13px;font-weight:700}.hl-lv button.on{background:var(--green);border-color:var(--green);color:#fff}.hl-lv button.on b{color:#fff}.hl-lv.invalid{outline:2px solid var(--danger);border-radius:14px}
-.hl-info{background:var(--soft,#eef6f1);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.8}.hl-info ul{margin:4px 0 6px;padding-right:18px}.hl-req{font-size:13px;color:var(--muted)}
+.hl-info{background:rgba(30,142,78,.09);border:1.5px solid rgba(30,142,78,.4);color:var(--ink);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.85;font-weight:500}.hl-info b{color:var(--green-2)}.hl-info li{color:var(--ink)}.hl-out.on{background:var(--green);border-color:var(--green);color:#fff}.hl-out small{opacity:.85;font-weight:400}.hl-info ul{margin:4px 0 6px;padding-right:18px}.hl-req{font-size:13.5px;color:var(--ink);font-weight:600;border-top:1px dashed rgba(30,142,78,.4);padding-top:6px;margin-top:4px}
 .hl-sum{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px;color:var(--muted)}.hl-sum span{display:flex;align-items:center;gap:5px}.hl-sum i{width:11px;height:11px;border-radius:50%;display:inline-block}.hl-sum b{color:var(--ink)}.hl-sum .t{margin-inline-start:auto;font-weight:700}.hl-sum .bad,.hl-sum .bad b{color:var(--danger)}
 .hl-n{font-style:normal;width:26px;height:26px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
 .sp-it .opt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:right;border:1.5px solid var(--line);background:var(--field);border-radius:12px;padding:10px 12px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}.sp-it .opt small{flex:none;color:var(--muted);font-size:12.5px}.sp-it .opt.on{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}.sp-it .opt.on small{color:rgba(255,255,255,.85)}.sp-it .with-btn input{min-height:44px;text-align:center;font-weight:700;font-size:18px}
@@ -734,7 +734,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
     </div>
     <div class="f"><label class="req" for="hlHall">رقم القاعة</label><input id="hlHall" data-hs="hallNo" inputmode="numeric"></div>
     <div class="f"><span class="lbl req">نوع القضايا <span class="hint" style="font-weight:400">(يمكن اختيار أكثر من نوع)</span></span>
-      <div class="ho-cats" id="hlCases" style="grid-template-columns:repeat(3,1fr)"><button type="button" data-c="جنايات">جنايات</button><button type="button" data-c="جنح">جنح</button><button type="button" data-c="تمييز">تمييز</button><button type="button" data-c="مرور">مرور</button><button type="button" data-c="الأحوال الشخصية">الأحوال الشخصية</button><button type="button" data-c="الجنسية والإقامة">الجنسية والإقامة</button></div></div>
+      <div class="ho-cats" id="hlCases" style="grid-template-columns:repeat(4,1fr)"><button type="button" data-c="جنايات">جنايات</button><button type="button" data-c="جنح">جنح</button><button type="button" data-c="استئناف">استئناف</button><button type="button" data-c="تمييز">تمييز</button><button type="button" data-c="مرور">مرور</button><button type="button" data-c="الأحوال الشخصية">الأحوال الشخصية</button><button type="button" data-c="الجنسية والإقامة">الجنسية والإقامة</button></div></div>
   </div>
 </section>
 <section class="card" id="hl2">
@@ -749,6 +749,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   <div class="card-b">
     <div class="hl-sum" id="hlSum"></div>
     <div id="hlPos" style="display:grid;gap:10px"></div>
+    <button type="button" class="btn sec hl-out" id="hlOut" hidden></button>
     <button type="button" class="btn sec" id="hlAdd">➕ إضافة موقع</button>
   </div>
 </section>
@@ -767,14 +768,15 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   </div>
 </section>
 <section class="card" id="hl5">
-  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span><div><h2>اعتماد مسؤول الشعبة</h2><p>البيانات والتوقيع</p></div></div>
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span><div><h2>الاعتماد</h2><p>الرقم والرتبة والاسم والصفة والتوقيع</p></div></div>
   <div class="card-b">
     <div class="grid2">
       <div class="f"><label class="req" for="hlONo">الرقم</label><input id="hlONo" data-hs="oNo" inputmode="numeric"></div>
       <div class="f"><label class="req" for="hlORank">الرتبة</label><select id="hlORank" data-hs="oRank"></select></div>
     </div>
     <div class="f"><label class="req" for="hlOName">الاسم</label><input id="hlOName" data-hs="oName"></div>
-    <div class="f"><div class="sig-tools"><span class="lbl req">توقيع مسؤول الشعبة</span><button type="button" class="ghost" id="hlSigClear">مسح</button></div>
+    <div class="f"><label class="req" for="hlORole">الصفة</label><select id="hlORole" data-hs="oRole"><option value="">اختر الصفة</option><option>رئيس القسم</option><option>مسؤول الشعبة</option><option>مسؤول القاعة</option></select></div>
+    <div class="f"><div class="sig-tools"><span class="lbl req">التوقيع</span><button type="button" class="ghost" id="hlSigClear">مسح</button></div>
       <div class="sig-wrap" id="hlSigWrap"><canvas id="hlSig" style="display:block;width:100%;height:150px;border-radius:14px"></canvas><div class="sig-ph" id="hlSigPh">وقّع هنا بإصبعك</div></div></div>
     <div class="alert" id="hlAlert"></div>
   </div>
@@ -2745,16 +2747,19 @@ async function cinit(fresh){let d=!fresh&&await idb.get(CTDRAFT);
 
 /* ================= Courtroom security form – courts & public prosecution security section ================= */
 const HLDRAFT='draftHallSec',HL_SEC='قسم أمن المحاكم والنيابة العامة';
-const HL_CASES=['جنايات','جنح','تمييز','مرور','الأحوال الشخصية','الجنسية والإقامة'];
-const HGR={cage:{c:'#C0392B',t:'حرس القاعة',u:'حرس القاعة (قفص الاتهام)'},prot:{c:'#D4AC0D',t:'تأمين أعضاء الهيئة القضائية',u:'تأمين أعضاء الهيئة القضائية'},hall:{c:'#1E8449',t:'تأمين القاعة',u:'تأمين القاعة'},wom:{c:'#8E44AD',t:'العنصر النسائي',u:'العنصر النسائي'},guard:{c:'#2471A3',t:'حرس القاعة',u:'حرس القاعة (يسار القاعة)'}};
-const HGO=['cage','prot','hall','wom','guard'];
-const LOCS={pR:[82,13,'يمين منصة الهيئة القضائية'],pL:[18,13,'يسار منصة الهيئة القضائية'],cT:[73,42,'بجانب قفص الاتهام (علوي)'],cB:[73,61,'بجانب قفص الاتهام (سفلي)'],wT:[49,46,'الممر بين مقاعد الجمهور (أمامي)'],wB:[49,65,'الممر بين مقاعد الجمهور (خلفي)'],eR:[63,90,'يمين المدخل'],eL:[37,90,'يسار المدخل'],hR:[87,85,'يمين القاعة أسفل القفص'],hL:[13,72,'يسار القاعة تحت منصة الدفاع'],gL:[13,87,'يسار القاعة أسفل منصة الدفاع']};
-const HLV={A:{n:'مرتفع جداً',min:8,tot:10,def:[['cage','cT'],['cage','cB'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['hall','hR'],['hall','hL'],['wom','wT'],['wom','wB']],
+const HL_CASES=['جنايات','جنح','استئناف','تمييز','مرور','الأحوال الشخصية','الجنسية والإقامة'];
+const HGR={cage:{c:'#C0392B',t:'مجموعة تأمين قفص الاتهام',u:'مجموعة تأمين قفص الاتهام'},prot:{c:'#D4AC0D',t:'تأمين أعضاء الهيئة القضائية',u:'تأمين أعضاء الهيئة القضائية'},hall:{c:'#1E8449',t:'تأمين القاعة',u:'تأمين القاعة'},wom:{c:'#8E44AD',t:'الشرطة النسائية',u:'الشرطة النسائية'}};
+const HGO=['cage','prot','hall','wom'];
+const LOCS={cR:[86.5,36,'داخل القفص – يمين المتهم'],cL:[86.5,59,'داخل القفص – يسار المتهم'],pR:[83,12,'يمين الهيئة القضائية'],pL:[17,12,'يسار الهيئة القضائية'],eR:[63,82,'يمين المدخل من الداخل'],eL:[37,82,'يسار المدخل من الداخل'],oL:[37,96,'يسار المدخل من الخارج'],pubL:[12.5,52,'يسار الجمهور'],wm:[86.5,76,'موقع الشرطة النسائية (يمين القاعة)']};
+const LOC_OLD={cT:'cR',cB:'cL',wT:'wm',wB:'wm',hR:'wm',hL:'pubL',gL:'pubL'};
+const HLV={A:{n:'مرتفع جداً',min:8,tot:9,def:[['cage','cR'],['cage','cL'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['hall','pubL'],['wom','wm'],['wom','wm']],
   cases:['القضايا الدولية والسياسية والأمنية','أفراد العصابات الدولية الخطرون','القضايا ذات الرأي العام (يحددها مدير الإدارة العامة أو نائبه أو مدير الإدارة)']},
- B:{n:'مرتفع',min:5,tot:7,def:[['cage','cT'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['wom','wT'],['wom','wB']],
+ B:{n:'مرتفع',min:5,tot:7,def:[['cage','cR'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['wom','wm'],['wom','wm']],
   cases:['بشرط وجود موقوفين (حضورياً)','القتل العمد','المتاجرة بالمخدرات وتعاطيها','المطلوبون دولياً','هتك العرض بالإكراه','السرقة بالإكراه (السطو المسلح)','الخطف','القضايا ذات الرأي العام (يحددها مدير الإدارة أو نائبه أو رئيس القسم)']},
- C:{n:'متوسط',min:0,tot:4,def:[['guard','gL'],['prot','pL'],['hall','eR'],['hall','eL']],
+ C:{n:'متوسط',min:0,tot:4,def:[['hall','pubL'],['prot','pL'],['hall','eR'],['hall','eL']],
   cases:['النزلاء أو الموقوفون من ذوي الجنح الذين قد يحاولون الهرب','القضايا التي قد تشغل الرأي العام','إذا كان عدد الموقوفين يتطلب تغييراً في الإجراءات الأمنية'],note:'يمكن الاستعانة بعناصر من الشرطة النسائية لتأمين القاعات إذا استدعى الأمر.'}};
+const HL_ROLES=['رئيس القسم','مسؤول الشعبة','مسؤول القاعة'];
+const hlMig=o=>{(o.pos||[]).forEach(p=>{if(LOC_OLD[p.l])p.l=LOC_OLD[p.l];if(p.g==='guard')p.g=p.l==='pubL'?'hall':'cage';if(!LOCS[p.l])p.l='eL'})};
 const blankHL=()=>({date:todayISO(),cases:[],level:'',pos:[]});
 let HL=blankHL();
 F2.hs={get o(){return HL},set o(v){HL=v}};
@@ -2778,20 +2783,21 @@ const optG=v=>HGO.map(k=>`<option value="${k}"${k===v?' selected':''}>${HGR[k].u
 const optL=v=>Object.entries(LOCS).map(([k,a])=>`<option value="${k}"${k===v?' selected':''}>${a[2]}</option>`).join('');
 function renderPos(){const a=HL.pos||(HL.pos=[]);
   $('#hlPos').innerHTML=a.length?a.map((p,i)=>`<div class="crew-row" data-i="${i}"><div class="role" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:8px"><i class="hl-n" style="background:${(HGR[p.g]||HGR.hall).c}">${i+1}</i>${(HGR[p.g]||HGR.hall).t}</span><button type="button" class="ghost" data-hdel style="padding:4px 10px">حذف</button></div>
-    <div class="grid2"><select data-hp="g">${optG(p.g)}</select><select data-hp="l">${optL(p.l)}</select></div>
+    <select data-hp="g">${optG(p.g)}</select><select data-hp="l">${optL(p.l)}</select>
     <div class="grid2"><input data-hp="no" placeholder="الرقم *" inputmode="numeric" value="${esc(p.no)}"><select data-hp="rank">${rankOpts(p.rank)}</select></div>
     <input data-hp="name" placeholder="الاسم *" value="${esc(p.name)}"></div>`).join(''):'<div class="hint" style="text-align:center;padding:8px">اختر مستوى التأمين أولاً لتظهر مواقع الوقوف.</div>';
-  $('#hlAdd').hidden=!HL.level||a.length>=20;hlsum()}
+  $('#hlAdd').hidden=!HL.level||a.length>=20;const ob=$('#hlOut'),has=a.some(p=>p.l==='oL');ob.hidden=!HL.level;ob.classList.toggle('on',has);ob.innerHTML=has?'✓ فرد على الباب من الخارج <small>(اضغط للإزالة)</small>':'🚪 إضافة فرد على الباب من الخارج';hlsum()}
+$('#hlOut').addEventListener('click',()=>{const a=HL.pos||(HL.pos=[]),i=a.findIndex(p=>p.l==='oL');if(i>=0){if(a[i].name&&!confirm('إزالة الفرد الموجود على الباب من الخارج؟'))return;a.splice(i,1)}else{let k=-1;a.forEach((p,i)=>{if(p.l==='eR'||p.l==='eL')k=i});a.splice(k+1,0,{g:'hall',l:'oL',no:'',rank:'',name:''})}renderPos();hlsave()});
 function hlsum(){const a=HL.pos||[],L=HLV[HL.level],el=$('#hlSum');if(!L){el.innerHTML='';return}
   const c=HGO.map(k=>[k,a.filter(p=>p.g===k).length]).filter(x=>x[1]);
   el.innerHTML=`${c.map(([k,n])=>`<span><i style="background:${HGR[k].c}"></i>${HGR[k].u} <b>${n}</b></span>`).join('')}<span class="t${L.min&&a.length<L.min?' bad':''}">المجموع <b>${a.length}</b>${L.min&&a.length<L.min?` · أقل من الحد الأدنى (${L.min})`:''}</span>`}
 $('#hlPos').addEventListener('click',e=>{const d=e.target.closest('[data-hdel]');if(!d)return;HL.pos.splice(+d.closest('.crew-row').dataset.i,1);renderPos();hlsave()});
 $('#hlPos').addEventListener('input',e=>{const f=e.target.closest('[data-hp]');if(!f||f.tagName==='SELECT')return;const p=HL.pos[+f.closest('.crew-row').dataset.i];if(p){p[f.dataset.hp]=f.value;f.classList.remove('invalid');$('#hl3').classList.remove('invalid');hlsaveSoon()}});
 $('#hlPos').addEventListener('change',e=>{const f=e.target.closest('select[data-hp]');if(!f)return;const p=HL.pos[+f.closest('.crew-row').dataset.i];if(!p)return;p[f.dataset.hp]=f.value;f.classList.remove('invalid');if(f.dataset.hp==='g')renderPos();else hlsum();hlsave()});
-$('#hlAdd').addEventListener('click',()=>{const used=new Set((HL.pos||[]).map(p=>p.l)),l=['eL','eR','hL','hR','wT','wB','cT','cB','pL','pR','gL'].find(k=>!used.has(k))||'eL';
+$('#hlAdd').addEventListener('click',()=>{const used=new Set((HL.pos||[]).map(p=>p.l)),l=['pubL','eL','eR','cR','cL','pL','pR','wm'].find(k=>!used.has(k))||'eL';
   HL.pos.push({g:'hall',l,no:'',rank:'',name:''});renderPos();hlsave();const r=$('#hlPos .crew-row:last-child [data-hp=no]');r&&r.focus()});
 function hlderive(){HL.day=dayOf(HL.date);$('#hlDay').value=HL.day;if(MODE==='hall'){$('#heroSub').textContent=HL_SEC+(HL.level?' · المستوى '+HL.level:'');hlprogress()}}
-function hlreq(){return [['date','التاريخ'],['hallNo','رقم القاعة'],['cases','نوع القضايا'],['level','مستوى التأمين'],['pos','بيانات الأفراد (الرقم والرتبة والاسم لكل موقع)'],['min','عدد الأفراد لا يقل عن الحد الأدنى للمستوى'],['detained','عدد الموقوفين'],['bailed','عدد المكفولين'],['caseCount','عدد القضايا'],['public','عدد الجمهور'],['oNo','رقم مسؤول الشعبة'],['oRank','رتبة مسؤول الشعبة'],['oName','اسم مسؤول الشعبة'],['sg','توقيع مسؤول الشعبة']]}
+function hlreq(){return [['date','التاريخ'],['hallNo','رقم القاعة'],['cases','نوع القضايا'],['level','مستوى التأمين'],['pos','بيانات الأفراد (الرقم والرتبة والاسم لكل موقع)'],['min','عدد الأفراد لا يقل عن الحد الأدنى للمستوى'],['detained','عدد الموقوفين'],['bailed','عدد المكفولين'],['caseCount','عدد القضايا'],['public','عدد الجمهور'],['oRole','صفة المعتمِد'],['oNo','رقم المعتمِد'],['oRank','رتبة المعتمِد'],['oName','اسم المعتمِد'],['sg','التوقيع']]}
 function hlfilled(k){const a=HL.pos||[];if(k==='cases')return (HL.cases||[]).length>0;if(k==='pos')return a.length>0&&a.every(p=>String(p.no||'').trim()&&p.rank&&String(p.name||'').trim());
   if(k==='min'){const L=HLV[HL.level];return !L||!L.min||a.length>=L.min}if(k==='sg')return hlS.has;return !!String(HL[k]||'').trim()}
 function hlprogress(){const r=hlreq();setMeter(Math.round(r.filter(x=>hlfilled(x[0])).length/r.length*100))}
@@ -2801,7 +2807,7 @@ function hlvalidate(){fcollect('hs');hlderive();const miss=[];
     const el=k==='cases'?$('#hlCases'):k==='level'?$('#hlLv'):k==='pos'||k==='min'?$('#hl3'):k==='sg'?$('#hlSigWrap'):$(`[data-hs="${k}"]`);el&&el.classList.add('invalid')});
   return failWith('#hlAlert',miss)}
 function hlpayload(){const o={v:1,kind:'hallSec',sent:stamp(),dept:'أمن المحاكم والنيابة العامة'};
-  ['date','day','hallNo','level','detained','bailed','caseCount','public','notes','oNo','oRank','oName'].forEach(k=>{const v=typeof HL[k]==='string'?HL[k].trim():HL[k];if(v)o[k]=v});
+  ['date','day','hallNo','level','detained','bailed','caseCount','public','notes','oNo','oRank','oName','oRole'].forEach(k=>{const v=typeof HL[k]==='string'?HL[k].trim():HL[k];if(v)o[k]=v});
   o.cases=(HL.cases||[]).slice();o.pos=(HL.pos||[]).map((p,i)=>({n:i+1,g:p.g,task:(HGR[p.g]||{}).t,loc:(LOCS[p.l]||[])[2],no:String(p.no||'').trim(),rank:p.rank||'',name:String(p.name||'').trim()}));return o}
 async function renderHall(){
   const FONT='"Dubai",Tahoma,sans-serif',HF='"Bukra","Dubai",Tahoma,sans-serif';
@@ -2827,7 +2833,7 @@ async function renderHall(){
   {const cells=[['اليوم',HL.day,1.1],['التاريخ',HL.date,1.2],['رقم القاعة',HL.hallNo,.9],['عدد الموقوفين',HL.detained],['عدد المكفولين',HL.bailed],['عدد القضايا',HL.caseCount],['عدد الجمهور',HL.public]];const tw=cells.reduce((a,c)=>a+(c[2]||1),0);let px=R;
    cells.forEach(([l,v,f])=>{const w=CW*(f||1)/tw;box(px-w,y,w,62);T(l,px-12,y+23,{s:14.5,c:MU});T(v||'—',px-12,y+50,{s:fitS(v||'—',w-24,20,700),w:700});px-=w});y+=62}
   y+=10;
-  {const cw=CW/6.9;let px=R;box(px-cw*.9,y,cw*.9,44,GS);T('نوع القضايا',px-cw*.45,y+28,{s:15.5,w:700,c:G,a:'center'});px-=cw*.9;
+  {const cw=CW/7.9;let px=R;box(px-cw*.9,y,cw*.9,44,GS);T('نوع القضايا',px-cw*.45,y+28,{s:15.5,w:700,c:G,a:'center'});px-=cw*.9;
    HL_CASES.forEach(cs=>{const on=(HL.cases||[]).includes(cs);box(px-cw,y,cw,44,on?'#f3f9f5':null);x.strokeStyle=on?G:MU;x.lineWidth=1.6;
      if(on){x.fillStyle=G;x.fillRect(px-34,y+13,18,18)}x.strokeRect(px-34,y+13,18,18);if(on){x.strokeStyle='#fff';x.lineWidth=2.6;x.beginPath();x.moveTo(px-30,y+22);x.lineTo(px-26,y+27);x.lineTo(px-19,y+17);x.stroke()}
      T(cs,px-42,y+28,{s:fitS(cs,cw-50,15,on?700:400),w:on?700:400,c:on?G:INK});px-=cw});y+=44}
@@ -2835,18 +2841,22 @@ async function renderHall(){
   const sec=t=>{x.fillStyle=GS;x.fillRect(L,y,CW,32);x.fillStyle=G;x.fillRect(R-5,y,5,32);T(t,R-16,y+23,{s:18,w:700,h:1,c:G});y+=40};
   sec('مخطط توزيع نقاط التأمين');
   // legend (right) + diagram (left)
-  const lgW=310,dw=CW-lgW-16,dh=Math.round(dw*0.62),dx=L,dy=y;
+  const lgW=310,dw=CW-lgW-16,dh=Math.round(dw*0.66),dx=L,dy=y;
   {rr(R-lgW,y,lgW,dh,12,'#fff',LN,1);const cnt=HGO.map(k=>[k,P.filter(p=>p.g===k).length]).filter(a=>a[1]);let ly=y+40;
    cnt.forEach(([k,n])=>{x.beginPath();x.arc(R-30,ly-6,10,0,7);x.fillStyle=HGR[k].c;x.fill();T(HGR[k].t,R-50,ly,{s:fitS(HGR[k].t,lgW-110,17),c:INK});T(n,R-lgW+24,ly,{s:20,w:700,c:G,a:'left'});ly+=44});
    rr(R-lgW+14,y+dh-104,lgW-28,90,10,G);T('المجموع',R-lgW/2,y+dh-74,{s:15,c:'rgba(255,255,255,.85)',a:'center'});T(P.length,R-lgW/2,y+dh-30,{s:38,w:700,h:1,c:'#fff',a:'center'})}
-  {const X_=p=>dx+p/100*dw,Y_=p=>dy+p/100*dh;rr(dx,dy,dw,dh,16,'#fbfaf6','#c9b98f',2.5);
-   rr(X_(27),Y_(6),X_(73)-X_(27),Y_(18)-Y_(6),9,'#6b4f35');T('منصة الهيئة القضائية',X_(50),Y_(13.8),{s:19,w:700,c:'#fff',a:'center'});
-   [['منصة الادعاء',29],['منصة الدفاع',41]].forEach(([t,yy])=>{rr(X_(4),Y_(yy),X_(21)-X_(4),Y_(yy+8)-Y_(yy),7,'#e5d8bc','#c9b98f',1);T(t,X_(12.5),Y_(yy+5.3),{s:15,w:700,c:'#5b4630',a:'center'})});
+  {const X_=p=>dx+p/100*dw,Y_=p=>dy+p/100*dh,WB=91;
+   rr(dx,dy,dw,Y_(WB)-dy,16,'#fbfaf6','#c9b98f',2.5);
+   rr(X_(27),Y_(5),X_(73)-X_(27),Y_(17)-Y_(5),9,'#6b4f35');T('منصة الهيئة القضائية',X_(50),Y_(12.6),{s:19,w:700,c:'#fff',a:'center'});
+   [['منصة الادعاء',55],['منصة الدفاع',29]].forEach(([t,xx])=>{rr(X_(xx),Y_(21),X_(xx+16)-X_(xx),Y_(28)-Y_(21),7,'#e5d8bc','#c9b98f',1);T(t,X_(xx+8),Y_(26),{s:15,w:700,c:'#5b4630',a:'center'})});
    T('مقاعد الجمهور',X_(49),Y_(36),{s:15,c:'#7a6a55',a:'center'});
-   [29,54].forEach(cx=>[41,53,65].forEach(ry=>rr(X_(cx),Y_(ry),X_(cx+15)-X_(cx),Y_(ry+6.5)-Y_(ry),5,'#b08a63')));
-   rr(X_(77),Y_(27),X_(96)-X_(77),Y_(71)-Y_(27),5,'#fbeaea','#C0392B',2,[8,5]);x.strokeStyle='#e3a9a2';x.lineWidth=1.5;[1,2,3].forEach(i=>{x.beginPath();x.moveTo(X_(77+i*4.75),Y_(31));x.lineTo(X_(77+i*4.75),Y_(70));x.stroke()});
-   T('قفص الاتهام',X_(86.5),Y_(30.6),{s:15,w:700,c:'#C0392B',a:'center'});
-   x.fillStyle='#c9b98f';x.fillRect(X_(42),Y_(96.4),X_(58)-X_(42),Y_(100)-Y_(96.4)-1);T('المدخل',X_(50),Y_(94),{s:15,c:'#7a6a55',a:'center'});
+   [29,54].forEach(cx=>[40,51,62].forEach(ry=>rr(X_(cx),Y_(ry),X_(cx+15)-X_(cx),Y_(ry+6)-Y_(ry),5,'#b08a63')));
+   rr(X_(77),Y_(24),X_(96)-X_(77),Y_(66)-Y_(24),5,'#fbeaea','#C0392B',2,[8,5]);
+   T('قفص الاتهام',X_(86.5),Y_(29),{s:15,w:700,c:'#C0392B',a:'center'});
+   x.beginPath();x.arc(X_(86.5),Y_(44.5),9,0,7);x.fillStyle='#7a6a55';x.fill();rr(X_(86.5)-11,Y_(44.5)+10,22,20,8,'#7a6a55');T('المتهم',X_(86.5)-22,Y_(44.5)+20,{s:13,c:'#7a6a55',a:'right'});T('◄',X_(86.5)-15,Y_(44.5)+4,{s:12,c:'#7a6a55',a:'right'});
+   if(P.some(p=>p.l==='wm'))rr(X_(79),Y_(70),X_(95)-X_(79),Y_(84)-Y_(70),8,null,'#8E44AD',1.5,[6,4]);
+   x.fillStyle='#fff';x.fillRect(X_(43),Y_(WB)-4,X_(57)-X_(43),8);x.fillStyle='#c9b98f';[43,57].forEach(q=>x.fillRect(X_(q)-3,Y_(WB)-9,6,18));
+   T('المدخل',X_(50),Y_(WB)-12,{s:15,c:'#7a6a55',a:'center'});T('خارج القاعة',X_(70),Y_(98),{s:14,c:'#9a8a75',a:'center'});
    const grp={};P.forEach((p,i)=>{(grp[p.l]=grp[p.l]||[]).push(i)});
    P.forEach((p,i)=>{const a=LOCS[p.l]||LOCS.eL,g=grp[p.l],k=g.indexOf(i),off=(k-(g.length-1)/2)*36,cx=X_(a[0])+off,cy=Y_(a[1]);
      x.beginPath();x.arc(cx,cy,17,0,7);x.fillStyle=(HGR[p.g]||HGR.hall).c;x.fill();x.strokeStyle='#fff';x.lineWidth=3.5;x.stroke();T(i+1,cx,cy+7,{s:19,w:700,c:'#fff',a:'center'})})}
@@ -2862,9 +2872,9 @@ async function renderHall(){
        px-=cw});y+=rh})}
   y+=12;
   {const lines=wrap(HL.notes||'لا يوجد',CW-190,`400 17px ${FONT}`).slice(0,2),h=Math.max(50,lines.length*26+20);box(R-150,y,150,h,GS);T('الملاحظات',R-75,y+h/2+6,{s:16,w:700,c:G,a:'center'});box(L,y,CW-150,h);lines.forEach((l,i)=>T(l,R-168,y+(lines.length===1?h/2+6:24+i*26),{s:17}));y+=h+12}
-  sec('اعتماد مسؤول الشعبة');
-  {const cells=[['الرقم',HL.oNo,.8],['الرتبة',HL.oRank,.8],['الاسم',HL.oName,1.4],['التوقيع','',1.6]],tw=4.6;let px=R;
-   cells.forEach(([l,v,f],i)=>{const w=CW*f/tw;box(px-w,y,w,84);T(l,px-12,y+24,{s:14.5,c:MU});if(i<3)T(v||'',px-12,y+58,{s:fitS(v||'',w-24,19,700),w:700});else if(sg)fit(sg,px-w+14,y+12,w-80,66,false);px-=w})}
+  sec('الاعتماد');
+  {const cells=[['الرقم',HL.oNo,.75],['الرتبة',HL.oRank,.8],['الاسم',HL.oName,1.35],['الصفة',HL.oRole,.95],['التوقيع','',1.4]],tw=5.25;let px=R;
+   cells.forEach(([l,v,f],i)=>{const w=CW*f/tw;box(px-w,y,w,84);T(l,px-12,y+24,{s:14.5,c:MU});if(i<4)T(v||'',px-12,y+58,{s:fitS(v||'',w-24,19,700),w:700});else if(sg)fit(sg,px-w+14,y+12,w-80,66,false);px-=w})}
   x.fillStyle='#e3ebe6';x.fillRect(L,Hh-44,CW,1.5);
   if(lt){const s=Math.min(200/lt.width,1),w=lt.width*s,h=lt.height*s;x.drawImage(lt,R-w,Hh-36,w,h)}
   T('نبض – النظام المتكامل للعمليات الميدانية',L,Hh-16,{s:13,c:MU,a:'left'});
@@ -2877,7 +2887,7 @@ async function sendHall(){if(!hlvalidate())return;await hlsave();$('#busy').clas
 async function hlinit(fresh){let d=!fresh&&await idb.get(HLDRAFT);
   if(d&&d.HL&&d.HL.sentAt){await idb.del(HLDRAFT);d=null;if(MODE==='hall')setTimeout(()=>toast('تم مسح الاستمارة المرسلة سابقاً من الهاتف'),600)}
   hlS.clear();$('#hlAlert').classList.remove('show');
-  if(d&&d.HL){HL=Object.assign(blankHL(),d.HL);if(d.sg)hlS.load(d.sg)}else HL=blankHL();
+  if(d&&d.HL){HL=Object.assign(blankHL(),d.HL);hlMig(HL);if(d.sg)hlS.load(d.sg)}else HL=blankHL();
   $('#hlORank').innerHTML=rankOpts(HL.oRank);fapply('hs');renderCases();renderLevel();renderPos();hlderive()}
 
 document.addEventListener('change',e=>{const t=e.target;if(t.id==='sec'){S.sec=t.value;S.patrol='';$('#patrol').innerHTML=patOpts(S.sec,'');t.classList.remove('invalid')}
