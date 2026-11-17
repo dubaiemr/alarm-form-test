@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261117121801">
+<meta name="app-build" content="20261117131052">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -829,7 +829,7 @@ details.head .in{padding:0 14px 14px;display:grid;gap:12px}
   </div>
 </section>
 <section class="card" id="sp5">
-  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></span><div><h2>الجزء الثاني: تقييم الاقتراح</h2><p>اختر المستوى ثم حدّد النقاط ضمن المدى المسموح</p></div></div>
+  <div class="card-h"><span class="n"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></span><div><h2>الجزء الثاني: تقييم الاقتراح</h2><p>اختر المستوى ثم اختر الدرجة من القائمة</p></div></div>
   <div class="card-b">
     <div id="spPts" style="display:grid;gap:12px"></div>
     <div class="es-total"><span>المجموع الإجمالي للنقاط</span><b id="spTotal">— من 125</b></div>
@@ -2760,7 +2760,7 @@ const HLDRAFT='draftHallSec',HL_SEC='قسم أمن المحاكم والنياب
 const HL_CASES=['جنايات','جنح','استئناف','تمييز','مرور','الأحوال الشخصية','الجنسية والإقامة'];
 const HGR={cage:{c:'#C0392B',t:'مجموعة تأمين قفص الاتهام',u:'مجموعة تأمين قفص الاتهام'},prot:{c:'#D4AC0D',t:'تأمين أعضاء الهيئة القضائية',u:'تأمين أعضاء الهيئة القضائية'},hall:{c:'#1E8449',t:'تأمين القاعة',u:'تأمين القاعة'},wom:{c:'#8E44AD',t:'الشرطة النسائية',u:'الشرطة النسائية'}};
 const HGO=['cage','prot','hall','wom'];
-const LOCS={cR:[86.5,36,'داخل القفص – يمين المتهم'],cL:[86.5,59,'داخل القفص – يسار المتهم'],pR:[83,12,'يمين الهيئة القضائية'],pL:[17,12,'يسار الهيئة القضائية'],eR:[63,82,'يمين المدخل من الداخل'],eL:[37,82,'يسار المدخل من الداخل'],oL:[37,96,'يسار المدخل من الخارج'],pubL:[12.5,52,'يسار الجمهور'],wm1:[80.5,76,'موقع الشرطة النسائية (1)'],wm2:[76,82.5,'موقع الشرطة النسائية (2)']};
+const LOCS={cR:[81.8,36,'داخل القفص – يمين المتهم'],cL:[81.8,59,'داخل القفص – يسار المتهم'],pR:[83,12,'يمين الهيئة القضائية'],pL:[17,12,'يسار الهيئة القضائية'],eR:[63,82,'يمين المدخل من الداخل'],eL:[37,82,'يسار المدخل من الداخل'],oL:[37,96,'يسار المدخل من الخارج'],pubL:[12.5,52,'يسار الجمهور'],wm1:[80.5,76,'موقع الشرطة النسائية (1)'],wm2:[76,82.5,'موقع الشرطة النسائية (2)']};
 const LOC_OLD={cT:'cR',cB:'cL',wT:'wm1',wB:'wm2',hR:'wm1',hL:'pubL',gL:'pubL'};
 const HLV={A:{n:'مرتفع جداً',min:8,tot:9,def:[['cage','cR'],['cage','cL'],['prot','pR'],['prot','pL'],['hall','eR'],['hall','eL'],['hall','pubL'],['wom','wm1'],['wom','wm2']],
   cases:['القضايا الدولية والسياسية والأمنية','أفراد العصابات الدولية الخطرون','القضايا ذات الرأي العام (يحددها مدير الإدارة العامة أو نائبه أو مدير الإدارة)']},
@@ -2863,7 +2863,7 @@ async function renderHall(){
    [29,54].forEach(cx=>[40,51,62].forEach(ry=>rr(X_(cx),Y_(ry),X_(cx+15)-X_(cx),Y_(ry+6)-Y_(ry),5,'#b08a63')));
    rr(X_(77),Y_(24),X_(96)-X_(77),Y_(66)-Y_(24),5,'#fbeaea','#C0392B',2,[8,5]);
    T('قفص الاتهام',X_(86.5),Y_(29),{s:15,w:700,c:'#C0392B',a:'center'});
-   x.beginPath();x.arc(X_(86.5),Y_(44.5),9,0,7);x.fillStyle='#7a6a55';x.fill();rr(X_(86.5)-11,Y_(44.5)+10,22,20,8,'#7a6a55');T('المتهم',X_(86.5)-22,Y_(44.5)+20,{s:13,c:'#7a6a55',a:'right'});T('◄',X_(86.5)-15,Y_(44.5)+4,{s:12,c:'#7a6a55',a:'right'});
+   {const ax=X_(81.8),ay=Y_(44.5);x.beginPath();x.arc(ax,ay,9,0,7);x.fillStyle='#7a6a55';x.fill();rr(ax-11,ay+10,22,20,8,'#7a6a55');T('◄',ax-14,ay+4,{s:12,c:'#7a6a55',a:'right'});T('المتهم',ax+18,ay+20,{s:13,c:'#7a6a55',a:'left'})}
    x.fillStyle='#fff';x.fillRect(X_(43),Y_(WB)-4,X_(57)-X_(43),8);x.fillStyle='#c9b98f';[43,57].forEach(q=>x.fillRect(X_(q)-3,Y_(WB)-9,6,18));
    T('المدخل',X_(50),Y_(WB)-12,{s:15,c:'#7a6a55',a:'center'});T('خارج القاعة',X_(70),Y_(98),{s:14,c:'#9a8a75',a:'center'});
    const grp={};P.forEach((p,i)=>{(grp[p.l]=grp[p.l]||[]).push(i)});
@@ -2976,7 +2976,7 @@ function renderSpPts(){SP.pts=SP_F.map((_,i)=>(SP.pts||[])[i]||{lv:'',v:''});
   $('#spPts').innerHTML=SP_F.map(([t,L],i)=>{const p=SP.pts[i],lv=p.lv===''?null:+p.lv,v=spVal(i),mx=L[L.length-1][2];
     return `<div class="it sp-it" data-i="${i}"><div class="it-h"><span class="it-n">${i+1}</span><span class="it-t">${t}</span><span class="it-s">${v==null?'— من '+mx:v+' من '+mx}</span></div>
     <div style="display:grid;gap:6px">${L.map(([l,mn,mx2],k)=>`<button type="button" class="opt${lv===k?' on':''}" data-lv="${k}"><span>${l}</span><small>${rng(mn,mx2)}</small></button>`).join('')}</div>
-    ${lv!=null&&spLv(i,lv)[1]!==spLv(i,lv)[2]?`<div class="with-btn"><span class="hint" style="flex:none;align-self:center">النقاط الممنوحة (${spLv(i,lv)[1]} – ${spLv(i,lv)[2]})</span><input data-pv type="number" inputmode="numeric" min="${spLv(i,lv)[1]}" max="${spLv(i,lv)[2]}" value="${esc(p.v)}" style="flex:1"></div>`:''}</div>`}).join('');
+    ${lv!=null&&spLv(i,lv)[1]!==spLv(i,lv)[2]?`<div class="with-btn"><span class="hint" style="flex:none;align-self:center">الدرجة الممنوحة (${spLv(i,lv)[1]} – ${spLv(i,lv)[2]})</span><select data-pv style="flex:1"><option value="">اختر الدرجة</option>${Array.from({length:spLv(i,lv)[2]-spLv(i,lv)[1]+1},(_,q)=>spLv(i,lv)[1]+q).map(n=>`<option value="${n}"${String(n)===String(p.v)?' selected':''}>${n}</option>`).join('')}</select></div>`:''}</div>`}).join('');
   spTotalTxt()}
 function spTotalTxt(){const t=spTotal();$('#spTotal').textContent=(t==null?'—':t)+' من '+SP_MAX}
 $('#spPts').addEventListener('click',e=>{const b=e.target.closest('[data-lv]');if(!b)return;const el=b.closest('.sp-it'),i=+el.dataset.i,k=+b.dataset.lv,[,mn,mx]=spLv(i,k);
