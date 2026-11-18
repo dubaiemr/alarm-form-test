@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; media-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="app-build" content="20261117131052">
+<meta name="app-build" content="20261118090128">
 <meta name="theme-color" content="#0b5e3a">
 <title>نبض – النظام المتكامل للعمليات الميدانية</title>
 <link rel="manifest" href="manifest.json">
@@ -1633,6 +1633,70 @@ async function renderReport(){
   return {canvas:out,breaks:BR.map(b=>Math.round(b*SC)),logos:{lp,ld,lg}};
 }
 
+async function renderReport1(){
+  try{await Promise.all([document.fonts.load('400 24px "Dubai"'),document.fonts.load('700 24px "Dubai"'),document.fonts.load('700 24px "Bukra"','بلاغ')]);await document.fonts.ready}catch(e){}
+  const SC=1.5,W=1080,PAD=40,IW=W-PAD*2,PH=Math.round(W*1.4142),FOOTH=Math.round(W*.06);
+  const c=document.createElement('canvas');c.width=W*SC;c.height=3000*SC;
+  const x=c.getContext('2d');x.scale(SC,SC);x.direction='rtl';x.textBaseline='alphabetic';
+  const [lp,ld,lg,lt,pid,plic,sig]=await Promise.all([loadImg($('#lgPolice').src),loadImg($('#lgDept').src),loadImg($('#lgGov').src),loadImg($('#imgTag').src),loadImg(P.id),loadImg(P.license),loadImg(sigData())]);
+  const G='#0b5e3a',GD='#073d26',GS='#e9f3ed',INK='#16201b',MU='#6a7872',LN='#d9e2dd';
+  const f=(s,w=400)=>`${w} ${s}px ${FONT}`;
+  function T(t,px,py,o={}){x.font=o.h?`700 ${o.s||24}px ${HFONT}`:f(o.s||24,o.w||400);x.fillStyle=o.c||INK;x.textAlign=o.a||'right';x.fillText(String(t),px,py)}
+  function wrap(t,maxW,font){x.font=font;const words=String(t).split(/\s+/);const lines=[];let cur='';words.forEach(w=>{const tr=cur?cur+' '+w:w;if(x.measureText(tr).width>maxW&&cur){lines.push(cur);cur=w}else cur=tr});if(cur)lines.push(cur);return lines.length?lines:['']}
+  function rr(px,py,w,h,r,fill,stroke){x.beginPath();x.roundRect(px,py,w,h,r);if(fill){x.fillStyle=fill;x.fill()}if(stroke){x.strokeStyle=stroke;x.lineWidth=1.3;x.stroke()}}
+  function fitImg(im,px,py,maxW,maxH,alignRight){if(!im)return 0;const s=Math.min(maxW/im.width,maxH/im.height),w=im.width*s,h=im.height*s;x.drawImage(im,alignRight?px-w:px,py,w,h);return w}
+  const DIP=typeof SEC_DIP!=='undefined'&&S.sec===SEC_DIP,PAT=S.patrol||(S.patM?'م/'+S.patM:'')||(S.patQ?'ق/'+S.patQ:'');
+  x.fillStyle='#f4f7f5';x.fillRect(0,0,W,3000);
+  /* header */
+  x.fillStyle='#fff';x.fillRect(0,0,W,104);
+  {const LH=50,LY=27;let rx=W-PAD;rx-=fitImg(lp,rx,LY,360,LH,true)+18;x.fillStyle=G;x.fillRect(rx-2,LY+5,2,LH-10);rx-=20;fitImg(ld,rx,LY,600,LH,true);fitImg(lg,PAD,LY,360,LH,false)}
+  x.fillStyle=G;x.fillRect(0,104,W,5);x.fillStyle='#b8964a';x.fillRect(0,109,W,2);
+  const g1=x.createLinearGradient(W,0,0,0);g1.addColorStop(0,'#127a4c');g1.addColorStop(1,GD);x.fillStyle=g1;x.fillRect(0,111,W,82);
+  T('استمارة الاستجابة الفورية لحالات جرس الإنذار',W-PAD,152,{s:26,h:1,c:'#fff'});
+  T((typeof secName==='function'?secName(S.sec):ADM)+'  ·  '+(S.day||'')+' '+(S.date||''),W-PAD,181,{s:17,c:'rgba(255,255,255,.85)'});
+  x.font=f(21,800);const evT='حدث رقم '+(S.eventNo||'—'),evW=x.measureText(evT).width+36;rr(PAD,131,evW,44,22,'rgba(255,255,255,.14)','rgba(255,255,255,.35)');T(evT,PAD+evW-18,160,{s:21,w:800,c:'#fff'});
+  const mk=isMock();let y=207;
+  /* result + times in one strip */
+  {const ok=S.result==='محقق الزمن',bw=250;rr(W-PAD-bw,y,bw,76,14,ok?'#e3f4ea':'#fdecea',ok?'#1e8e4e':'#c0392b');
+   T(mk?'النتيجة (زمن الدورية)':'النتيجة النهائية',W-PAD-16,y+26,{s:15,c:MU});T(ok?'محقق الزمن ✓':'إخفاق ✕',W-PAD-16,y+60,{s:25,h:1,c:ok?'#157a40':'#b0302a'});
+   const tiles=[['وقت البلاغ',S.tReport],['وقت الوصول',S.tArrive],['الوقت المستغرق',S.elapsed],mk?['المنطقة',S.area]:[DIP?'وصول مسؤول المنشأة':'وصول صاحب المحل',S.tOwner]];
+   const rest=IW-bw-12,tw=(rest-3*10)/4;tiles.forEach((t,i)=>{const px=W-PAD-bw-12-i*(tw+10)-tw;rr(px,y,tw,76,12,'#fff',LN);T(t[0],px+tw-14,y+26,{s:15,c:MU});T(t[1]||'—',px+tw-14,y+62,{s:25,w:800,c:i===2?G:INK})});
+   y+=88;if(mk){rr(PAD,y,IW,40,10,'#fff6e0','#d48a1a');T('🎯 تجربة وهمية – الزمن المعتمد: زمن المقيّم · زمن الدورية للمقارنة',W-PAD-16,y+27,{s:17,w:700,c:'#9a5a00'});y+=50}}
+  function sec(title){x.fillStyle=GS;x.fillRect(PAD,y,IW,36);x.fillStyle=G;x.fillRect(W-PAD-5,y,5,36);T(title,W-PAD-18,y+26,{s:17,h:1,c:G});y+=44}
+  /* 4-column grid rows: [[label,value,span]] spans sum to 4 */
+  function grid(rows){const gap=8,cw=(IW-3*gap)/4;rows.forEach(r=>{const cells=r.map(([l,v,sp=1])=>{const w=cw*sp+gap*(sp-1);return{l,w,ls:wrap(v==null||v===''?'—':String(v),w-24,f(19,700)).slice(0,2)}});
+    const h=30+Math.max(...cells.map(c=>c.ls.length))*26+10;let px=W-PAD;cells.forEach(c=>{rr(px-c.w,y,c.w,h,10,'#fff',LN);T(c.l,px-12,y+22,{s:14.5,c:MU});c.ls.forEach((l,j)=>T(l,px-12,y+50+j*26,{s:19,w:700}));px-=c.w+gap});y+=h+8})}
+  if(S.result==='اخفاق'&&S.failReason&&!mk)grid([[['سبب الإخفاق',S.failReason,4]]]);
+  sec('بيانات البلاغ');
+  grid([[['اليوم والتاريخ',(S.day||'')+'  '+(S.date||'')],['فترة الدوام / الفئة',[S.shift,S.cat].filter(Boolean).join(' / ')],['الدورية',PAT],['حالة المنشأة عند الوصول',S.state]]]);
+  sec('موجز البلاغ');
+  {const ls=wrap(summary(false),IW-32,f(19,400));const extra=S.note?wrap('ملاحظة: '+S.note,IW-32,f(17,400)):[];const h=20+ls.length*31+(extra.length?extra.length*27+6:0)+10;rr(PAD,y,IW,h,10,'#fff',LN);ls.forEach((l,j)=>T(l,W-PAD-16,y+34+j*31,{s:19}));extra.forEach((l,j)=>T(l,W-PAD-16,y+34+ls.length*31+6+j*27,{s:17,c:MU}));y+=h+8}
+  sec('بيانات المنشأة');
+  grid(DIP?[[['اسم المنشأة',S.facility,2],['نوع المنشأة',facTypeTxt(S)],['المنطقة',S.area]],[['الموقع بالتفصيل',S.location,2],['سبب جرس الإنذار',causeText(),2]]]
+    :[[['اسم المنشأة',S.facility,2],['رقم الرخصة',S.noLicense?'لا يوجد':S.license],['نوع المنشأة',facTypeTxt(S)]],[['المنطقة',S.area],['الموقع بالتفصيل',S.location,1.5],['سبب جرس الإنذار',causeText(),1.5]]]);
+  if(!mk){sec('بيانات الشخص المخوّل في المنشأة');
+    if(S.absent)grid([[['الحالة','لم يحضر الشخص المخوّل',4]]]);
+    else grid([[['الاسم',S.pName,2],['الصفة',S.pRole],['الهاتف المتحرك',S.pMobile]],[['نوع الهوية',S.pIdType],['رقم الهوية',S.pId],['جهة الإصدار',S.pIssuer],['هاتف المنشأة',S.pPhone]]])}
+  sec('طاقم الدورية');
+  {const cols=[['الرقم',.16],['الرتبة',.18],['الاسم',.40],['الصفة',.26]];const rows=CREW.filter(([k])=>S[k+'Name']).map(([k,r])=>[S[k+'No'],S[k+'Rank'],S[k+'Name'],r]);
+   const RH=38;rr(PAD,y,IW,40+rows.length*RH,10,'#fff',LN);x.fillStyle=GS;x.beginPath();x.roundRect(PAD,y,IW,36,[10,10,0,0]);x.fill();
+   let cx0=W-PAD;cols.forEach(([h,p])=>{T(h,cx0-14,y+25,{s:16,w:700,c:G});cx0-=IW*p});
+   rows.forEach((r,j)=>{let px=W-PAD;const ry=y+36+j*RH;if(j){x.fillStyle=LN;x.fillRect(PAD+10,ry,IW-20,1)}cols.forEach(([h,p],i)=>{T(r[i]||'—',px-14,ry+27,{s:18,w:h==='الاسم'?700:400});px-=IW*p})});
+   y+=40+rows.length*RH+10}
+  if(S.headNote||S.hName){sec('ملاحظات رئيس القسم');grid([[['الملاحظات',S.headNote,4]],[['الاسم',S.hName,2],['الرتبة / الرقم',[S.hRank,S.hNo].filter(Boolean).join(' / ')],['التاريخ',S.hDate]]])}
+  /* signature + attachments side by side */
+  {const sw=IW*.5,h=96;rr(W-PAD-sw,y,sw,h,10,'#fff',LN);T('توقيع مسؤول الدورية',W-PAD-14,y+24,{s:15,c:MU});T((S.leaderRank?S.leaderRank+' / ':'')+(S.leaderName||''),W-PAD-14,y+58,{s:19,w:700});
+   if(sig)fitImg(sig,W-PAD-sw+12,y+10,190,78,false);
+   const att=[];let pg=2;if(!mk){if(plic&&!DIP)att.push(`الرخصة التجارية – صفحة ${pg++}`);if((pid||P.idBack)&&!S.absent)att.push(`هوية الشخص المخوّل (الوجهان) – صفحة ${pg++}`)}
+   const aw=IW-sw-10;rr(PAD,y,aw,h,10,GS,null);T('📎 المرفقات في نفس الملف',PAD+aw-14,y+28,{s:16,w:700,c:G});(att.length?att:['لا توجد مرفقات']).forEach((a,j)=>T('• '+a,PAD+aw-14,y+56+j*26,{s:16,c:INK}));
+   y+=h+10}
+  if(lt){const k=Math.min(300/lt.width,1),w=lt.width*k,h=lt.height*k;x.drawImage(lt,(W-w)/2,y+4,w,h);y+=h+8}
+  {const now=new Date();T(`أُنشئ التقرير: ${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}  ·  نبض – النظام المتكامل للعمليات الميدانية`,W/2,y+16,{s:13,c:MU,a:'center'});y+=26}
+  const usable=PH-62;let out=document.createElement('canvas');out.width=Math.round(W*SC);out.height=Math.round(PH*SC);const o=out.getContext('2d');o.fillStyle='#f4f7f5';o.fillRect(0,0,out.width,out.height);
+  const s=y>usable?usable/y:1;const dw=W*SC*s;o.drawImage(c,0,0,W*SC,y*SC,(W*SC-dw)/2,0,dw,y*SC*s);
+  return {canvas:out,page:out,scale:s,h:y,logos:{lp,ld,lg}};
+}
+
 /* ---------- A4 pages ---------- */
 function paginate(rep){
   const src=rep.canvas,Wp=src.width,PH=Math.round(Wp*1.4142),FOOT=Math.round(Wp*.06),usable=PH-FOOT-Math.round(Wp*.03);
@@ -1976,8 +2040,8 @@ async function sendReport(){
   if(!validate())return;save();
   $('#busy').classList.add('show');
   try{
-    const rep=await renderReport();
-    const pages=paginate(rep);
+    const rep=await renderReport1();
+    const pages=[rep.page];
     if(P.license&&!isMock()&&S.sec!==SEC_DIP)pages.push(await docPage(P.license,'الرخصة التجارية',rep.logos));
     if((P.id||P.idBack)&&!S.absent&&!isMock())pages.push(await docPage([[P.id,P.idBack?'الوجه الأمامي':''],[P.idBack,'الوجه الخلفي']],'هوية الشخص المخوّل',rep.logos));
     stampFooters(pages);
